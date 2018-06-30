@@ -1,0 +1,27 @@
+@import "variables";
+
+$base-transform: translate(-50%, -50%) scale(1.75);
+
+.container {
+  position: relative;
+  &:before {
+    position: absolute;
+    content: "";
+    left: 50%;
+    top: 50%;
+    width: 400px;
+    height: 400px;
+    background: url('#{$images}ui/combat/victory-radial-stripes.png') center no-repeat;
+    image-rendering: pixelated;
+    opacity: .5;
+    transform: $base-transform;
+    animation: radial-turn 50s linear infinite;
+    pointer-events: none;
+    z-index: -1;
+  }
+}
+
+@keyframes radial-turn {
+  from { transform: $base-transform rotate(0) }
+  to { transform: $base-transform rotate(360deg) }
+}

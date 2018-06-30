@@ -1,0 +1,32 @@
+@import "variables";
+
+.container {
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  background: linear-gradient(
+    180deg,
+    rgba(220, 220, 220, .5) 10%,
+    rgba(220, 220, 220, 1) 40%
+);
+  /*
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, .75) 50%,
+    rgba(0, 0, 0, 1) 75%
+  );
+  */
+  animation: battle-fade-in .5s ease both;
+  z-index: $z-combat;
+}
+
+@keyframes battle-fade-in {
+  from { opacity: 0; }
+}

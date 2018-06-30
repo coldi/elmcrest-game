@@ -1,0 +1,26 @@
+@import "variables";
+
+.container {
+  position: relative;
+  padding: $gap/2;
+  height: 100%;
+  box-sizing: border-box;
+  border: $px lighten($panel-bg-color, 8%) solid;
+  box-shadow: $frame-shadow;
+  background: $panel-bg;
+  border-radius: $border-radius;
+}
+
+.slim {
+  padding: $gap/4;
+}
+
+.title {
+  position: relative;
+  margin: -$gap/2;
+  margin-bottom: $gap/2;
+  padding: $gap/4 $gap/2;
+  border-bottom: $px lighten($panel-bg-color, 8%) solid;
+  background: $panel-bg-color;
+  border-radius: $border-radius;
+}

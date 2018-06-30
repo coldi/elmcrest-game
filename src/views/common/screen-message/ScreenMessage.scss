@@ -1,0 +1,29 @@
+@import "variables";
+
+.container {
+  position: fixed;
+  top: 50vh;
+  left: 50%;
+  width: 70%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: $z-screen-message;
+}
+
+.message {
+  font-size: 3em;
+  text-shadow: $text-shadow;
+  text-align: center;
+  padding: 0 $gap $gap/2;
+  background: $shade-color;
+  border-top: $px*2 $text-color solid;
+  border-bottom: $px*2 $text-color solid;
+  animation: screen-message 2s ease-in-out both;
+}
+
+@keyframes screen-message {
+  0% { opacity: 0; transform: translateY(-$gap*2); }
+  20% { opacity: 1; transform: none; }
+  90% { opacity: 1; transform: none; }
+  100% { opacity: 0; transform: translateY($gap*2); }
+}

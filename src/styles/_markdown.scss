@@ -1,0 +1,30 @@
+@import "variables";
+
+.markdown {
+  strong {
+    font-weight: normal;
+    color: $accent-color;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  blockquote {
+    font-style: italic;
+  }
+
+  code {}
+
+  dmg {
+    display: inline;
+    color: mix($text-color, red, 50%);
+    font-weight: 500;
+  }
+
+  val {
+    display: inline;
+    color: mix($text-color, green, 50%);
+    font-weight: 500;
+  }
+}

@@ -1,0 +1,13 @@
+@import "variables";
+
+.container {
+  position: relative;
+}
+
+.apBar {
+  position: relative;
+  top: $gap/4;
+  width: 25vw;
+  padding: 0;
+  box-sizing: border-box;
+}

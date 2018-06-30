@@ -1,0 +1,20 @@
+@import "variables";
+
+.container {
+  position: relative;
+  width: 28em;
+}
+
+.stepper {
+  margin-left: $gap/2;
+}
+
+.summary {
+  margin-top: $gap/2;
+  padding-top: $gap/2;
+  border-top: $px solid $primary-color;
+}
+
+.availPoints {
+  font-size: $smaller-size;
+}

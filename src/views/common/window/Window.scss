@@ -1,0 +1,19 @@
+@import "variables";
+
+.container {
+  position: absolute;
+  min-width: 25vw;
+  min-height: 10em;
+}
+
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translate(50%, -50%);
+  z-index: 1;
+}
+
+.body {
+
+}

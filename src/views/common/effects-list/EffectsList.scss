@@ -1,0 +1,12 @@
+@import "variables";
+
+.container {
+  position: relative;
+}
+
+.rel {
+  padding: $gap/2;
+  font-size: $smaller-size;
+  background: $panel-bg-color;
+  box-shadow: $default-shadow, 0 0 .5em 0 $secondary-color inset;
+}

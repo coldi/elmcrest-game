@@ -1,0 +1,16 @@
+@import "variables";
+
+.container {
+  position: relative;
+  min-width: 180px;
+  max-width: 260px;
+}
+
+.description {
+  color: $primary-color;
+  margin-bottom: $gap/2;
+  font-style: italic;
+  font-size: $smaller-size;
+}
+
+.cost {}

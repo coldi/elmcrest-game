@@ -1,0 +1,38 @@
+@import "variables";
+
+.container {
+  position: relative;
+  width: 28.5em;
+  height: 100%;
+  background: $lighten-color;
+  box-sizing: border-box;
+}
+
+.wrap {
+  // height: 240px;
+}
+
+.stackList {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row; // column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  list-style: none;
+  margin: 0;
+  padding: $gap/4;
+  min-height: calc(#{$item-size} + 4px);
+}
+
+.stackItem {
+  position: relative;
+  margin: $gap/8 $gap/4;
+  cursor: pointer;
+}
+
+.stackItemActive {
+  box-shadow: $default-shadow;
+  * {
+    border-color: $primary-color !important;
+  }
+}

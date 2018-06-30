@@ -1,0 +1,56 @@
+@import "variables";
+
+.container {
+  position: fixed;
+  padding: $gap;
+  max-width: 40%;
+  max-height: 40%;
+}
+
+.front {
+  z-index: $z-view-anchor;
+}
+
+.topLeft {
+  top: 0;
+  left: 0;
+}
+.topRight {
+  top: 0;
+  right: 0;
+  text-align: right;
+}
+.bottomLeft {
+  bottom: 0;
+  left: 0;
+}
+.bottomRight {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  bottom: 0;
+  right: 0;
+  text-align: right;
+}
+.topCenter {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.bottomCenter {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.topRight,
+.bottomRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}

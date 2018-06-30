@@ -1,0 +1,43 @@
+@import "variables";
+
+.container {
+  display: block;
+  position: relative;
+}
+
+.offset {
+  position: fixed;
+  left: 0;
+  top: 0;
+  transform: translate(-1px, -1px);
+  z-index: $z-context-menu;
+}
+
+.content {
+  position: relative;
+  min-width: 8em;
+  max-width: 16em;
+  padding: $gap/2 0;
+  box-sizing: border-box;
+  box-shadow: $default-shadow;
+  background: transparentize($panel-bg-color, .1);
+  animation: fade-in .25s ease backwards;
+}
+
+.item {
+  cursor: pointer;
+  font-size: $smaller-size;
+  text-align: center;
+  padding: $gap/4 $gap/2;
+  border-top: $px transparentize($secondary-color, .65) solid;
+  &:last-child {
+    border-bottom: $px transparentize($secondary-color, .65) solid;
+  }
+  &:hover {
+    background: $primary-color;
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "id": "attack",
+    "children": [
+      {
+        "id": "breakArmor",
+        "children": [
+          {
+            "id": "attackAll",
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "heal",
+    "children": [
+      {
+        "id": "encourage",
+        "children": [
+          {
+            "id": "healAll",
+            "children": []
+          }
+        ]
+      }
+    ]
+  }
+]

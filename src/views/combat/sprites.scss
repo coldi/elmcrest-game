@@ -1,0 +1,51 @@
+@import "variables";
+
+.blood {
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  width: 32px;
+  height: 32px;
+  background: url('#{$images}ui/combat/blood.png') no-repeat;
+  background-size: contain;
+  image-rendering: pixelated;
+  animation: blood .65s ease-in both;
+  pointer-events: none;
+  z-index: 1;
+
+  @keyframes blood {
+    0% {
+      transform: scale(0) translateY(0);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(2) translateY(-15%);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(3) translateY(30%);
+      opacity: 0;
+    }
+  }
+}
+
+.buff {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80%;
+  background: url('#{$images}ui/combat/buff.png') center bottom repeat-x;
+  background-size: 64px;
+  image-rendering: pixelated;
+  animation: buff .4s ease-in both;
+  pointer-events: none;
+  z-index: 1;
+
+  @keyframes buff {
+    to {
+      background-position: center top;
+      opacity: 0;
+    }
+  }
+}

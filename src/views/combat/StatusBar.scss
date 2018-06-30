@@ -1,0 +1,60 @@
+@import "variables";
+
+.container {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  width: 100%;
+  padding: $gap*2 0;
+  animation: slide-in .5s ease .15s both;
+  image-rendering: pixelated;
+  background: url('#{$images}ui/combat/status-bar-bg.png') top center repeat-y;
+  background-size: 100%;
+  box-shadow: 0 -1em 8em 0 rgba(220, 220, 220, .25) inset, 0 2em 8em 2em rgba(0, 0, 0, .75);
+  z-index: 1;
+}
+
+.portrait {
+  width: 500px;
+}
+
+.action {
+  position: relative;
+  width: 240px;
+  text-align: center;
+  white-space: nowrap;
+  transform: scale(2);
+  pointer-events: none;
+  z-index: 2;
+
+  .skill,
+  .name {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(0);
+  }
+
+  .skill {
+    animation: action-in .4s ease-out .2s both;
+    box-shadow: $default-shadow;
+  }
+  .name {
+    animation: action-in .3s ease-out .5s both;
+    text-shadow: $text-shadow;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(50%);
+    opacity: 0;
+  }
+}
+
+@keyframes action-in {
+  from {
+    transform: translate(-50%, -50%) rotate(0) scale(4);
+    opacity: 0;
+  }
+}

@@ -1,0 +1,30 @@
+@import "variables";
+
+.container {
+  display: block;
+  position: relative;
+}
+
+.offset {
+  position: fixed;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  z-index: $z-tooltip;
+}
+
+.content {
+  position: relative;
+  padding: $gap/2;
+  max-width: 50vw;
+  box-shadow: $default-shadow;
+  background: transparentize($panel-bg-color, .1);
+  animation: slide-in .15s ease .1s backwards;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY($gap);
+  }
+}

@@ -1,0 +1,30 @@
+@import "variables";
+
+.container {
+  display: flex;
+  align-items: flex-end;
+  position: absolute;
+  bottom: calc(5% + 2vh);
+  width: 30%;
+  height: 50%;
+  padding: 0 $gap/2;
+  box-sizing: border-box;
+
+  > * {
+    &:nth-child(even) {
+      transform: translateY(-4vh);
+    }
+  }
+}
+
+.left {
+  left: 50%;
+  flex-direction: row-reverse;
+  transform: translateX(-110%);
+}
+
+.right {
+  right: 50%;
+  justify-content: flex-start;
+  transform: translateX(110%);
+}

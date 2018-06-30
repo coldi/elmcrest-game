@@ -1,0 +1,64 @@
+@import "variables";
+
+.container {
+  position: relative;
+}
+
+.heads {
+  display: flex;
+  flex-wrap: nowrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.head {
+  padding: $gap/2;
+  line-height: 1;
+  border: $px transparent solid;
+  cursor: pointer;
+  opacity: .5;
+}
+
+.activeHead {
+  // color: $primary-color;
+  border-color: $primary-color;
+  opacity: 1;
+}
+
+.horizontal {
+  &.container {
+    display: block;
+  }
+
+  > .heads {
+    flex-direction: row;
+    border-bottom: $px $primary-color solid;
+    > .head {
+      border-bottom: none;
+    }
+  }
+
+  > .content {
+    margin-top: $gap;
+  }
+}
+
+.vertical {
+  &.container {
+    display: flex;
+    flex-direction: row;
+  }
+
+  > .heads {
+    flex-direction: column;
+    border-right: $px $primary-color solid;
+    > .head {
+      border-right: none;
+    }
+  }
+
+  > .content {
+    margin-left: $gap;
+  }
+}

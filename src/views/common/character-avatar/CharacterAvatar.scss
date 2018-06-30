@@ -1,0 +1,76 @@
+@import "variables";
+
+.container {
+  position: relative;
+}
+
+.wrap {
+  &.flipped {
+    transform: scaleX(-1);
+  }
+}
+
+.sprite {
+  position: relative;
+  width: $tile-size;
+  height: $tile-size*2;
+  transform-origin: 50% 75%;
+  transform: scale(2);
+  image-rendering: pixelated;
+  pointer-events: none;
+
+  &.alive {
+    animation: image-slide steps(2) .65s infinite;
+  }
+  &:not(.alive) {
+    filter: saturate(0);
+    opacity: .75;
+  }
+}
+
+.selected {
+  &:before {
+    display: block;
+    position: absolute;
+    bottom: -$gap;
+    left: calc(50% - #{$gap});
+    content: "";
+    animation: slide-up ease .25s both;
+
+    width: 0;
+    height: 0;
+    border-left: $gap solid transparent;
+    border-right: $gap solid transparent;
+
+    border-bottom: $gap solid $text-color;
+  }
+}
+
+.activeArea {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  height: 75%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+
+  &.interactive {
+    cursor: pointer;
+    &:hover {
+      @extend .selected;
+    }
+  }
+
+  &:not(.interactive) {
+    pointer-events: none;
+  }
+}
+
+@keyframes slide-up {
+  from { transform: translateY($gap*2); opacity: 0; }
+}
+
+@keyframes image-slide {
+  to { background-position-x: -200%; }
+}

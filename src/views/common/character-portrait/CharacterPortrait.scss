@@ -1,0 +1,108 @@
+@import "variables";
+@import "mixins";
+
+.container {
+  position: relative;
+  @include clearfix();
+}
+
+.inlineContainer {
+  float: left;
+  cursor: pointer;
+}
+
+.wrap {
+  display: flex;
+}
+
+.name,
+.status {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  padding: 0 ($gap/4);
+  text-shadow: $text-shadow;
+  box-sizing: border-box;
+}
+
+.name {
+  top: 0;
+  text-align: center;
+}
+
+.status {
+  bottom: 0;
+  text-align: right;
+  font-size: $smaller-size;
+}
+
+.portrait {
+  position: relative;
+  &:not(:last-child) {
+    margin-bottom: $gap/4;
+  }
+}
+
+.resources {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: $gap/4;
+  padding-left: $gap/4;
+  width: 1em;
+  text-align: center;
+  // border: $px $secondary-color solid;
+  border-left: $px lighten($panel-bg-color, 8%) solid;
+  background: $panel-bg-color;
+  > * {
+    width: .75em;
+    height: .75em;
+    margin: $gap/4 0;
+    background: lighten($panel-bg-color, 5%);
+    border-radius: 50%;
+    animation: resource .3s ease alternate-reverse infinite;
+    &.water { background: $water-color; }
+    &.food { background: $food-color; }
+    &.energy { background: $energy-color; }
+  }
+}
+
+.level {
+  position: absolute;
+  right: -.15em;
+  bottom: -.15em;
+  width: 1.25em;
+  height: 1.25em;
+  text-align: center;
+  line-height: 1.25;
+  font-size: $smaller-size;
+  text-shadow: $text-shadow;
+  border-radius: 50%;
+  border: $px $secondary-color solid;
+  background: $shade-color;
+}
+
+.levelUp {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 1.5em;
+  line-height: .5;
+  text-shadow: $text-shadow;
+  color: $primary-color;
+  animation: level-up .5s ease alternate-reverse infinite;
+
+  &:before { content: "+"; }
+}
+
+@keyframes level-up {
+  from { transform: scale(.75); opacity: .5; }
+}
+
+@keyframes resource {
+  from {
+    transform: scale(1.35);
+    filter: brightness(1.5);
+  }
+}

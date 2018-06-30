@@ -1,0 +1,31 @@
+@import "variables";
+
+$size: 6em;
+$size-sm: 2em;
+
+.container {
+  position: relative;
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  border: $secondary-color $px solid;
+  background: $panel-bg-color;
+  box-shadow: $high-shadow;
+}
+
+.needle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50% * .75;
+  height: 2*$px;
+  background: $text-color;
+  transform-origin: 0 50%;
+  transform: rotate(90deg);
+  transition: transform .5s ease;
+}
+
+.small {
+  width: $size-sm;
+  height: $size-sm;
+}

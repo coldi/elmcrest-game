@@ -1,0 +1,6 @@
+id;min;rating;divisor;numAffixes;weightPrefix;weightSuffix;weightBoth
+normal;0;4;8;0;0;0;0
+uncommon;0;12;16;1;1;2;0
+special;192;30;2;4;1;1;2
+rare;3200;160;3;6;0;0;1
+# only these 4 qualities are supported! do not change ids!;;;;;;;

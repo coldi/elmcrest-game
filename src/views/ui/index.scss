@@ -1,0 +1,51 @@
+@import "variables";
+
+.controlBar {
+  position: relative;
+  // margin: $gap/2;
+}
+
+.overlay {
+  position: absolute;
+  left: 0;
+  bottom: 10em;
+  width: 100%;
+}
+
+.actions {
+  position: absolute;
+  left: 50%;
+  top: -2em;
+  transform: translateX(-50%);
+}
+
+.context {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 0 $gap/2;
+  padding: $gap;
+  background: $dark-shade-color;
+  box-shadow: $default-shadow;
+}
+
+.apBar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  transform: translateY(-100%);
+  background: $panel-bg-color;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}

@@ -1,0 +1,9 @@
+@import "variables";
+
+.container {
+  position: relative;
+  margin-top: $gap*2;
+  > * + * {
+    margin-top: $gap/2;
+  }
+}

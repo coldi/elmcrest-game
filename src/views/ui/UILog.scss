@@ -1,0 +1,11 @@
+@import "variables";
+
+.container {
+  position: relative;
+  width: 30em;
+  height: 6.5em;
+  padding: $gap/2;
+  font-size: $smaller-size;
+  border: $px $secondary-color solid;
+  background: darken($panel-bg-color, 10%);
+}

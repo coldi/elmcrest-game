@@ -1,0 +1,8 @@
+[
+  { "id": "damage" },
+  { "id": "energy" },
+  { "id": "food" },
+  { "id": "heal" },
+  { "id": "restoreAP" },
+  { "id": "water" }
+]

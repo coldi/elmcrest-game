@@ -1,0 +1,49 @@
+@import "variables";
+
+.container {
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  flex-direction: row;
+
+  margin: -$gap/2;
+  > * { padding: $gap/2; }
+}
+
+.noGap {
+  margin: 0;
+  > * { padding: 0; }
+}
+
+.smallGap {
+  margin: -$gap/4;
+  > * { padding: $gap/4; }
+}
+
+.noWrap {
+  flex-wrap: nowrap;
+}
+
+.column {
+  flex-direction: column;
+  height: 100%;
+}
+
+.consistent {
+  flex-wrap: nowrap;
+  > * {
+    flex-basis: 100%;
+  }
+}
+
+.col {}
+
+.growWidth {
+  flex-grow: 1;
+  width: 100%;
+}
+
+.growHeight {
+  flex-grow: 1;
+  height: 100%;
+}

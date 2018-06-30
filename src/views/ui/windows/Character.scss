@@ -1,0 +1,17 @@
+@import "variables";
+
+.stats {
+  position: relative;
+  width: 28em;
+  height: 36em;
+}
+
+.name {
+  position: absolute;
+  left: 50%;
+  width: 50%;
+  transform: translateX(-50%);
+  margin-top: -3em;
+  text-align: center;
+  text-shadow: $text-shadow;
+}

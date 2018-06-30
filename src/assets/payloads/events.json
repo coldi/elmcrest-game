@@ -1,0 +1,16 @@
+[
+  {
+    "id": "common-actions",
+    "resourceId": "default"
+  },
+  {
+    "id": "wilderness",
+    "resourceId": "default",
+    "spawnConditions": {
+      "climates": {
+        "1": [2, 3, 4],
+        "2": true
+      }
+    }
+  }
+]

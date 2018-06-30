@@ -1,0 +1,55 @@
+@import "variables";
+
+.container {
+  position: relative;
+  // fix outer gap for quality 'glow'
+  margin: -$gap/2;
+  padding: $gap/2;
+  min-width: 180px;
+  max-width: 260px;
+}
+
+.title {
+  color: $normal-quality-color;
+  margin-bottom: $gap/1.5;
+  text-align: center;
+}
+
+.quality {
+  position: relative;
+  top: -$gap/2;
+  font-size: $smaller-size;
+  text-align: center;
+  &:before,
+  &:after { content: " — "; }
+}
+
+.description {
+  color: $primary-color;
+  margin-bottom: $gap/2;
+  font-style: italic;
+  font-size: $smaller-size;
+}
+
+.effects {
+  padding-bottom: $gap/4;
+  margin-bottom: $gap/4;
+  border-bottom: $px $secondary-color solid;
+}
+
+.meta {
+  font-size: $smaller-size;
+}
+
+// quality-based styling
+.uncommon {
+  h2, h3 { color: $uncommon-quality-color; }
+}
+.special {
+  h2, h3 { color: $special-quality-color; }
+  box-shadow: 0 0 1.5em -.3em $special-quality-color inset;
+}
+.rare {
+  h2, h3 { color: $rare-quality-color; }
+  box-shadow: 0 0 .5em -.1em #fff, 0 0 1.5em 0 $rare-quality-color;
+}

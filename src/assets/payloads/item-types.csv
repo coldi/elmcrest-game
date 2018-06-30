@@ -1,0 +1,18 @@
+id;type;resourceId;size;slot;consumable;effects;rarity;normal;uncommon;special;rare
+test-wearable;armor;wearable/hat;1;head;false;+computed.armor,1;0;true;true;true;true
+hat;armor;wearable/hat;1;head;false;+computed.armor,2;1;true;true;true;true
+chestplate;armor;wearable/chest;2;body;false;+computed.armor,5;1;true;true;true;true
+boots;armor;wearable/boots;1;feet;false;+computed.armor,2;1;true;true;true;true
+ring;armor;wearable/ring;0;trinket;false;;0.5;true;true;true;true
+necklace;armor;wearable/necklace;0;trinket;false;;1;false;true;true;true
+# weapons;;;;;;;;;;;
+sword;weapon;wearable/sword;1;hand;false;+computed.meleeDamage,1.5;1;true;true;true;true
+axe;weapon;wearable/axe;1;hand;false;+computed.meleeDamage,1.5;1;true;true;true;true
+mace;weapon;wearable/mace;2;hand;false;+computed.meleeDamage,1.65;0.75;true;true;true;true
+# misc / consumables;;;;;;;;;;;
+test-consumable;misc;consumable/drink;0;;true;water,0.5|food,0.5|restoreAP,1|heal,100;0;true;true;true;true
+bottle-water;misc;consumable/drink;0;;true;water,0.25|restoreAP,1|heal,200;1;true;true;true;true
+long-lasting-apple;misc;consumable/apple;0;;true;food,0.2|heal,100,3;1;true;true;true;true
+deer-meat;misc;consumable/bacon;0;;true;food,0.25;2;true;true;true;true
+gold;misc;misc/coin;0;;false;;1;true;false;false;false
+wood;misc;misc/wood;2;;false;;1;true;false;false;false

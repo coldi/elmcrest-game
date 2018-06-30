@@ -1,0 +1,27 @@
+@import "variables";
+
+.container {
+  overflow: hidden;
+}
+
+.skill {
+  transform: translate3d(0, 0, 0);
+  transition: filter .15s ease;
+
+  @for $i from 0 through 10 {
+    &:nth-child(#{$i}) {
+      animation: skill-in .2s ease-out ($i*.05s) both;
+    }
+  }
+
+  &:hover {
+    filter: brightness(1.25);
+  }
+}
+
+@keyframes skill-in {
+  from {
+    opacity: 0;
+    transform: translateY(50%);
+  }
+}

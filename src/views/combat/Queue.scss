@@ -1,0 +1,61 @@
+@import "variables";
+
+.container {
+  position: relative;
+  left: 25vw;
+  top: 0;
+  height: 10em;
+  padding: $gap*2 $gap*2.5 $gap/2;
+  animation: fly-in 1s ease 1.5s both;
+  background: $panel-bg;
+}
+
+.entry {
+  $size: 4.5em;
+  position: absolute;
+  width: $size;
+  height: $size;
+  padding: 0 $gap;
+  transform-origin: 100% 100%;
+  transition: transform .4s ease;
+
+  &.first {
+    z-index: 1;
+    .portrait {
+      outline: $px*2 $primary-color solid;
+      // box-shadow: 0 0 1em 0 transparentize($text-color, .5);
+      // animation: glow .6s linear alternate infinite;
+    }
+  }
+
+  &.selected {
+    .portrait {
+      outline: $px $text-color solid;
+    }
+  }
+
+  .portrait {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+.delay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  transform: translateY(100%);
+  text-align: right;
+  font-size: $larger-size;
+  text-shadow: $text-shadow;
+  color: $positive-color;
+}
+
+@keyframes fly-in {
+  from { transform: translateY(-$gap*2); opacity: 0; }
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 2.5em 0 transparentize($text-color, .25); }
+}

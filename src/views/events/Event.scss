@@ -1,0 +1,44 @@
+@import "variables";
+
+.container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: $z-event;
+}
+
+.hidden {
+  display: none;
+}
+
+.layout {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.wrap {
+  position: relative;
+  min-width: 30em;
+  max-width: 40em;
+  animation: slide-in .5s ease-out;
+}
+
+.content {
+  position: relative;
+  padding: $gap;
+  padding-right: 0;
+  height: 25em;
+  box-sizing: border-box;
+  background: linear-gradient(180deg, transparent 50%, $lighten-color);
+}
+
+@keyframes slide-in {
+  from { transform: scale(.5); }
+}

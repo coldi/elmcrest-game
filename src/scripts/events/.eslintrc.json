@@ -1,0 +1,6 @@
+{
+  "rules": {
+    "quote-props": "off",
+    "max-len": ["error", { "code": 150 }]
+  }
+}

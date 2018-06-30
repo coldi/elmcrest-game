@@ -1,0 +1,40 @@
+@import "variables";
+
+.container {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.btn {
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  line-height: 1em;
+  cursor: pointer;
+  text-transform: uppercase;
+  color: $text-color;
+  text-shadow: $text-shadow;
+  border: none;
+  background: $primary-color;
+  outline: none !important;
+
+  &:hover {
+    background: darken($primary-color, 10%);
+  }
+
+  &:active {
+    top: 2*$px;
+  }
+
+  &[disabled] {
+    cursor: default;
+    background: $secondary-color;
+  }
+
+  &:first-child {
+    &:before { content: "-"; }
+  }
+  &:last-child {
+    &:before { content: "+"; }
+  }
+}

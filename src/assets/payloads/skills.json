@@ -1,0 +1,50 @@
+[
+  {
+    "id": "attack",
+    "resourceId": "attack",
+    "animationType": "attack",
+    "cost": 30,
+    "baseValue": 400,
+    "levelFactor": 0.1
+  },
+  {
+    "id": "breakArmor",
+    "resourceId": "break-armor",
+    "animationType": "attack",
+    "cost": 35,
+    "baseValue": { "damage": 150, "armor": -0.5, "duration": 5 },
+    "levelFactor": 0.1
+  },
+  {
+    "id": "attackAll",
+    "resourceId": "attack-all",
+    "animationType": "attack",
+    "cost": 45,
+    "baseValue": 200,
+    "levelFactor": 0.1
+  },
+  {
+    "id": "heal",
+    "resourceId": "heal",
+    "animationType": "support",
+    "cost": 25,
+    "baseValue": 0.5,
+    "levelFactor": 0.1
+  },
+  {
+    "id": "encourage",
+    "resourceId": "encourage",
+    "animationType": "support",
+    "cost": 50,
+    "baseValue": { "str": 4, "armor": 1, "duration": 5 },
+    "levelFactor": 1
+  },
+  {
+    "id": "healAll",
+    "resourceId": "heal-all",
+    "animationType": "support",
+    "cost": 45,
+    "baseValue": 0.25,
+    "levelFactor": 0.1
+  }
+]

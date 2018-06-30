@@ -1,0 +1,37 @@
+@import "variables";
+
+.container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: $z-dialog;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.content {
+  min-width: 20em;
+  max-width: 40em;
+  animation: fly-in .5s ease both;
+}
+
+.body {
+  padding-bottom: $gap;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+}
+
+@keyframes fly-in {
+  from { transform: scale(0); }
+}

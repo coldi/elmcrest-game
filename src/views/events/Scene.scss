@@ -1,0 +1,23 @@
+@import "variables";
+
+.container {
+  box-sizing: border-box;
+
+  + .container {
+    padding-top: $gap;
+    margin-top: $gap;
+    border-top: 2*$px $lighten-color solid;
+  }
+
+  &:last-child {
+    padding-bottom: $gap*2;
+  }
+}
+
+.stacks {
+  display: flex;
+  justify-content: center;
+  > * + * {
+    margin-left: $gap/2;
+  }
+}

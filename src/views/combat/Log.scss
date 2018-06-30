@@ -1,0 +1,19 @@
+@import "variables";
+
+.container {
+  position: absolute;
+  left: 0;
+  height: 8.5em;
+  width: 20vw;
+  padding: $gap/2;
+  margin: $gap*2;
+  box-sizing: border-box;
+  animation: fly-in 1s ease 1.75s both;
+  background: $dark-shade-color;
+  box-shadow: $default-shadow;
+  z-index: 1;
+}
+
+@keyframes fly-in {
+  from { transform: translateX(-$gap*2); opacity: 0; }
+}

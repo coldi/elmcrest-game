@@ -1,0 +1,25 @@
+@import "variables";
+
+.image {
+  display: block;
+  box-shadow: $default-shadow inset;
+  image-rendering: pixelated;
+  background: $shade-color;
+}
+
+.placeholder {
+  position: relative;
+  box-shadow: $default-shadow inset;
+  background: #333;
+  overflow: hidden;
+  &:after {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    color: rgba(255, 255, 255, .1);
+    transform: translate(-50%, -50%);
+    content: "?";
+    line-height: 1;
+    font-size: 3.5em;
+  }
+}

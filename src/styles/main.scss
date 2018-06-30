@@ -1,0 +1,6 @@
+@import "~normalize.css";
+
+:global {
+  @import "base";
+  @import "markdown";
+}

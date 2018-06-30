@@ -1,0 +1,19 @@
+@import "variables";
+
+.container {
+  position: relative;
+  width: $item-size;
+  height: $item-size;
+}
+
+.amount {
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 0 $px;
+  padding: $px;
+  line-height: 1;
+  text-shadow: $text-shadow;
+  pointer-events: none;
+}

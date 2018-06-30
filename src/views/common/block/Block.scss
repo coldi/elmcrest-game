@@ -1,0 +1,11 @@
+@import "variables";
+
+.block {
+  position: relative;
+  margin: 0 0 $gap;
+  &:last-child { margin-bottom: 0; }
+}
+
+.noGap {
+  margin-bottom: 0;
+}

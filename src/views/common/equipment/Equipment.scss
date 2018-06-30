@@ -1,0 +1,44 @@
+@import "variables";
+
+.container {
+  position: relative;
+  min-width: 22em;
+  width: 100%;
+  height: 14em;
+  padding: $gap;
+  box-sizing: border-box;
+  background: $lighten-color url('#{$images}ui/inventory/equipment-dummy.png') center no-repeat;
+  background-size: 60%;
+}
+
+.slots {
+  display: flex;
+  height: 100%;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  align-content: space-between;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.slot {
+  width: $item-size;
+  height: $item-size;
+  padding: $gap/4;
+  margin: $gap/4 0;
+  background: $shade-color;
+}
+
+.slotLabel {
+  display: block;
+  position: relative;
+  top: 30%;
+  font-size: $smaller-size;
+  text-align: center;
+  opacity: .25;
+}
+
+.clickable {
+  cursor: pointer;
+}

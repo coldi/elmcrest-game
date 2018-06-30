@@ -1,0 +1,12 @@
+id;prefix;suffix;itemTypes;effects;rarity;normal;uncommon;special;rare
+str;true;false;armor, weapon;+base.str,0.5;0.5;true;true;true;true
+dex;true;false;armor, weapon;+base.dex,0.5;1;true;true;true;true
+int;true;false;armor, weapon;+base.int,0.5;1;true;true;true;true
+meleeDmg;true;false;weapon;+computed.meleeDamage,0.25;0.5;true;true;true;true
+# suffixes;;;;;;;;;
+per;false;true;armor, weapon;+base.per,0.5;1;true;true;true;true
+end;false;true;armor, weapon;+base.end,0.5;1;true;true;true;true
+cha;false;true;armor, weapon;+base.cha,0.5;1;true;true;true;true
+armor;false;true;armor;+computed.armor,1;0.5;true;true;true;true
+expBoost;false;true;armor, weapon;*progress.expBoost,0.025;0.25;true;true;true;true
+apMax;false;true;armor, weapon;+computed.APMax,0.1;1;true;true;true;true

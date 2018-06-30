@@ -1,0 +1,51 @@
+@import "variables";
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 360px;
+  perspective: 500px;
+}
+
+.groups {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  > * {
+    &:first-child { animation: group-left 1s ease 1s backwards; }
+    &:last-child { animation: group-right 1s ease 1s backwards; }
+  }
+}
+
+.ground {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+  background: $bg-color url('#{$images}ui/combat/ground.png') no-repeat;
+  background-size: 100% 100%;
+  transform-origin: 50% 100%;
+  transform: rotateX(40deg); // chrome 62 has visual issues above ~60deg
+  animation: ground-slide-in .75s ease .35s both;
+  box-shadow:
+          // 0 0 16em 2em rgba(0, 0, 0, 1),
+          0 4em 8em 2em rgba(220, 220, 220, .4) inset;
+  z-index: 1;
+}
+
+@keyframes group-left {
+  from { opacity: 0; }
+}
+
+@keyframes group-right {
+  from { opacity: 0; }
+}
+
+@keyframes ground-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(50%) rotateX(45deg);
+  }
+}

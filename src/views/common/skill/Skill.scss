@@ -1,0 +1,34 @@
+@import "variables";
+
+.container {
+  position: relative;
+}
+
+.wrap {
+  width: 4em;
+  height: 4em;
+  box-sizing: border-box;
+  cursor: pointer;
+  border: $px $secondary-color solid;
+  background: $shade-color;
+}
+
+.inactive {
+  opacity: .5;
+  filter: saturate(0);
+}
+
+.level {
+  $size: 1.25em;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(50%, -50%);
+  text-shadow: $text-shadow;
+  width: $size;
+  height: $size;
+  line-height: $size;
+  border-radius: 50%;
+  border: $px $secondary-color solid;
+  background: $panel-bg-color;
+}

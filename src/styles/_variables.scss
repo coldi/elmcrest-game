@@ -1,0 +1,65 @@
+$images: 'assets/textures/';
+
+// TODO: embed fonts
+// @import url('https://fonts.googleapis.com/css?family=Geo');
+// @import url('https://fonts.googleapis.com/css?family=PT+Serif:400i|PT+Sans:400,400i,700');
+@import url('https://fonts.googleapis.com/css?family=Oswald:300,400,500');
+// @import url('https://fonts.googleapis.com/css?family=Bangers:400|Tillana:400,700');
+$primary-font: 'Oswald', Times, serif;
+$secondary-font: 'Oswald', 'Open Sans', sans-serif;
+
+$primary-font-weight: 500;
+$secondary-font-weight: 400;
+
+$font-size: 16px;
+$line-height: 1.4;
+$gap: 1rem;
+$px: 1px;
+
+$smaller-size: .8em;
+$larger-size: 1.25em;
+
+$item-size: 3rem;
+$tile-size: 128px;
+
+$text-color: #fff;
+$primary-color: #d90;
+$secondary-color: #555;
+$accent-color: mix($text-color, $primary-color, 60%);
+$bg-color: #ddd;
+$positive-color: #0c0;
+$negative-color: #d00;
+$important-color: $primary-color;
+$water-color: rgb(41, 123, 216);
+$food-color: rgb(36, 161, 57);
+$energy-color: rgb(135, 55, 172);
+$panel-bg-color: #222;
+$shade-color: rgba(0, 0, 0, .25);
+$dark-shade-color: rgba(0, 0, 0, .6);
+$lighten-color: transparentize(#b98a51, .9);
+$normal-quality-color: $text-color;
+$uncommon-quality-color: #0a0;
+$special-quality-color: #06c;
+$rare-quality-color: #b2c;
+
+$border-radius: 2px;
+
+$panel-bg-pattern: url('#{$images}ui/bg-pattern.png') repeat;
+$panel-bg: linear-gradient(180deg, lighten($panel-bg-color, 5%), darken($panel-bg-color, 5%));
+
+$default-shadow: 0 $gap/4 $gap/4 $shade-color;
+$high-shadow: 0 $gap/2 $gap/2 $shade-color;
+$text-shadow: 2px 1px 0 rgba(0, 0, 0, .6);
+$frame-shadow: $default-shadow;
+
+$z-view-anchor: 1;
+$z-event: 5;
+$z-combat: 7;
+$z-context-menu: 10;
+$z-screen-message: 12;
+$z-dialog: 15;
+$z-tooltip: 20; // dialogs can have tooltips!
+
+$screen-sm: 768px;
+$screen-md: 1024px;
+$screen-lg: 1200px;

@@ -1,0 +1,18 @@
+@import "variables";
+
+.container {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  transition: opacity .3s ease;
+}
+
+.hidden,
+.inactive {
+  pointer-events: none;
+}
+
+.hidden {
+  opacity: 0;
+}

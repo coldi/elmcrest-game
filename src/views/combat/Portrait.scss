@@ -1,0 +1,33 @@
+@import "variables";
+
+.container {
+  display: flex;
+  position: relative;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: $gap/2;
+  box-sizing: border-box;
+  height: 100%;
+  animation: slide-in .3s ease .1s both;
+  background: $panel-bg-color;
+  box-shadow: $default-shadow;
+  z-index: 1;
+
+  &.left {
+    // outline: $px*2 $primary-color solid;
+  }
+  &.right {
+    // outline: $px $text-color solid;
+  }
+}
+
+.img {}
+
+.content {
+  margin-left: $gap;
+  flex-grow: 1;
+}
+
+@keyframes slide-in {
+  from { opacity: 0; transform: translateY($gap); }
+}

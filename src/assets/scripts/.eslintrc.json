@@ -1,0 +1,7 @@
+{
+  "rules": {
+    "quote-props": "off",
+    "max-len": ["error", { "code": 150 }],
+    "no-unused-vars": ["error", { "varsIgnorePattern": "script" }]
+  }
+}

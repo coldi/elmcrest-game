@@ -1,0 +1,96 @@
+@import "variables";
+
+.button {
+  position: relative;
+  padding: $gap/3 $gap $gap/2.75;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: $text-color;
+  text-shadow: $text-shadow;
+  box-shadow: $default-shadow;
+  border: none;
+  background: $primary-color;
+  outline: none !important;
+
+  &:active,
+  &:hover {
+    background: linear-gradient(180deg, lighten($primary-color, 20%), $primary-color);
+  }
+  &:active {
+    top: 2*$px;
+    box-shadow: none;
+  }
+}
+
+.active {
+  box-shadow:
+    0 (2*$px) 0 0 $text-color,
+    $default-shadow;
+}
+
+.danger {
+  background: $negative-color;
+  &:active,
+  &:hover {
+    background: linear-gradient(180deg, lighten($negative-color, 20%), $negative-color);
+  }
+}
+
+.small {
+  font-size: $smaller-size;
+  padding: $gap/4 $gap/1.65 $gap/3.75;
+}
+
+.large {
+  font-size: $larger-size;
+}
+
+.onlyText {
+  color: $primary-color;
+  text-transform: none;
+  background: none !important;
+  box-shadow: none !important;
+  &:hover {
+    color: $text-color;
+  }
+}
+
+.block {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.highlight {
+  animation: grow .5s ease alternate infinite;
+}
+
+.disabled {
+  &,
+  &:hover,
+  &:active {
+    top: auto;
+    color: transparentize($text-color, .5);
+    text-shadow: none;
+    box-shadow: $default-shadow;
+    background: desaturate($primary-color, 100%);
+  }
+}
+
+@keyframes grow {
+  to { transform: scale(1.2) }
+}
+
+@keyframes glow {
+  from {
+    box-shadow:
+      0 0 .5em 0 transparentize($accent-color, .8),
+      0 0 .2em .2em transparentize($text-color, .8) inset;
+  }
+  to {
+    box-shadow:
+      0 0 2em .25em transparentize($accent-color, .25),
+      0 0 .2em .2em transparentize($text-color, .25) inset;
+  }
+}

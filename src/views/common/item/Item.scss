@@ -1,0 +1,27 @@
+@import "variables";
+
+.container {
+  position: relative;
+}
+
+.wrap {
+  width: $item-size;
+  height: $item-size;
+  font-size: $smaller-size;
+  box-sizing: border-box;
+  border: $px transparentize($normal-quality-color, .65) solid;
+  background: $shade-color;
+}
+
+// quality-based styling
+.uncommon {
+  border-color: $uncommon-quality-color;
+}
+.special {
+  border-color: $special-quality-color;
+  box-shadow: 0 0 1em 0 $special-quality-color inset;
+}
+.rare {
+  border-color: $rare-quality-color;
+  box-shadow: 0 0 1em 0 $rare-quality-color;
+}

@@ -1,0 +1,50 @@
+@import "variables";
+
+html, body {
+  position: relative;
+}
+
+body {
+  font-family: $secondary-font;
+  font-weight: $secondary-font-weight;
+  font-size: $font-size;
+  line-height: $line-height;
+
+  overflow-x: hidden;
+  overflow-y: hidden;
+
+  color: $text-color;
+  background: $bg-color;
+
+  cursor: default;
+  user-select: none;
+
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $primary-font;
+  font-weight: $primary-font-weight;
+}
+
+h1, h2, h3, h4, h5, h6,
+p,
+hr,
+ul, ol,
+blockquote {
+  margin: 0 0 $gap;
+  &:last-child { margin-bottom: 0; }
+}
+
+b, strong { font-weight: 500; }
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+hr {
+  height: $px;
+  border: none;
+  background: $text-color;
+}

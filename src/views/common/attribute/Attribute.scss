@@ -1,0 +1,51 @@
+@import "variables";
+@import "mixins";
+
+.container {
+  display: flex;
+  white-space: nowrap;
+  justify-content: space-between;
+}
+
+.inline {
+  display: inline-flex;
+  vertical-align: middle;
+  > * {}
+}
+
+.label {
+  margin-right: $gap/2;
+}
+
+.values {
+  flex-grow: 1;
+  text-align: right;
+  * + * { margin-left: $gap/4; }
+}
+
+.base {}
+
+.modified {
+  &:nth-child(2) {
+    &:before {
+      content: "→";
+      margin-right: $gap/4;
+    }
+  }
+}
+
+.percent {
+  .base,
+  .modified {
+    &:after {
+      content: "%";
+      font-size: .5em;
+    }
+  }
+}
+
+.better { color: $positive-color; }
+.even { color: transparentize($text-color, .5); }
+.worse { color: $negative-color; }
+
+.hidden { display: none; }

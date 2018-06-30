@@ -1,0 +1,56 @@
+@import "variables";
+
+.bar {
+  position: relative;
+  padding: $px;
+  color: $text-color;
+  box-shadow: $default-shadow;
+  border: $px $secondary-color solid;
+  background: $dark-shade-color;
+}
+
+.progress {
+  width: 100%;
+  height: $gap;
+  background: $primary-color;
+  transition: width .25s ease;
+
+  &.default { background: $primary-color; }
+  &.water { background: $water-color; }
+  &.food { background: $food-color; }
+  &.energy { background: $energy-color; }
+}
+
+.segmented {
+  display: flex;
+  flex-wrap: nowrap;
+  .progress {
+    box-sizing: border-box;
+    transition: opacity .3s ease;
+    background-clip: padding-box;
+    + .progress {
+      border-left: $px transparent solid;
+    }
+    &.hidden {
+      opacity: 0;
+    }
+    &.highlighted {
+      animation: glow .3s ease alternate infinite;
+    }
+  }
+}
+
+.label,
+.maxLabel {
+  position: absolute;
+  top: 0;
+  font-size: $smaller-size;
+  text-shadow: $text-shadow;
+}
+
+.label { left: $gap/4; }
+.maxLabel { right: $gap/4; }
+
+@keyframes glow {
+  to { background-color: $text-color; }
+}
