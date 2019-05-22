@@ -15,8 +15,4 @@ export { default as setWindowActiveAction } from './actions/setWindowActiveActio
 export { default as toggleWindow } from './actions/toggleWindow';
 export { default as updateWindowStateAction } from './actions/updateWindowStateAction';
 
-export {
-    DEVTOOL_WINDOW,
-    CHARACTER_WINDOW,
-    SKILLS_WINDOW,
-} from './constants';
+export { DEVTOOL_WINDOW, CHARACTER_WINDOW, SKILLS_WINDOW } from './constants';

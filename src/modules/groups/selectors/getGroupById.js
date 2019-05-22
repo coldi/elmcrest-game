@@ -6,8 +6,6 @@ import getGroupsState from './getGroupsState';
  * @param {string} id A group id
  * @returns {Object} A group object
  */
-const getGroupById = (state, id) => (
-    getGroupsState(state).byId[id]
-);
+const getGroupById = (state, id) => getGroupsState(state).byId[id];
 
 export default getGroupById;

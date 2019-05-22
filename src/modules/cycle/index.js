@@ -15,9 +15,8 @@ export { default as addGroupToPhaseAction } from './actions/addGroupToPhaseActio
 export { default as setPhaseIndexAction } from './actions/setPhaseIndexAction';
 export { default as incrementTurnAction } from './actions/incrementTurnAction';
 export { default as nextPhase } from './actions/nextPhase';
-export { default as removeGroupFromPhaseAction } from './actions/removeGroupFromPhaseAction';
-
 export {
-    PLAYER_PHASE_INDEX,
-    COMPUTE_PHASE_INDEX,
-} from './constants';
+    default as removeGroupFromPhaseAction,
+} from './actions/removeGroupFromPhaseAction';
+
+export { PLAYER_PHASE_INDEX, COMPUTE_PHASE_INDEX } from './constants';

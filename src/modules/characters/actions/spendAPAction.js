@@ -4,15 +4,12 @@
  * @param {number} cost Action point cost
  * @returns {Object} A redux action
  */
-const spendAPAction = (
-    ids = [],
-    cost = 0
-) => ({
+const spendAPAction = (ids = [], cost = 0) => ({
     type: `${spendAPAction}`,
     payload: {
-        ids: (Array.isArray(ids)) ? ids : [ids],
+        ids: Array.isArray(ids) ? ids : [ids],
         cost,
-    }
+    },
 });
 
 spendAPAction.toString = () => 'characters/spend AP';

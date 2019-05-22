@@ -6,12 +6,8 @@ import addBattleToHistoryAction from '../actions/addBattleToHistoryAction';
  * @param {Object} action The dispatched action
  * @returns {Object} The next state
  */
-export default function history (
-    state = [],
-    action = {}
-) {
+export default function history(state = [], action = {}) {
     switch (action.type) {
-
         case `${addBattleToHistoryAction}`: {
             const { result } = action.payload;
 
@@ -21,6 +17,5 @@ export default function history (
         default: {
             return state;
         }
-
     }
 }

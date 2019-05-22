@@ -5,8 +5,6 @@ import getCombatUIState from './getCombatUIState';
  * @param {Object} state The global state
  * @returns {Object}
  */
-const getCurrentRollout = (state) => (
-    getCombatUIState(state).rollouts[0]
-);
+const getCurrentRollout = state => getCombatUIState(state).rollouts[0];
 
 export default getCurrentRollout;

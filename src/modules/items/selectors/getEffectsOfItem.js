@@ -27,33 +27,36 @@ const getEffectsOfItem = (state, item) => {
         affixEffects = [];
     }
 
-    return regularEffects.concat(affixEffects)
-        // scale effects based on item level
-        .map(effect => ({
-            ...effect,
-            value: [effect.value]
-                .map(val => Number(val) * level * levelScaleFactor)
-                .map(val => {
-                    if (isAddModifier(effect)) {
-                        return (val > 0) ? Math.ceil(val) : Math.floor(val);
-                    }
+    return (
+        regularEffects
+            .concat(affixEffects)
+            // scale effects based on item level
+            .map(effect => ({
+                ...effect,
+                value: [effect.value]
+                    .map(val => Number(val) * level * levelScaleFactor)
+                    .map(val => {
+                        if (isAddModifier(effect)) {
+                            return val > 0 ? Math.ceil(val) : Math.floor(val);
+                        }
 
-                    return val;
-                })[0],
-        }))
-        // summarize effects by name so they only occur once on an item,
-        // e.g.: [str +1, str +3] -> [str +4]
-        .reduce((list, effect) => {
-            const existing = list.find(({ name }) => name === effect.name);
-            if (existing) {
-                const value = existing.value + effect.value;
-                const result = { ...existing, value };
-                return [...list.filter(({ name }) => name !== effect.name), result];
-            }
-            return [...list, effect];
-        }, [])
-        // sort by value desc
-        .sort((a, b) => a.value < b.value);
+                        return val;
+                    })[0],
+            }))
+            // summarize effects by name so they only occur once on an item,
+            // e.g.: [str +1, str +3] -> [str +4]
+            .reduce((list, effect) => {
+                const existing = list.find(({ name }) => name === effect.name);
+                if (existing) {
+                    const value = existing.value + effect.value;
+                    const result = { ...existing, value };
+                    return [...list.filter(({ name }) => name !== effect.name), result];
+                }
+                return [...list, effect];
+            }, [])
+            // sort by value desc
+            .sort((a, b) => a.value < b.value)
+    );
 };
 
 export default getEffectsOfItem;

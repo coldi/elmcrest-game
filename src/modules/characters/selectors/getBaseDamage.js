@@ -15,27 +15,18 @@ const getBaseDamage = (state, originCharId, targetCharId) => {
     // TODO: retrieve magic numbers from state (characters.settings?)
 
     // calc origin's damage multiplier
-    const damageMultiplier = Math.min(
-        origin.computed.meleeDamage / 25,
-        2,
-    );
+    const damageMultiplier = Math.min(origin.computed.meleeDamage / 25, 2);
 
     if (target) {
         // calc target's armor rating
-        const armorRating = Math.min(
-            target.computed.armor / 1000,
-            0.5
-        );
+        const armorRating = Math.min(target.computed.armor / 1000, 0.5);
         // sum target's defense rating and armor rating
         const defenseMultiplier = Math.min(
             target.computed.defenseRating + armorRating,
-            0.75,
+            0.75
         );
 
-        return Math.max(
-            0.1,
-            damageMultiplier - defenseMultiplier
-        );
+        return Math.max(0.1, damageMultiplier - defenseMultiplier);
     }
 
     return damageMultiplier;

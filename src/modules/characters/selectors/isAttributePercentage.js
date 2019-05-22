@@ -3,8 +3,6 @@
  * @param {string} attribute
  * @returns {boolean}
  */
-const isAttributePercentage = (attribute) => (
-    (/rating|chance/i).test(attribute)
-);
+const isAttributePercentage = attribute => /rating|chance/i.test(attribute);
 
 export default isAttributePercentage;

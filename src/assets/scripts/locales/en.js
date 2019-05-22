@@ -1,4 +1,4 @@
-function script () {
+function script() {
     return {
         common: {
             attributes: 'Attributes',
@@ -57,7 +57,7 @@ function script () {
                 feet: 'Feet',
                 trinket: 'Trinket',
                 hand: 'Hand',
-            }
+            },
         },
         qualities: {
             normal: '',
@@ -74,65 +74,66 @@ function script () {
                 name: 'Test Consumable',
                 descr: 'Test description.',
             },
-            'boots': {
+            boots: {
                 name: 'Boots',
                 descr: 'These boots look pretty worn and stink abominably.',
             },
-            'hat': {
+            hat: {
                 name: 'Hat',
                 descr: 'An old hat. It barely satisfies current fashion standards.',
             },
-            'ring': {
+            ring: {
                 name: 'Ring',
                 descr: '',
             },
-            'necklace': {
+            necklace: {
                 name: 'Necklace',
                 descr: '',
             },
-            'chestplate': {
+            chestplate: {
                 name: 'Chestplate',
-                descr: 'A body armor for a real hero. Or at least someone who just started his career.',
+                descr:
+                    'A body armor for a real hero. Or at least someone who just started his career.',
             },
-            'sword': {
+            sword: {
                 name: 'Sword',
                 descr: 'A sharp melee weapon.',
             },
-            'axe': {
+            axe: {
                 name: 'Axe',
                 descr: 'A sharp melee weapon.',
             },
-            'mace': {
+            mace: {
                 name: 'Mace',
                 descr: 'A blunt melee weapon.',
             },
             'bottle-water': {
                 name: 'A bottle of water',
-                descr: 'It\'s clean and fresh water.',
+                descr: "It's clean and fresh water.",
             },
             'deer-meat': {
                 name: 'Deer meat',
-                descr: 'In it\'s raw state it will be almost uneatable.',
+                descr: "In it's raw state it will be almost uneatable.",
             },
             'long-lasting-apple': {
                 name: 'Long lasting Apple',
                 descr: 'This one looks indeed pretty healthy.',
             },
-            'gold': {
+            gold: {
                 name: 'Gold',
                 descr: 'Can buy goodies.',
             },
-            'wood': {
+            wood: {
                 name: 'Wood',
                 descr: 'This might be useful for something.',
             },
         },
         affixes: {
             prefixes: {
-                str: 'Titan\'s ',
-                dex: 'Assassin\'s ',
-                int: 'Wizard\'s ',
-                meleeDmg: 'Warrior\'s ',
+                str: "Titan's ",
+                dex: "Assassin's ",
+                int: "Wizard's ",
+                meleeDmg: "Warrior's ",
             },
             suffixes: {
                 per: ' of the Hawk',
@@ -146,30 +147,31 @@ function script () {
         effects: {
             restoreAP: {
                 name: 'AP Restoration',
-                descr: 'Restores {0} AP'
+                descr: 'Restores {0} AP',
             },
             heal: {
                 name: 'Healing',
-                descr: 'Heals {0} HP'
+                descr: 'Heals {0} HP',
             },
             damage: {
                 name: 'Damage',
-                descr: 'Deals {0} damage'
+                descr: 'Deals {0} damage',
             },
             water: {
                 name: 'Water',
-                descr: 'Restores {0}% water'
+                descr: 'Restores {0}% water',
             },
             food: {
                 name: 'Food',
-                descr: 'Restores {0}% food'
+                descr: 'Restores {0}% food',
             },
             energy: {
                 name: 'Energy',
-                descr: 'Restores {0}% energy'
+                descr: 'Restores {0}% energy',
             },
         },
-        rel: { // effect relations
+        rel: {
+            // effect relations
             common: 'Common',
             breakArmor: 'Broken armor',
             encourage: 'Encouraged',
@@ -178,17 +180,21 @@ function script () {
             attack: {
                 name: 'Attack',
                 descr: 'A basic attack that deals some damage to the target.',
-                usage: '**{origin}** attacks **{target}** and deals <dmg>{effect0}</dmg> damage.',
+                usage:
+                    '**{origin}** attacks **{target}** and deals <dmg>{effect0}</dmg> damage.',
             },
             breakArmor: {
                 name: 'Break Armor',
-                descr: 'An attack that deals minor damage to the target and decreases it\'s armor.',
-                usage: '**{origin}** attacks **{target}**, deals <dmg>{effect0}</dmg> damage and decreases armor by <val>{effect1}</val>.',
+                descr:
+                    "An attack that deals minor damage to the target and decreases it's armor.",
+                usage:
+                    '**{origin}** attacks **{target}**, deals <dmg>{effect0}</dmg> damage and decreases armor by <val>{effect1}</val>.',
             },
             attackAll: {
                 name: 'Go wild',
-                descr: 'Attacks all members of the target\'s group.',
-                usage: '**{origin}** wildly attacks **{target}** and deals <dmg>{effect0}</dmg> damage.',
+                descr: "Attacks all members of the target's group.",
+                usage:
+                    '**{origin}** wildly attacks **{target}** and deals <dmg>{effect0}</dmg> damage.',
             },
             heal: {
                 name: 'Healing',
@@ -198,7 +204,8 @@ function script () {
             encourage: {
                 name: 'Encourage',
                 descr: 'Greatly increases strength and armor of all group members.',
-                usage: '**{origin}** increases strength of **{target}** by <val>{effect0}</val>.',
+                usage:
+                    '**{origin}** increases strength of **{target}** by <val>{effect0}</val>.',
             },
             healAll: {
                 name: 'Group Healing',
@@ -232,14 +239,15 @@ function script () {
                 skills: {
                     name: 'Skills',
                     title: 'Skills',
-                }
+                },
             },
             messages: {
                 newTurnBegins: 'A new turn ({turn}) begins.',
-                playerPhase: 'It\'s your turn!',
+                playerPhase: "It's your turn!",
                 computePhase: 'Computing the environment ...',
                 blockedPath: 'The path at {coord} is blocked.',
-                noActionWhenOverloaded: 'Unable to perform action. Your inventory is overloaded.',
+                noActionWhenOverloaded:
+                    'Unable to perform action. Your inventory is overloaded.',
                 characterDiedInCombat: '',
                 gainedExp: 'You receive {exp} experience.',
                 pickLoot: 'Choose your loot:',
@@ -271,6 +279,6 @@ function script () {
             takeAll: 'Take all',
             nextTurn: 'Next Turn',
             commonActions: 'Actions',
-        }
+        },
     };
 }

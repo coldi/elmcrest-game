@@ -3,6 +3,6 @@
  * @param {Object} state The global state
  * @returns {Object} The characters state
  */
-const getCharactersState = (state) => state.characters;
+const getCharactersState = state => state.characters;
 
 export default getCharactersState;

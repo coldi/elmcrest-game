@@ -5,6 +5,6 @@ import getGroupsState from './getGroupsState';
  * @param {Object} state The global state
  * @returns {Object}
  */
-const getGroupsSettings = (state) => getGroupsState(state).settings;
+const getGroupsSettings = state => getGroupsState(state).settings;
 
 export default getGroupsSettings;

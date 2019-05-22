@@ -11,11 +11,7 @@ import equipStack from './equipStack';
  * @param {string} charId A character id
  * @returns {Function} A redux thunk
  */
-const useStack = (
-    invId,
-    stackId,
-    charId,
-) => (dispatch, getState) => {
+const useStack = (invId, stackId, charId) => (dispatch, getState) => {
     const state = getState();
     const stack = getStackById(state, invId, stackId);
     const itemType = getItemTypeById(state, stack.item.itemTypeId);

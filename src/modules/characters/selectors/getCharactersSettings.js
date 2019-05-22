@@ -5,6 +5,6 @@ import getCharactersState from './getCharactersState';
  * @param {Object} state The global state
  * @returns {Object}
  */
-const getCharactersSettings = (state) => getCharactersState(state).settings;
+const getCharactersSettings = state => getCharactersState(state).settings;
 
 export default getCharactersSettings;

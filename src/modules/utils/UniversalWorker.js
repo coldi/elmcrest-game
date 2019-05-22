@@ -16,7 +16,7 @@ const wrapFunc = fn => `(${fn})();`;
 export default class UniversalWorker {
     static nativeSupport = !!(window && window.Worker && window.Blob);
 
-    constructor (script) {
+    constructor(script) {
         // test environment with worker support
         if (this.constructor.nativeSupport) {
             let content;
@@ -48,14 +48,14 @@ export default class UniversalWorker {
     }
 
     /* eslint-disable */
-    postMessage (data) {
+    postMessage(data) {
         const self = this;
 
-        setTimeout(function () {
+        setTimeout(function() {
             // define proxy to Worker.onmessage
-            function onmessage () {}
+            function onmessage() {}
             // define proxy to Worker.postMessage
-            function postMessage (data) {
+            function postMessage(data) {
                 self.onmessage({ data });
             }
             // run the inline script
@@ -65,6 +65,6 @@ export default class UniversalWorker {
         });
     }
 
-    onmessage () {}
+    onmessage() {}
     /* eslint-enable */
 }

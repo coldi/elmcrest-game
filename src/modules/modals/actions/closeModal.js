@@ -7,7 +7,7 @@ import removeModalAction from './removeModalAction';
  * @param {boolean} confirmed A flag whether the modal was confirmed or not
  * @returns {Function} A redux thunk
  */
-const closeModal = (id, confirmed = false) => (dispatch) => {
+const closeModal = (id, confirmed = false) => dispatch => {
     promiseMap.resolve(id, confirmed);
 
     dispatch(removeModalAction(id));

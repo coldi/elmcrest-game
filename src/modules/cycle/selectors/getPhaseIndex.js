@@ -5,8 +5,6 @@ import getCycleState from './getCycleState';
  * @param {Object} state The global state
  * @returns {number} The current phase index
  */
-const getPhaseIndex = (state) => (
-    getCycleState(state).cycle.phaseIndex
-);
+const getPhaseIndex = state => getCycleState(state).cycle.phaseIndex;
 
 export default getPhaseIndex;

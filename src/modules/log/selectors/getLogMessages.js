@@ -5,6 +5,6 @@ import getLogState from './getLogState';
  * @param {Object} state The global state
  * @returns {Object} A list of log messages
  */
-const getLogMessages = (state) => getLogState(state);
+const getLogMessages = state => getLogState(state);
 
 export default getLogMessages;

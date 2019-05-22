@@ -7,7 +7,7 @@ export default {
      * @param {string} id
      * @returns {Promise<any>}
      */
-    create (id) {
+    create(id) {
         return new Promise((resolve, reject) => {
             map.set(id, {
                 resolve,
@@ -20,7 +20,7 @@ export default {
      * @param {string} id
      * @param {*} [result]
      */
-    resolve (id, result) {
+    resolve(id, result) {
         map.get(id).resolve(result);
         map.delete(id);
     },
@@ -29,7 +29,7 @@ export default {
      * @param {string} id
      * @param {Error} err
      */
-    reject (id, err) {
+    reject(id, err) {
         map.get(id).reject(err);
         map.delete(id);
     },

@@ -3,6 +3,6 @@
  * @param {Object} state The global state
  * @returns {Object} The gamemaster state
  */
-const getGamemasterState = (state) => state.gamemaster;
+const getGamemasterState = state => state.gamemaster;
 
 export default getGamemasterState;

@@ -7,10 +7,7 @@ import { WORLD_CONTEXT, COMBAT_CONTEXT } from '../constants';
  * @param {string} charId A character id
  * @returns {boolean}
  */
-const getContextByCharacterId = (state, charId) => (
-    isCharacterInBattle(state, charId)
-        ? COMBAT_CONTEXT
-        : WORLD_CONTEXT
-);
+const getContextByCharacterId = (state, charId) =>
+    isCharacterInBattle(state, charId) ? COMBAT_CONTEXT : WORLD_CONTEXT;
 
 export default getContextByCharacterId;

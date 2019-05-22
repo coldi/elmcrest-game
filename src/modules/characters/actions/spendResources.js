@@ -5,7 +5,7 @@ import getFieldType from '../../world/selectors/getFieldType';
 import getCharacterById from '../selectors/getCharacterById';
 import getCharactersSettings from '../selectors/getCharactersSettings';
 
-const spendResources = (charId) => (dispatch, getState) => {
+const spendResources = charId => (dispatch, getState) => {
     const state = getState();
     const { baseResourceConsumption } = getCharactersSettings(state);
     const char = getCharacterById(state, charId);

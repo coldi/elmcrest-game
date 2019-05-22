@@ -8,16 +8,12 @@ import Cell from './Cell';
  * See http://www.redblobgames.com/grids/hexagons/#coordinates
  */
 export default class Coord {
-
     /**
      * Constructor.
      * @param {number} col
      * @param {number} row
      */
-    constructor(
-        col = 0,
-        row = 0
-    ) {
+    constructor(col = 0, row = 0) {
         this.col = col;
         this.row = row;
     }
@@ -27,7 +23,7 @@ export default class Coord {
      * @param {Coord|number} c The coord or number to add
      * @returns {Coord}
      */
-    add (c) {
+    add(c) {
         if (c instanceof Coord) {
             return new Coord(this.col + c.col, this.row + c.row);
         }
@@ -39,7 +35,7 @@ export default class Coord {
      * @param {Coord|number} c The coord or number to subtract
      * @returns {Coord}
      */
-    sub (c) {
+    sub(c) {
         if (c instanceof Coord) {
             return new Coord(this.col - c.col, this.row - c.row);
         }
@@ -51,7 +47,7 @@ export default class Coord {
      * @param {Coord} c The coord to compare
      * @returns {boolean}
      */
-    equals (c) {
+    equals(c) {
         return this.col === c.col && this.row === c.row;
     }
 
@@ -61,7 +57,7 @@ export default class Coord {
      * @param {number} row
      * @returns {Coord}
      */
-    init (col, row) {
+    init(col, row) {
         this.col = col;
         this.row = row;
         return this;
@@ -71,7 +67,7 @@ export default class Coord {
      * Rounds the values of this coord and returns a new one.
      * @returns {Coord}
      */
-    round () {
+    round() {
         const q = Math.round(this.col);
         const r = Math.round(this.row);
         return new Coord(q, r);
@@ -82,7 +78,7 @@ export default class Coord {
      * @param {number} offset An optional odd/even offset that defaults to -1
      * @returns {Cell}
      */
-    toCell (offset = -1) {
+    toCell(offset = -1) {
         const q = this.col;
         // eslint-disable-next-line  no-bitwise
         const r = this.row - Math.trunc((q + offset * (q & 1)) / 2);
@@ -95,7 +91,7 @@ export default class Coord {
      * Transforms this coord to a string.
      * @returns {string}
      */
-    toString () {
+    toString() {
         return `${this.col}:${this.row}`;
     }
 
@@ -103,7 +99,7 @@ export default class Coord {
      * Transforms this coord to an array.
      * @returns {number[]}
      */
-    toArray () {
+    toArray() {
         return [this.col, this.row];
     }
 }

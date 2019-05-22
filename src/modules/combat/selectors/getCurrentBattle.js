@@ -5,8 +5,6 @@ import getCombatState from './getCombatState';
  * @param {Object} state The global state
  * @returns {Object} The current battle state
  */
-const getCurrentBattle = (state) => (
-    getCombatState(state).currentBattle
-);
+const getCurrentBattle = state => getCombatState(state).currentBattle;
 
 export default getCurrentBattle;

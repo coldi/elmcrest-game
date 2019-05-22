@@ -1,21 +1,16 @@
-export default function ({ helpers }) {
-    const {
-        heSheIt,
-        hisHerIts,
-        himHerIt,
-        cap,
-    } = helpers;
+export default function({ helpers }) {
+    const { heSheIt, hisHerIts, himHerIt, cap } = helpers;
 
     return {
         events: {
-            'test': {
+            test: {
                 title: 'Exciting Test Event',
                 START: `
 You discover some **ancient ruins**.
 People say they may hold **precious rewards** and tell stories of long gone civilizations.
 Maybe these rumors are worth to investigate the ruins.
 `,
-                INVESTIGATE: 'Sure, I\'m here for adventure anyway',
+                INVESTIGATE: "Sure, I'm here for adventure anyway",
                 DISMISS_START: 'No, maybe next time',
 
                 // ==========================================================

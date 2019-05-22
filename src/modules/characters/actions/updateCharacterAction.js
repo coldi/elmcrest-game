@@ -6,7 +6,7 @@
  */
 const updateCharacterAction = (id, props) => ({
     type: `${updateCharacterAction}`,
-    payload: { id, props }
+    payload: { id, props },
 });
 
 updateCharacterAction.toString = () => 'characters/update character';

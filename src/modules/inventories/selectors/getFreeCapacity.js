@@ -7,8 +7,7 @@ import getHoldCapacity from './getHoldCapacity';
  * @param {string} id An inventory id
  * @returns {number}
  */
-const getFreeCapacity = (state, id) => (
-    getTotalCapacity(state, id) - getHoldCapacity(state, id)
-);
+const getFreeCapacity = (state, id) =>
+    getTotalCapacity(state, id) - getHoldCapacity(state, id);
 
 export default getFreeCapacity;

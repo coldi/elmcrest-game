@@ -2,21 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getSkillTree } from '../../../modules/skills';
-import {
-    getBaseCharacterById,
-    updateCharacterAction,
-} from '../../../modules/characters';
+import { getBaseCharacterById, updateCharacterAction } from '../../../modules/characters';
 import T from '../../i18n';
-import {
-    Skill,
-    StepperButton,
-    Grid,
-    Button,
- } from '../';
+import { Skill, StepperButton, Grid, Button } from '../';
 import styles from './SkillTree.scss';
 
 export class SkillTreeContainer extends React.PureComponent {
-
     static propTypes = {
         characterId: PropTypes.string.isRequired,
         tree: PropTypes.arrayOf(PropTypes.shape()),
@@ -35,12 +26,17 @@ export class SkillTreeContainer extends React.PureComponent {
         this.handleDoneEditing = this.handleDoneEditing.bind(this);
     }
 
-    hasSkilledParents (skillId, skills, branch, parents = []) {
+    hasSkilledParents(skillId, skills, branch, parents = []) {
         for (const skill of branch) {
             if (skillId === skill.id) return !parents.includes(false);
 
             const nextParents = parents.concat(skills[skill.id] > 0);
-            const result = this.hasSkilledParents(skillId, skills, skill.children, nextParents);
+            const result = this.hasSkilledParents(
+                skillId,
+                skills,
+                skill.children,
+                nextParents
+            );
 
             if (result !== null) return result;
         }
@@ -48,19 +44,23 @@ export class SkillTreeContainer extends React.PureComponent {
         return null;
     }
 
-    getPoints () {
+    getPoints() {
         const { skillPoints } = this.props.character.progress;
 
-        const originalSkillPoints = Object.values(this.props.character.skills)
-            .reduce((sum, val) => sum + val, 0);
+        const originalSkillPoints = Object.values(this.props.character.skills).reduce(
+            (sum, val) => sum + val,
+            0
+        );
 
-        const currentSkillPoints = Object.values(this.state.skills)
-            .reduce((sum, val) => sum + val, 0);
+        const currentSkillPoints = Object.values(this.state.skills).reduce(
+            (sum, val) => sum + val,
+            0
+        );
 
         return skillPoints + (originalSkillPoints - currentSkillPoints);
     }
 
-    validateSkills (skills) {
+    validateSkills(skills) {
         const charSkills = this.state.skills || {};
         return Object.keys(charSkills).reduce((validSkills, skillId) => {
             if (!charSkills[skillId]) return validSkills;
@@ -76,10 +76,10 @@ export class SkillTreeContainer extends React.PureComponent {
     }
 
     handleSkillChange(skill, inc) {
-        const skills = this.validateSkills({
-            ...this.state.skills,
-            [skill]: (this.state.skills[skill] || 0) + inc
-        });
+        const skills = this.validateSkills(prevState => ({
+            ...prevState.skills,
+            [skill]: (prevState.skills[skill] || 0) + inc,
+        }));
 
         this.setState({ skills });
     }
@@ -90,7 +90,7 @@ export class SkillTreeContainer extends React.PureComponent {
         });
     }
 
-    handleDoneEditing () {
+    handleDoneEditing() {
         this.props.updateCharacter({
             skills: this.state.skills,
             progress: {
@@ -99,8 +99,8 @@ export class SkillTreeContainer extends React.PureComponent {
         });
     }
 
-    renderSkill (skill, canSpendPoints) {
-        const skills = this.props.character.skills;
+    renderSkill(skill, canSpendPoints) {
+        const { skills } = this.props.character;
         const originalLevel = skills[skill.id] || 0;
         const currentLevel = this.state.skills[skill.id] || 0;
 
@@ -112,7 +112,10 @@ export class SkillTreeContainer extends React.PureComponent {
                         <StepperButton
                             min={originalLevel}
                             value={currentLevel}
-                            max={Math.min(currentLevel + this.getPoints(), skill.levelLimit)}
+                            max={Math.min(
+                                currentLevel + this.getPoints(),
+                                skill.levelLimit
+                            )}
                             onDecrease={() => this.handleSkillChange(skill.id, -1)}
                             onIncrease={() => this.handleSkillChange(skill.id, +1)}
                         />
@@ -122,8 +125,9 @@ export class SkillTreeContainer extends React.PureComponent {
         );
     }
 
-    renderBranch (branch, parentLevel = 1) {
-        const canSpendPoints = parentLevel > 0 && this.props.character.progress.skillPoints > 0;
+    renderBranch(branch, parentLevel = 1) {
+        const canSpendPoints =
+            parentLevel > 0 && this.props.character.progress.skillPoints > 0;
 
         return (
             <div className={styles.branch}>
@@ -132,7 +136,8 @@ export class SkillTreeContainer extends React.PureComponent {
                     return (
                         <div key={skill.id} className={styles.innerBranch}>
                             {this.renderSkill(skill, canSpendPoints)}
-                            {skill.children && this.renderBranch(skill.children, currentLevel)}
+                            {skill.children &&
+                                this.renderBranch(skill.children, currentLevel)}
                         </div>
                     );
                 })}
@@ -140,29 +145,20 @@ export class SkillTreeContainer extends React.PureComponent {
         );
     }
 
-    renderInfoBar () {
+    renderInfoBar() {
         return (
             <div className={styles.info}>
                 <Grid noGap noWrap>
                     <Grid.Item growWidth>
-                        <T params={{ points: this.getPoints() }}>
-                            ui.availSkillPoints
-                        </T>
+                        <T params={{ points: this.getPoints() }}>ui.availSkillPoints</T>
                     </Grid.Item>
                     <Grid.Item>
-                        <Button
-                            small
-                            onlyText
-                            onClick={this.handleResetEditing}
-                        >
+                        <Button small onlyText onClick={this.handleResetEditing}>
                             <T>ui.reset</T>
                         </Button>
                     </Grid.Item>
                     <Grid.Item>
-                        <Button
-                            small
-                            onClick={this.handleDoneEditing}
-                        >
+                        <Button small onClick={this.handleDoneEditing}>
                             <T>ui.done</T>
                         </Button>
                     </Grid.Item>
@@ -176,9 +172,7 @@ export class SkillTreeContainer extends React.PureComponent {
 
         return (
             <div className={styles.container}>
-                <div className={styles.tree}>
-                    {this.renderBranch(this.props.tree)}
-                </div>
+                <div className={styles.tree}>{this.renderBranch(this.props.tree)}</div>
                 {hasPoints ? this.renderInfoBar() : null}
             </div>
         );
@@ -191,8 +185,7 @@ export default connect(
         character: getBaseCharacterById(state, props.characterId),
     }),
     (dispatch, props) => ({
-        updateCharacter: (charProps) => (
-            dispatch(updateCharacterAction(props.characterId, charProps))
-        ),
+        updateCharacter: charProps =>
+            dispatch(updateCharacterAction(props.characterId, charProps)),
     })
 )(SkillTreeContainer);

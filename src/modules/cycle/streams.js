@@ -17,7 +17,7 @@ export const turn$ = store$
     .map(input => ({
         ...input,
         turn: getCurrentTurn(input.getState()),
-        members: getAllPhaseMembers(input.getState())
+        members: getAllPhaseMembers(input.getState()),
     }));
 
 /**
@@ -29,7 +29,7 @@ export const phase$ = store$
     .map(input => ({
         ...input,
         phaseIndex: getPhaseIndex(input.getState()),
-        phaseMembers: getCurrentPhaseMembers(input.getState())
+        phaseMembers: getCurrentPhaseMembers(input.getState()),
     }));
 
 /**

@@ -7,10 +7,7 @@ import mergeMapFieldsAction from '../actions/mergeMapFieldsAction';
  * @param {Object} action The dispatched action
  * @returns {Object} The next state
  */
-export default function map (
-    state = {},
-    action
-) {
+export default function map(state = {}, action) {
     switch (action.type) {
         case `${mergeMapFieldsAction}`: {
             const { fields } = action.payload;

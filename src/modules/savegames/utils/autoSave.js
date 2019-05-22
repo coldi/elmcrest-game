@@ -8,16 +8,12 @@ import saveState from '../actions/saveState';
  * @param {string} [key] A localStorage item key
  * @param {number} [delay] A debounce delay
  */
-const autoSave = (
-    store,
-    key = SAVED_STATE_KEY,
-    delay = AUTO_SAVE_DELAY,
-) => {
-    store.subscribe(debounce(() => {
-        requestIdleCallback(
-            () => store.dispatch(saveState(key))
-        );
-    }, delay));
+const autoSave = (store, key = SAVED_STATE_KEY, delay = AUTO_SAVE_DELAY) => {
+    store.subscribe(
+        debounce(() => {
+            requestIdleCallback(() => store.dispatch(saveState(key)));
+        }, delay)
+    );
 };
 
 export default autoSave;

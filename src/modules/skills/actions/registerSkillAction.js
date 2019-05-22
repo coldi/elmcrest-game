@@ -3,9 +3,9 @@
  * @param {Object} skill The skill props
  * @returns {Object} A redux action
  */
-const registerSkillAction = (skill) => ({
+const registerSkillAction = skill => ({
     type: `${registerSkillAction}`,
-    payload: { skill }
+    payload: { skill },
 });
 
 registerSkillAction.toString = () => 'skills/register skill';

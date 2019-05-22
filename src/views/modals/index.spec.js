@@ -5,9 +5,7 @@ import createStore from '../../store';
 import { showModal } from '../../modules/modals';
 import ModalContainer from './';
 
-jest.mock('../common/portal/Portal', () => (
-    ({ children }) => children
-));
+jest.mock('../common/portal/Portal', () => ({ children }) => children);
 
 describe('views/modals', () => {
     let renderedElement;
@@ -52,10 +50,12 @@ describe('views/modals', () => {
             let modalPromise;
 
             beforeEach(() => {
-                modalPromise = dispatch(showModal({
-                    title: 'Title',
-                    message: 'Message',
-                }));
+                modalPromise = dispatch(
+                    showModal({
+                        title: 'Title',
+                        message: 'Message',
+                    })
+                );
 
                 renderedElement.update();
             });
@@ -74,9 +74,7 @@ describe('views/modals', () => {
                 });
 
                 it('should resolve the promise as confirmed', () => {
-                    modalPromise.then(confirmed => (
-                        expect(confirmed).toBe(true)
-                    ));
+                    modalPromise.then(confirmed => expect(confirmed).toBe(true));
                 });
 
                 it('should contain no modal item in the state', () => {
@@ -94,9 +92,7 @@ describe('views/modals', () => {
                 });
 
                 it('should resolve the promise as dismissed', () => {
-                    modalPromise.then(confirmed => (
-                        expect(confirmed).toBe(false)
-                    ));
+                    modalPromise.then(confirmed => expect(confirmed).toBe(false));
                 });
             });
         });

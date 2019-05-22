@@ -1,15 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {
-    getGeneralUIState,
-    selectCharacterIdAction,
-} from '../../../modules/ui';
+import { getGeneralUIState, selectCharacterIdAction } from '../../../modules/ui';
 import { getBaseCharacterById } from '../../../modules/characters';
 import { Portrait, Tabs } from '../';
 
 export class CharacterSelectionContainer extends React.PureComponent {
-
     static propTypes = {
         characterIds: PropTypes.arrayOf(PropTypes.string).isRequired,
         selectedId: PropTypes.string,
@@ -19,33 +15,24 @@ export class CharacterSelectionContainer extends React.PureComponent {
     };
 
     static defaultProps = {
-        children: () => {}
+        children: () => {},
     };
 
     state = {};
 
-    render () {
-        const {
-            characters,
-            selectedId,
-            children,
-            selectCharacterId,
-        } = this.props;
+    render() {
+        const { characters, selectedId, children, selectCharacterId } = this.props;
 
-        const activeIndex = characters.findIndex(
-            char => char.id === selectedId
-        );
+        const activeIndex = characters.findIndex(char => char.id === selectedId);
 
         return (
             <Tabs activeIndex={activeIndex} vertical>
-                {characters.map((char) => (
+                {characters.map(char => (
                     <Tabs.Item key={char.id} onSelect={() => selectCharacterId(char.id)}>
                         <Tabs.Item.Head>
                             <Portrait resourceId={char.resourceId} small />
                         </Tabs.Item.Head>
-                        <Tabs.Item.Content>
-                            {children(char.id)}
-                        </Tabs.Item.Content>
+                        <Tabs.Item.Content>{children(char.id)}</Tabs.Item.Content>
                     </Tabs.Item>
                 ))}
             </Tabs>
@@ -58,9 +45,7 @@ export default connect(
         selectedId: props.selectedId || getGeneralUIState(state).selectedCharacterId,
         characters: props.characterIds.map(id => getBaseCharacterById(state, id)),
     }),
-    (dispatch) => ({
-        selectCharacterId: (charId) => (
-            dispatch(selectCharacterIdAction(charId))
-        ),
+    dispatch => ({
+        selectCharacterId: charId => dispatch(selectCharacterIdAction(charId)),
     })
 )(CharacterSelectionContainer);

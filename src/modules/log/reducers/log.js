@@ -7,12 +7,8 @@ import { addMessageAction } from '../';
  * @param {Object} action The dispatched action
  * @returns {Object} The next state
  */
-export default function log (
-    state = [],
-    action = {}
-) {
+export default function log(state = [], action = {}) {
     switch (action.type) {
-
         case `${addMessageAction}`: {
             const { message } = action.payload;
             return state.concat([message]).slice(-MESSAGE_LIMIT);
@@ -21,6 +17,5 @@ export default function log (
         default: {
             return state;
         }
-
     }
 }

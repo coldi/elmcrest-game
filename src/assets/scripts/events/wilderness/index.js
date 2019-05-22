@@ -1,4 +1,4 @@
-function script ({
+function script({
     dispatch,
     getState,
     endEvent,
@@ -36,7 +36,7 @@ function script ({
     }
 
     // add convenient functions
-    const spendAP = (amount) => dispatch(spendAPAction(group.characterIds, amount));
+    const spendAP = amount => dispatch(spendAPAction(group.characterIds, amount));
     const addPlayerItem = (itemTypeId, amount) => {
         dispatch(addItem(group.inventoryId, itemTypeId, amount));
         setEventState({ item: { itemTypeId }, amount });
@@ -47,7 +47,8 @@ function script ({
         const requiredAP = 1;
         const itemAmount = 1 + Math.ceil(Math.random() * 3);
         const eventState = getEventState();
-        const keepEventOnExit = eventState.hasWater || eventState.hasFood || eventState.hasWood;
+        const keepEventOnExit =
+            eventState.hasWater || eventState.hasFood || eventState.hasWood;
 
         return {
             stacks: eventState.item ? [eventState] : null,
@@ -62,7 +63,7 @@ function script ({
                         addPlayerItem('bottle-water', itemAmount);
                         setEventState({ hasWater: false });
                         gotoScene('GATHERED');
-                    }
+                    },
                 },
                 {
                     id: 'GATHER_FOOD',
@@ -74,7 +75,7 @@ function script ({
                         addPlayerItem('long-lasting-apple', itemAmount);
                         setEventState({ hasFood: false });
                         gotoScene('GATHERED');
-                    }
+                    },
                 },
                 {
                     id: 'GATHER_WOOD',
@@ -86,14 +87,14 @@ function script ({
                         addPlayerItem('wood', itemAmount);
                         setEventState({ hasWood: false });
                         gotoScene('GATHERED');
-                    }
+                    },
                 },
                 {
                     id: 'LEAVE',
                     resolve: () => {
                         setEventState({ item: null });
                         endEvent(keepEventOnExit);
-                    }
+                    },
                 },
             ],
         };

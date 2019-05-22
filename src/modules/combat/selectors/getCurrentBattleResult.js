@@ -9,7 +9,7 @@ import { resultDefaults } from '../definitions';
  * @param {Object} state The global state
  * @returns {Object} A result object
  */
-const getBattleResult = (state) => {
+const getBattleResult = state => {
     const { groups, characters } = getCurrentBattle(state);
 
     let result = {
@@ -19,9 +19,9 @@ const getBattleResult = (state) => {
     };
 
     // map whether or not agroup has remaining characters in battle
-    const groupStates = groups.map((grpEntry) => (
-        !!characters.find(charEntry => charEntry.groupId === grpEntry.groupId)
-    ));
+    const groupStates = groups.map(
+        grpEntry => !!characters.find(charEntry => charEntry.groupId === grpEntry.groupId)
+    );
 
     // check if any group does not have remaining characters
     if (groupStates.some(grpState => !grpState)) {
@@ -40,7 +40,11 @@ const getBattleResult = (state) => {
         const loserGroup = getGroupById(state, result.loserGroupId);
         result.victory = result.winnerGroupId === getPlayerGroup(state).id;
         result.lootInventoryId = loserGroup.inventoryId;
-        result.expGains = getExpGainForGroup(state, result.winnerGroupId, result.loserGroupId);
+        result.expGains = getExpGainForGroup(
+            state,
+            result.winnerGroupId,
+            result.loserGroupId
+        );
     }
 
     return result;

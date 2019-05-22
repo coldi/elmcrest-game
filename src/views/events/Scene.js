@@ -12,11 +12,11 @@ export default class Scene extends React.PureComponent {
         sceneId: PropTypes.string,
         onAction: PropTypes.func,
         setRef: PropTypes.func,
-        active: PropTypes.bool
+        active: PropTypes.bool,
     };
 
     static defaultProps = {
-        active: false
+        active: false,
     };
 
     scene = null;
@@ -58,12 +58,13 @@ export default class Scene extends React.PureComponent {
                             </Grid.Item>
                         </Grid>
                     </Block>
-                    {active &&
-                        stacks && (
-                            <div className={styles.stacks}>
-                                {stacks.map((stack, index) => <Stack key={index} stack={stack} />)}
-                            </div>
-                        )}
+                    {active && stacks && (
+                        <div className={styles.stacks}>
+                            {stacks.map((stack, index) => (
+                                <Stack key={index} stack={stack} />
+                            ))}
+                        </div>
+                    )}
                     {active && (
                         <Block>
                             <Actions

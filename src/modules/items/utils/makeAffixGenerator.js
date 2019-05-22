@@ -8,14 +8,17 @@ import getAffixesByConditions from '../selectors/getAffixesByConditions';
  * @param {Object} item The item object for which the affixes are created
  * @returns {Function} An affix generator
  */
-const makeAffixGenerator = (state, item) => (type, num = 1) => (
-    Array.from({ length: num }).reduce((list) => {
+const makeAffixGenerator = (state, item) => (type, num = 1) =>
+    Array.from({ length: num }).reduce(list => {
         const excludedIds = list.reduce((acc, affixes = []) => acc.concat(affixes), []);
-        const pool = getAffixesByConditions(state, { ...item, [type]: true, excludedIds });
+        const pool = getAffixesByConditions(state, {
+            ...item,
+            [type]: true,
+            excludedIds,
+        });
         const picked = pickWeighted(pool, 'rarity');
 
         return picked ? [...list, picked.id] : list;
-    }, [])
-);
+    }, []);
 
 export default makeAffixGenerator;

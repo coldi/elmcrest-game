@@ -5,8 +5,6 @@ import getCharactersState from './getCharactersState';
  * @param {Object} state The global state
  * @returns {Array} A list of characters
  */
-const getCharactersList = (state) => (
-    Object.values(getCharactersState(state).byId)
-);
+const getCharactersList = state => Object.values(getCharactersState(state).byId);
 
 export default getCharactersList;

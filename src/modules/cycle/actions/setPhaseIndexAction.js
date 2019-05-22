@@ -3,7 +3,7 @@
  * @param {number} phaseIndex The phase index
  * @returns {Object} A redux action
  */
-const setPhaseIndexAction = (phaseIndex) => ({
+const setPhaseIndexAction = phaseIndex => ({
     type: `${setPhaseIndexAction}`,
     payload: { phaseIndex },
 });

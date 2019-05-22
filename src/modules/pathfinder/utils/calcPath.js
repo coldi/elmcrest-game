@@ -24,14 +24,9 @@ import includes from './includes';
  *                                  of a previous call
  * @returns {[number[]]} The resulting path as array of coords
  */
-export default function calcPath (
+export default function calcPath(
     state,
-    {
-        fromCoord,
-        toCoord,
-        callback = () => {},
-        progress = {},
-    }
+    { fromCoord, toCoord, callback = () => {}, progress = {} }
 ) {
     // destructure progress with default initial values
     const {
@@ -43,7 +38,7 @@ export default function calcPath (
             distance * SEARCH_RADUIS_MULTIPLIER
         ),
         // wraps the callback and returns the result
-        callbackWrapper = (result) => {
+        callbackWrapper = result => {
             callback(result);
             return result;
         },
@@ -56,7 +51,9 @@ export default function calcPath (
 
     // check if distance exceeds search radius
     if (distance > MAX_DISTANCE) {
-        log.warn(`Pathfinder: Travel distance exceeds maximum: ${distance} > ${MAX_DISTANCE}`);
+        log.warn(
+            `Pathfinder: Travel distance exceeds maximum: ${distance} > ${MAX_DISTANCE}`
+        );
         return callbackWrapper([]);
     }
 
@@ -98,11 +95,12 @@ export default function calcPath (
                 if (!includes(closedSet, neighbor)) {
                     // if current neighbor is our destination
                     const cost = neighbor.equals(toCell)
-                        // skip cost calculation in order to travel to occupied destinations
-                        ? 1
+                        ? // skip cost calculation in order to travel to occupied destinations
+                          1
                         : calcCost(state, bestCell, neighbor);
 
-                    if (cost >= 0) { // only respect positive cost values
+                    if (cost >= 0) {
+                        // only respect positive cost values
                         const tentativeGScore = gScore[bestCell] + cost;
                         let shouldUpdate = false;
 
@@ -128,23 +126,25 @@ export default function calcPath (
         iterations += 1;
 
         if (iterations >= ITERATIONS_PER_CALCULATION) {
-            setTimeout(() => calcPath(state, {
-                fromCoord,
-                toCoord,
-                callback,
-                progress: {
-                    fromCell,
-                    toCell,
-                    distance,
-                    maxSearchRadius,
-                    callbackWrapper,
-                    closedSet,
-                    openSet,
-                    cameFrom,
-                    gScore,
-                    fScore,
-                }
-            }));
+            setTimeout(() =>
+                calcPath(state, {
+                    fromCoord,
+                    toCoord,
+                    callback,
+                    progress: {
+                        fromCell,
+                        toCell,
+                        distance,
+                        maxSearchRadius,
+                        callbackWrapper,
+                        closedSet,
+                        openSet,
+                        cameFrom,
+                        gScore,
+                        fScore,
+                    },
+                })
+            );
             return null;
         }
     }

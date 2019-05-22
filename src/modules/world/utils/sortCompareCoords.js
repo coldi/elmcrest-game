@@ -9,7 +9,7 @@ import { getCell } from '../../hex';
 const sortCompareCoords = (a, b) => {
     const c1 = getCell(a);
     const c2 = getCell(b);
-    return (c1.x - (c2.y - c1.y)) - (c2.x - (c1.y - c2.y));
+    return c1.x - (c2.y - c1.y) - (c2.x - (c1.y - c2.y));
 };
 
 export default sortCompareCoords;

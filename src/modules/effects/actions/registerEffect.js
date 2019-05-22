@@ -8,15 +8,10 @@ import registerEffectAction from './registerEffectAction';
  * @param {Object} props Specific effect props
  * @returns {Function} A redux thunk
  */
-const registerEffect = (
-    props = {},
-) => (dispatch) => {
+const registerEffect = (props = {}) => dispatch => {
     invariant(props.id, 'An id is required to register an effect.');
 
-    const effect = Immutable.merge(
-        effectDefaults,
-        props
-    );
+    const effect = Immutable.merge(effectDefaults, props);
 
     dispatch(registerEffectAction(effect));
 

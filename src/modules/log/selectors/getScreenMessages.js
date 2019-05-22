@@ -7,12 +7,8 @@ import getLogState from './getLogState';
  * @param {Object} state The global state
  * @returns {Array} A list of screen messages
  */
-const getScreenMessages = memoize(
-    getLogState,
-    (state) => (
-        getLogState(state)
-            .filter(({ type }) => type === SCREEN_MESSAGE_TYPE)
-    )
+const getScreenMessages = memoize(getLogState, state =>
+    getLogState(state).filter(({ type }) => type === SCREEN_MESSAGE_TYPE)
 );
 
 export default getScreenMessages;

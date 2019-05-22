@@ -8,17 +8,21 @@ export default function ProgressBar(props) {
 
     let perc = 0;
     if (max > 0) {
-        perc = ((value - min) / (max - min));
+        perc = (value - min) / (max - min);
         perc = Math.max(0, Math.min(perc, 1)) * 100;
     }
 
     const style = { width: `${perc}%` };
     const labels = [
         props.label ? (
-            <span key="label" className={styles.label}>{props.label}</span>
+            <span key="label" className={styles.label}>
+                {props.label}
+            </span>
         ) : null,
         props.maxLabel ? (
-            <span key="maxLabel" className={styles.maxLabel}>{props.maxLabel}</span>
+            <span key="maxLabel" className={styles.maxLabel}>
+                {props.maxLabel}
+            </span>
         ) : null,
     ];
 
@@ -33,17 +37,14 @@ export default function ProgressBar(props) {
     return (
         <div className={className}>
             {props.segmented ? (
-                Array.from({ length: props.max }).map(
-                    (_, i) => {
-                        const segmentsClassName = classNames(progressClassName, {
-                            [styles.hidden]: i >= value,
-                            [styles.highlighted]: (
-                                props.segmentHighlight && i >= value - props.segmentHighlight
-                            ),
-                        });
-                        return <div key={i} className={segmentsClassName} style={style} />;
-                    }
-                )
+                Array.from({ length: props.max }).map((_, i) => {
+                    const segmentsClassName = classNames(progressClassName, {
+                        [styles.hidden]: i >= value,
+                        [styles.highlighted]:
+                            props.segmentHighlight && i >= value - props.segmentHighlight,
+                    });
+                    return <div key={i} className={segmentsClassName} style={style} />;
+                })
             ) : (
                 <div className={progressClassName} style={style} />
             )}

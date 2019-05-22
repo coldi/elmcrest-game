@@ -6,8 +6,6 @@ import getItemsState from './getItemsState';
  * @param {string} id An item id
  * @returns {Object} An item type object
  */
-const getItemTypeById = (state, id) => (
-    getItemsState(state).itemTypes[id]
-);
+const getItemTypeById = (state, id) => getItemsState(state).itemTypes[id];
 
 export default getItemTypeById;

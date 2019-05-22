@@ -9,10 +9,7 @@ import getEffectsOfItem from '../../items/selectors/getEffectsOfItem';
  * @param {Object} item An item object
  * @returns {Function} A redux thunk
  */
-const consumeItem = (
-    charId,
-    item,
-) => (dispatch, getState) => {
+const consumeItem = (charId, item) => (dispatch, getState) => {
     const itemType = getItemTypeById(getState(), item.itemTypeId);
 
     if (!itemType.consumable) {

@@ -3,9 +3,9 @@
  * @param {Object} update An object that gets merged with the scene state.
  * @returns {Object} A redux action
  */
-const updateSceneAction = (update) => ({
+const updateSceneAction = update => ({
     type: `${updateSceneAction}`,
-    payload: { update }
+    payload: { update },
 });
 
 updateSceneAction.toString = () => 'world/update scene';

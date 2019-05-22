@@ -8,18 +8,13 @@ import Coord from './Coord';
  * See http://www.redblobgames.com/grids/hexagons/#coordinates
  */
 export default class Cell {
-
     /**
      * Constructor.
      * @param {number} x
      * @param {number} y
      * @param {number} z
      */
-    constructor(
-        x = 0,
-        y = 0,
-        z = 0
-    ) {
+    constructor(x = 0, y = 0, z = 0) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -56,7 +51,7 @@ export default class Cell {
      * @param {number} direction A direction index
      * @returns {Cell}
      */
-    static direction (direction) {
+    static direction(direction) {
         return Cell.DIRECTIONS[direction];
     }
 
@@ -64,7 +59,7 @@ export default class Cell {
      * Returns a new cell with negated values.
      * @returns {Cell}
      */
-    negative () {
+    negative() {
         return new Cell(-this.x, -this.y, -this.z);
     }
 
@@ -73,7 +68,7 @@ export default class Cell {
      * @param {Cell|number} c The cell or number to add
      * @returns {Cell}
      */
-    add (c) {
+    add(c) {
         if (c instanceof Cell) {
             return new Cell(this.x + c.x, this.y + c.y, this.z + c.z);
         }
@@ -85,7 +80,7 @@ export default class Cell {
      * @param {Cell|number} c The cell or number to subtract
      * @returns {Cell}
      */
-    sub (c) {
+    sub(c) {
         if (c instanceof Cell) {
             return new Cell(this.x - c.x, this.y - c.y, this.z - c.z);
         }
@@ -97,7 +92,7 @@ export default class Cell {
      * @param {Cell|number} c The cell or number to scale with
      * @returns {Cell}
      */
-    scale (c) {
+    scale(c) {
         if (c instanceof Cell) {
             return new Cell(this.x * c.x, this.y * c.y, this.z * c.z);
         }
@@ -109,7 +104,7 @@ export default class Cell {
      * @param {Cell|number} c The cell or number to divide with
      * @returns {Cell}
      */
-    divide (c) {
+    divide(c) {
         if (c instanceof Cell) {
             return new Cell(this.x / c.x, this.y / c.y, this.z / c.z);
         }
@@ -121,7 +116,7 @@ export default class Cell {
      * @param {Cell} c The cell to compare
      * @returns {boolean}
      */
-    equals (c) {
+    equals(c) {
         return this.x === c.x && this.y === c.y && this.z === c.z;
     }
 
@@ -130,7 +125,7 @@ export default class Cell {
      * @param {Cell} c
      * @returns {number}
      */
-    dot (c) {
+    dot(c) {
         return this.x * c.x + this.y * c.y + this.z * c.z;
     }
 
@@ -139,7 +134,7 @@ export default class Cell {
      * @param {Cell} c
      * @returns {Cell}
      */
-    cross (c) {
+    cross(c) {
         return new Cell(
             this.y * c.z - this.z * c.y,
             this.z * c.x - this.x * c.z,
@@ -151,7 +146,7 @@ export default class Cell {
      * Calculates the length of this cell.
      * @returns {number}
      */
-    length () {
+    length() {
         return Math.trunc((Math.abs(this.x) + Math.abs(this.y) + Math.abs(this.z)) / 2);
     }
 
@@ -160,7 +155,7 @@ export default class Cell {
      * @param {Cell} c
      * @returns {number}
      */
-    distance (c) {
+    distance(c) {
         return this.sub(c).length();
     }
 
@@ -168,7 +163,7 @@ export default class Cell {
      * Rounds the values of this cell and returns a new one.
      * @returns {Cell}
      */
-    round () {
+    round() {
         let q = Math.trunc(Math.round(this.x));
         let r = Math.trunc(Math.round(this.y));
         let s = Math.trunc(Math.round(this.z));
@@ -191,7 +186,7 @@ export default class Cell {
      * @param {number} t The amount
      * @returns {Cell}
      */
-    lerp (c, t) {
+    lerp(c, t) {
         return new Cell(
             this.x + (c.x - this.x) * t,
             this.y + (c.y - this.y) * t,
@@ -203,7 +198,7 @@ export default class Cell {
      * Returns the lowest value of this cell.
      * @returns {number}
      */
-    min () {
+    min() {
         return Math.min(Math.min(this.x, this.y), this.z);
     }
 
@@ -211,7 +206,7 @@ export default class Cell {
      * Returns the highest value of this cell.
      * @returns {number}
      */
-    max () {
+    max() {
         return Math.max(Math.max(this.x, this.y), this.z);
     }
 
@@ -222,7 +217,7 @@ export default class Cell {
      * @param {number} z
      * @returns {Cell}
      */
-    init (x, y, z) {
+    init(x, y, z) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -234,7 +229,7 @@ export default class Cell {
      * @param {number} direction The index of the direction
      * @returns {Cell}
      */
-    neighbor (direction) {
+    neighbor(direction) {
         return this.add(Cell.direction(direction));
     }
 
@@ -243,7 +238,7 @@ export default class Cell {
      * @param {number} direction The index of the direction
      * @returns {Cell}
      */
-    diagonalNeighbor (direction) {
+    diagonalNeighbor(direction) {
         return this.add(Cell.DIAGONALS[direction]);
     }
 
@@ -252,7 +247,7 @@ export default class Cell {
      * @param {number} range
      * @returns {Cell[]}
      */
-    rangeNeighbors (range) {
+    rangeNeighbors(range) {
         const results = [];
         const R = range;
         let dz;
@@ -270,7 +265,7 @@ export default class Cell {
      * @param {number} radius
      * @returns {Cell[]}
      */
-    ringNeighbors (radius) {
+    ringNeighbors(radius) {
         const results = [];
         let cell = this.add(Cell.direction(4).scale(radius));
         for (let i = 0; i < 6; i += 1) {
@@ -287,7 +282,7 @@ export default class Cell {
      * @param {Cell} c
      * @returns {Cell[]}
      */
-    lineTo (c) {
+    lineTo(c) {
         const N = this.distance(c);
         const results = [];
         const step = 1.0 / Math.max(N, 1);
@@ -301,7 +296,7 @@ export default class Cell {
      * Clones this cell.
      * @returns {Cell}
      */
-    clone () {
+    clone() {
         return new Cell(this.x, this.y, this.z);
     }
 
@@ -310,7 +305,7 @@ export default class Cell {
      * @param {number} offset An optional odd/even offset that defaults to -1
      * @returns {Coord}
      */
-    toCoord (offset = -1) {
+    toCoord(offset = -1) {
         const col = this.x;
         // eslint-disable-next-line  no-bitwise
         const row = this.y + Math.trunc((this.x + offset * (this.x & 1)) / 2);
@@ -321,7 +316,7 @@ export default class Cell {
      * Transforms this cell to an array.
      * @returns {number[]}
      */
-    toArray () {
+    toArray() {
         return [this.x, this.y, this.z];
     }
 
@@ -329,7 +324,7 @@ export default class Cell {
      * Transforms this cell to an 2D array.
      * @returns {number[]}
      */
-    toArray2D () {
+    toArray2D() {
         return this.toCoord().toArray();
     }
 
@@ -337,7 +332,7 @@ export default class Cell {
      * Transforms this cell to a string.
      * @returns {string}
      */
-    toString () {
+    toString() {
         return `[${this.x}, ${this.y}, ${this.z}]`;
     }
 }

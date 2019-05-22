@@ -13,12 +13,8 @@ const initialState = {
  * @param {Object} action The dispatched action
  * @returns {Object} The next state
  */
-export default function scene (
-    state = initialState,
-    action = {}
-) {
+export default function scene(state = initialState, action = {}) {
     switch (action.type) {
-
         case `${updateWeatherAction}`: {
             const { update } = action.payload;
 
@@ -28,6 +24,5 @@ export default function scene (
         default: {
             return state;
         }
-
     }
 }

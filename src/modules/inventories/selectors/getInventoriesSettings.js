@@ -5,6 +5,6 @@ import getInventoriesState from './getInventoriesState';
  * @param {Object} state The global state
  * @returns {Object}
  */
-const getInventoriesSettings = (state) => getInventoriesState(state).settings;
+const getInventoriesSettings = state => getInventoriesState(state).settings;
 
 export default getInventoriesSettings;

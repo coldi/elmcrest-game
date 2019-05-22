@@ -5,8 +5,7 @@ import { SAVED_STATE_KEY } from '../constants';
  * @param {string} [key] A localStorage item key
  * @returns {boolean}
  */
-const hasSavedState = (key = SAVED_STATE_KEY) => (
-    typeof localStorage.getItem(key) === 'string'
-);
+const hasSavedState = (key = SAVED_STATE_KEY) =>
+    typeof localStorage.getItem(key) === 'string';
 
 export default hasSavedState;

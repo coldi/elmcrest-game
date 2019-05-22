@@ -3,9 +3,7 @@
  * @param {string} actionId An action id
  * @returns {Object} A redux action
  */
-const addActionToCurrentEventAction = (
-    actionId
-) => ({
+const addActionToCurrentEventAction = actionId => ({
     type: `${addActionToCurrentEventAction}`,
     payload: { actionId },
 });

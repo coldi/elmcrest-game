@@ -1,8 +1,4 @@
-import {
-    turn$,
-    playerPhase$,
-    computePhase$,
-} from '../cycle/streams';
+import { turn$, playerPhase$, computePhase$ } from '../cycle/streams';
 import {
     battleDidStart$,
     skillPerformed$,
@@ -16,7 +12,7 @@ import { addLogMessage, addScreenMessage } from './';
  * Subscription wrapper.
  * @param {Function} subscribe
  */
-export default function (subscribe) {
+export default function(subscribe) {
     subscribe(turn$, ({ dispatch, turn }) => {
         dispatch(addLogMessage('ui.messages.newTurnBegins', { turn }));
     });
@@ -36,11 +32,14 @@ export default function (subscribe) {
     subscribe(skillPerformed$, ({ dispatch, getState, rollout }) => {
         // TODO: refactor this in some extra function
         const [impact] = rollout.result;
-        const formatNumber = num => num >= 10 ? Math.round(num) : num.toFixed(2);
-        const effectArgs = impact.effects.reduce((acc, effect, i) => ({
-            ...acc,
-            [`effect${i}`]: formatNumber(effect.value),
-        }), {});
+        const formatNumber = num => (num >= 10 ? Math.round(num) : num.toFixed(2));
+        const effectArgs = impact.effects.reduce(
+            (acc, effect, i) => ({
+                ...acc,
+                [`effect${i}`]: formatNumber(effect.value),
+            }),
+            {}
+        );
 
         dispatch(
             addLogMessage(`skills.${rollout.skillId}.usage`, {

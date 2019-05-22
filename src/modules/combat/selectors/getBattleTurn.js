@@ -5,8 +5,6 @@ import getCurrentBattle from './getCurrentBattle';
  * @param {Object} state The global state
  * @returns {number} The current turn
  */
-const getBattleTurn = (state) => (
-    getCurrentBattle(state).turn
-);
+const getBattleTurn = state => getCurrentBattle(state).turn;
 
 export default getBattleTurn;

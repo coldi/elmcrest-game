@@ -4,10 +4,7 @@
  * @param {*} value A value
  * @returns {Object} A redux action
  */
-const makeSelectionAction = (
-    key,
-    value
-) => ({
+const makeSelectionAction = (key, value) => ({
     type: `${makeSelectionAction}`,
     payload: { key, value },
 });

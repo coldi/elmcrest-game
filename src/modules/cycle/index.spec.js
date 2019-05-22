@@ -1,22 +1,9 @@
 /* eslint-disable  import/no-extraneous-dependencies */
 /* eslint-disable  no-undef, no-console, no-global-assign */
 import createStore from '../../store';
-import {
-    phase$,
-    playerPhase$,
-    computePhase$,
-    turn$,
-} from './streams';
-import {
-    PLAYER_PHASE_INDEX,
-    COMPUTE_PHASE_INDEX
-} from './constants';
-import {
-    getCycleState,
-    getPhaseIndex,
-    nextPhase,
-} from './';
-
+import { phase$, playerPhase$, computePhase$, turn$ } from './streams';
+import { PLAYER_PHASE_INDEX, COMPUTE_PHASE_INDEX } from './constants';
+import { getCycleState, getPhaseIndex, nextPhase } from './';
 
 describe('modules/cycle', () => {
     let store;

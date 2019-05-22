@@ -3,9 +3,7 @@
  * @param {string} groupId A group id
  * @returns {Object} A redux action
  */
-const setControlledGroupIdAction = (
-    groupId
-) => ({
+const setControlledGroupIdAction = groupId => ({
     type: `${setControlledGroupIdAction}`,
     payload: { groupId },
 });

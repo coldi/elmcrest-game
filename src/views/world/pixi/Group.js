@@ -1,5 +1,5 @@
 /* eslint-disable  no-param-reassign */
-import 'pixi.js';
+import * as PIXI from 'pixi.js';
 import TweenMax from 'gsap/TweenMax';
 import { makePropReceiver } from '../utils';
 import AnimatedTexture from './AnimatedTexture';
@@ -8,13 +8,12 @@ const { Sprite } = PIXI;
 /* eslint-enable  no-undef */
 
 export default class Group {
-
     instance = null;
     props = {};
     // store for tweening animations
     tween = null;
 
-    constructor (container, props) {
+    constructor(container, props) {
         this.instance = new Sprite();
         this.instance.anchor.set(0.5, 0.75);
 
@@ -25,7 +24,7 @@ export default class Group {
         }
     }
 
-    update (props) {
+    update(props) {
         const receivedProp = makePropReceiver(this, props);
         const { instance } = this;
 
@@ -33,7 +32,9 @@ export default class Group {
             const { resourceId } = props.leader;
 
             if (resourceId) {
-                instance.texture = AnimatedTexture.fromImage(`assets/textures/characters/${resourceId}/world.png`);
+                instance.texture = AnimatedTexture.fromImage(
+                    `assets/textures/characters/${resourceId}/world.png`
+                );
             }
         }
 
@@ -44,7 +45,10 @@ export default class Group {
         }
 
         if (receivedProp('x') || receivedProp('y')) {
-            if (!this.props.visible || (this.props.x === undefined && this.props.y === undefined)) {
+            if (
+                !this.props.visible ||
+                (this.props.x === undefined && this.props.y === undefined)
+            ) {
                 // set initial position immediately
                 instance.position.set(props.x, props.y);
             } else {
@@ -71,7 +75,7 @@ export default class Group {
         };
     }
 
-    remove () {
+    remove() {
         if (this.tween) {
             this.tween.kill();
             this.tween = null;

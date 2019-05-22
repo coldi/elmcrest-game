@@ -4,10 +4,7 @@
  * @param {Object[]} actions A list of redux actions
  * @returns {Object} A redux action
  */
-const setTempActionQueueAction = (
-    id,
-    actions = [],
-) => ({
+const setTempActionQueueAction = (id, actions = []) => ({
     type: `${setTempActionQueueAction}`,
     payload: { id, actions },
 });

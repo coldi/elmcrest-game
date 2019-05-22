@@ -3,9 +3,9 @@
  * @param {Object} character The character props
  * @returns {Object} A redux action
  */
-const createCharacterAction = (character) => ({
+const createCharacterAction = character => ({
     type: `${createCharacterAction}`,
-    payload: { character }
+    payload: { character },
 });
 
 createCharacterAction.toString = () => 'characters/create character';

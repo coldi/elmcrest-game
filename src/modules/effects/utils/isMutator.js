@@ -8,8 +8,6 @@ import { MUTATOR_REGEX } from '../constants';
  * @param {Object} effect
  * @returns {boolean}
  */
-const isMutator = (effect) => (
-    MUTATOR_REGEX.test(effect.name)
-);
+const isMutator = effect => MUTATOR_REGEX.test(effect.name);
 
 export default isMutator;

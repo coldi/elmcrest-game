@@ -6,6 +6,6 @@ import getSeed from './getSeed';
  * @param {Object} state The global state
  * @returns {Object}
  */
-const getCachedRng = (state) => makeCachedRng(getSeed(state));
+const getCachedRng = state => makeCachedRng(getSeed(state));
 
 export default getCachedRng;

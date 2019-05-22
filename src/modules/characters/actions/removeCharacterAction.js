@@ -3,9 +3,9 @@
  * @param {string} id A character id
  * @returns {Object} A redux action
  */
-const removeCharacterAction = (id) => ({
+const removeCharacterAction = id => ({
     type: `${removeCharacterAction}`,
-    payload: { id }
+    payload: { id },
 });
 
 removeCharacterAction.toString = () => 'characters/remove character';

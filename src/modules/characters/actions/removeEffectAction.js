@@ -6,7 +6,7 @@
  */
 const removeEffectAction = (id, props) => ({
     type: `${removeEffectAction}`,
-    payload: { id, props }
+    payload: { id, props },
 });
 
 removeEffectAction.toString = () => 'characters/remove effect';

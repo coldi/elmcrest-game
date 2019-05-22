@@ -10,11 +10,11 @@ import getEquippedItemsOfCharacter from './getEquippedItemsOfCharacter';
 const getCharacterByStackId = (state, stackId) => {
     const chars = getCharactersList(state);
 
-    return chars.find((char) => (
+    return chars.find(char =>
         Object.values(getEquippedItemsOfCharacter(state, char.id))
             .filter(item => item)
             .some(item => item.stackId === stackId)
-    ));
+    );
 };
 
 export default getCharacterByStackId;

@@ -3,9 +3,7 @@
  * @param {Object} rollout A rollout object
  * @returns {Object} A redux action
  */
-const addRolloutAction = (
-    rollout
-) => ({
+const addRolloutAction = rollout => ({
     type: `${addRolloutAction}`,
     payload: { rollout },
 });

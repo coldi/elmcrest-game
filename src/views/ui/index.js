@@ -15,14 +15,9 @@ import {
     getGeneralUIState,
     getActiveWindowId,
     toggleWindow,
-    selectCharacterIdAction
+    selectCharacterIdAction,
 } from '../../modules/ui';
-import {
-    Button,
-    Panel,
-    ViewAnchor,
-    ProgressBar,
-} from '../common';
+import { Button, Panel, ViewAnchor, ProgressBar } from '../common';
 import { KEY } from '../constants';
 import T from '../i18n';
 import DevTool from './windows/DevTool';
@@ -35,9 +30,7 @@ import PlayerGroup from './PlayerGroup';
 import FieldContext from './FieldContext';
 import styles from './index.scss';
 
-
 export class UIContainer extends React.PureComponent {
-
     static propTypes = {
         activeUI: PropTypes.bool,
         visibleUI: PropTypes.bool,
@@ -60,27 +53,27 @@ export class UIContainer extends React.PureComponent {
 
     state = {};
 
-    constructor (props) {
+    constructor(props) {
         super(props);
 
         this.handleKeyUp = this.handleKeyUp.bind(this);
     }
 
-    componentDidMount () {
+    componentDidMount() {
         document.addEventListener('keyup', this.handleKeyUp);
     }
 
-    componentWillUnmount () {
+    componentWillUnmount() {
         document.removeEventListener('keyup', this.handleKeyUp);
     }
 
-    handleKeyUp (e) {
+    handleKeyUp(e) {
         if (e.which === KEY.SPACE) {
             this.props.setPlayerDone();
         }
 
         this.props.player.characterIds.forEach((id, index) => {
-            if (e.which === KEY[`NUM${(index + 1)}`]) {
+            if (e.which === KEY[`NUM${index + 1}`]) {
                 this.props.selectCharacter(id);
             }
         });
@@ -91,7 +84,6 @@ export class UIContainer extends React.PureComponent {
 
         return (
             <UILayout active={props.activeUI} visible={props.visibleUI}>
-
                 <ViewAnchor align="topLeft" front>
                     <WindowBar
                         activeId={props.activeWindowId}
@@ -99,15 +91,15 @@ export class UIContainer extends React.PureComponent {
                         windows={{
                             devTool: {
                                 component: <DevTool />,
-                                key: KEY.T
+                                key: KEY.T,
                             },
                             character: {
                                 component: <Character groupId={props.player.id} />,
-                                key: KEY.C
+                                key: KEY.C,
                             },
                             skills: {
                                 component: <Skills groupId={props.player.id} />,
-                                key: KEY.K
+                                key: KEY.K,
                             },
                         }}
                     />
@@ -120,7 +112,9 @@ export class UIContainer extends React.PureComponent {
                                 <div className={styles.actions}>
                                     <Button
                                         highlight={!props.availableAP}
-                                        onClick={() => props.triggerEvent('common-actions')}
+                                        onClick={() =>
+                                            props.triggerEvent('common-actions')
+                                        }
                                     >
                                         <T>ui.commonActions</T>
                                     </Button>
@@ -153,14 +147,13 @@ export class UIContainer extends React.PureComponent {
                         </div>
                     </Panel>
                 </div>
-
             </UILayout>
         );
     }
 }
 
 export default connect(
-    (state) => ({
+    state => ({
         activeUI: getGeneralUIState(state).active,
         visibleUI: getGeneralUIState(state).visible,
         selectedCharacterId: getGeneralUIState(state).selectedCharacterId,
@@ -168,40 +161,34 @@ export default connect(
         player: getPlayerGroup(state),
         availableAP: getGroupAP(state, getPlayerGroup(state).id),
         maxAP: getGroupAPMax(state, getPlayerGroup(state).id),
-        APCost: getPlayerGroup(state).tempActionQueue.reduce((cost, action) => (
-            cost + action.payload.cost
-        ), 0),
+        APCost: getPlayerGroup(state).tempActionQueue.reduce(
+            (cost, action) => cost + action.payload.cost,
+            0
+        ),
         actionQueue: getPlayerGroup(state).actionQueue,
         selectedCoord: getSceneState(state).selectedCoord,
         numCoordsInView: getSceneState(state).coordsInView.length,
         activeWindowId: getActiveWindowId(state),
     }),
-    (dispatch) => ({
-        toggleWindow: (id, active) => (
-            dispatch(toggleWindow(id, active))
-        ),
-        setPlayerDone: (id) => (
-            dispatch(setGroupDoneAction(id, true))
-        ),
-        selectCharacter: (id) => (
-            dispatch(selectCharacterIdAction(id))
-        ),
-        triggerEvent: (id) => dispatch(startEvent(id)),
+    dispatch => ({
+        toggleWindow: (id, active) => dispatch(toggleWindow(id, active)),
+        setPlayerDone: id => dispatch(setGroupDoneAction(id, true)),
+        selectCharacter: id => dispatch(selectCharacterIdAction(id)),
+        triggerEvent: id => dispatch(startEvent(id)),
     }),
     (stateProps, dispatchProps) => ({
         ...stateProps,
         ...dispatchProps,
-        setPlayerDone () {
+        setPlayerDone() {
             dispatchProps.setPlayerDone(stateProps.player.id);
         },
-        selectCharacter (id) {
+        selectCharacter(id) {
             const windowId = stateProps.activeWindowId
                 ? stateProps.activeWindowId
                 : CHARACTER_WINDOW;
-            const active = (
+            const active =
                 stateProps.selectedCharacterId !== id ||
-                stateProps.activeWindowId !== windowId
-            );
+                stateProps.activeWindowId !== windowId;
 
             dispatchProps.selectCharacter(id);
             dispatchProps.toggleWindow(windowId, active);

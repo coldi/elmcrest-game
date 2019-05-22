@@ -2,13 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './AppLayout.scss';
 
-
-export default function AppLayout (props) {
+export default function AppLayout(props) {
     return (
         <div
             className={styles.container}
-            onContextMenu={(e) => e.preventDefault()}
-            onDragStart={(e) => e.preventDefault()}
+            onContextMenu={e => e.preventDefault()}
+            onDragStart={e => e.preventDefault()}
         >
             {props.children}
         </div>
@@ -16,5 +15,5 @@ export default function AppLayout (props) {
 }
 
 AppLayout.propTypes = {
-    children: PropTypes.node.isRequired
+    children: PropTypes.node.isRequired,
 };

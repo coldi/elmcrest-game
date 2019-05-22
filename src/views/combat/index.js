@@ -13,10 +13,7 @@ import {
 } from '../../modules/combat';
 import { getCharacterById } from '../../modules/characters';
 import { getLogMessages } from '../../modules/log';
-import {
-    Button,
-    CharacterAvatar,
-} from '../common';
+import { Button, CharacterAvatar } from '../common';
 import Layout from './Layout';
 import Battlefield from './Battlefield';
 import Queue from './Queue';
@@ -27,9 +24,7 @@ import CharacterRollout from './CharacterRollout';
 import Result from './Result';
 import StatusBar from './StatusBar';
 
-
 class CombatContainer extends React.PureComponent {
-
     static propTypes = {
         active: PropTypes.bool,
         currentBattle: PropTypes.shape(),
@@ -47,45 +42,42 @@ class CombatContainer extends React.PureComponent {
 
     state = {};
 
-    constructor (props) {
+    constructor(props) {
         super(props);
 
         this.handleCharSelection = this.handleCharSelection.bind(this);
         this.handleSkillSelection = this.handleSkillSelection.bind(this);
     }
 
-    get canSelect () {
+    get canSelect() {
         const [rollout] = this.props.ui.rollouts;
         const [firstInQueue] = this.props.queue;
 
-        return (
-            !rollout &&
-            firstInQueue.groupId === this.props.ui.controlledGroupId
-        );
+        return !rollout && firstInQueue.groupId === this.props.ui.controlledGroupId;
     }
 
-    handleCharSelection (charId) {
+    handleCharSelection(charId) {
         if (this.canSelect) {
             this.props.makeSelection('characterId', charId);
         }
     }
 
-    handleSkillSelection (skillId) {
+    handleSkillSelection(skillId) {
         if (this.canSelect) {
             this.props.makeSelection('skillId', skillId);
         }
     }
 
-    renderBattle () {
+    renderBattle() {
         const { props } = this;
 
         const [rollout] = props.ui.rollouts;
         const [firstInQueue] = props.queue;
-        const characters = Object.values(props.charactersByGroup)
-            .reduce((list, chars) => list.concat(chars), []);
-        const activeCharId = rollout
-            ? rollout.originId
-            : firstInQueue.characterId;
+        const characters = Object.values(props.charactersByGroup).reduce(
+            (list, chars) => list.concat(chars),
+            []
+        );
+        const activeCharId = rollout ? rollout.originId : firstInQueue.characterId;
         const selectedCharId = rollout
             ? rollout.targetId
             : props.ui.selection.characterId;
@@ -94,7 +86,9 @@ class CombatContainer extends React.PureComponent {
             <Layout>
                 <div style={{ position: 'relative', width: '100%', zIndex: 0 }}>
                     {process.env.NODE_ENV === 'development' ? (
-                        <Button small onlyText onClick={props.exitBattle}>Exit Combat</Button>
+                        <Button small onlyText onClick={props.exitBattle}>
+                            Exit Combat
+                        </Button>
                     ) : null}
                     <Log messages={props.messages} />
                     <Queue
@@ -106,37 +100,34 @@ class CombatContainer extends React.PureComponent {
                 </div>
                 <Battlefield>
                     {props.currentBattle.groups.map(({ groupId }, index) => (
-                        <Group
-                            key={groupId}
-                            initiator={index === 0}
-                        >
+                        <Group key={groupId} initiator={index === 0}>
                             {props.charactersByGroup[groupId] &&
-                            props.charactersByGroup[groupId].map((char) => (
-                                <CharacterHandle
-                                    key={char.id}
-                                    characterId={char.id}
-                                    activeCharacterId={activeCharId}
-                                    canSelect={this.canSelect}
-                                    onCharacter={this.handleCharSelection}
-                                    onSkill={this.handleSkillSelection}
-                                >
-                                    <CharacterRollout
-                                        character={char}
-                                        active={char.id === activeCharId}
-                                        flip={index !== 0}
-                                        rollout={rollout}
-                                        onApply={props.applyRollout}
-                                        onRemove={props.removeRollout}
+                                props.charactersByGroup[groupId].map(char => (
+                                    <CharacterHandle
+                                        key={char.id}
+                                        characterId={char.id}
+                                        activeCharacterId={activeCharId}
+                                        canSelect={this.canSelect}
+                                        onCharacter={this.handleCharSelection}
+                                        onSkill={this.handleSkillSelection}
                                     >
-                                        <CharacterAvatar
+                                        <CharacterRollout
                                             character={char}
+                                            active={char.id === activeCharId}
                                             flip={index !== 0}
-                                            interactive={this.canSelect}
-                                            selected={char.id === selectedCharId}
-                                        />
-                                    </CharacterRollout>
-                                </CharacterHandle>
-                            ))}
+                                            rollout={rollout}
+                                            onApply={props.applyRollout}
+                                            onRemove={props.removeRollout}
+                                        >
+                                            <CharacterAvatar
+                                                character={char}
+                                                flip={index !== 0}
+                                                interactive={this.canSelect}
+                                                selected={char.id === selectedCharId}
+                                            />
+                                        </CharacterRollout>
+                                    </CharacterHandle>
+                                ))}
                         </Group>
                     ))}
                 </Battlefield>
@@ -149,15 +140,13 @@ class CombatContainer extends React.PureComponent {
         );
     }
 
-    renderResult () {
+    renderResult() {
         const { props } = this;
 
-        return (
-            <Result onClose={props.exitBattle} />
-        );
+        return <Result onClose={props.exitBattle} />;
     }
 
-    render () {
+    render() {
         if (this.props.active) {
             return this.renderBattle();
         }
@@ -171,7 +160,7 @@ class CombatContainer extends React.PureComponent {
 }
 
 export default connect(
-    (state) => {
+    state => {
         const active = isBattleActive(state);
         const queue = getQueuedEntries(state);
         const messages = getLogMessages(state);
@@ -184,7 +173,8 @@ export default connect(
 
                 obj[groupId].push(getCharacterById(state, characterId));
                 return obj;
-            }, {}
+            },
+            {}
         );
 
         return {
@@ -196,7 +186,7 @@ export default connect(
             charactersByGroup,
         };
     },
-    (dispatch) => ({
+    dispatch => ({
         exitBattle: () => dispatch(endBattle(true)),
         applyRollout: () => dispatch(applyRollout()),
         removeRollout: () => dispatch(removeRollout()),

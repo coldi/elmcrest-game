@@ -1,21 +1,24 @@
 {
-  "name": "elmcrest-game",
+  "name": "elmcrest-game2",
   "version": "1.0.0",
-  "repository": "git@gitlab.com:elmcrest/game.git",
-  "author": "Felix Laukel <felix@laukel.com>",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "init": "cross-env NODE_ENV=development ec-scripts init",
-    "start": "cross-env NODE_ENV=development ec-scripts start",
-    "build": "cross-env NODE_ENV=production ec-scripts build",
-    "build-watch": "cross-env NODE_ENV=production ec-scripts build --watch",
-    "test": "cross-env NODE_ENV=test ec-scripts test",
-    "config": "cross-env NODE_ENV=development ec-scripts show-config"
+    "init": "confy-core init --env=development",
+    "start": "confy-core start --env=development",
+    "build": "confy-core build --env=production",
+    "build-watch": "confy-core build --watch --env=production",
+    "test": "confy-core test --env=test",
+    "config": "confy-core show-config --env=development"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "classnames": "^2.2.5",
-    "fast-simplex-noise": "^3.2.0",
-    "gsap": "^1.19.1",
-    "intl-messageformat": "^1.3.0",
+    "classnames": "^2.2.6",
+    "faster-simplex-noise": "^1.0.1",
+    "gsap": "^2.1.3",
+    "intl-messageformat": "^2.2.0",
     "lodash": "^4.17.4",
     "normalize.css": "^4.1.1",
     "papaparse": "^4.3.7",
@@ -27,15 +30,16 @@
     "redux": "^3.6.0",
     "redux-batched-subscribe": "^0.1.6",
     "redux-thunk": "^2.2.0",
-    "rxjs": "^5.4.0",
+    "rxjs": "^6.5.2",
+    "rxjs-compat": "^6.5.2",
     "seamless-immutable": "^7.1.2",
     "seedrandom": "^2.4.2",
     "snarkdown": "^1.2.2"
   },
   "devDependencies": {
-    "ec-scripts": "^0.5.0",
-    "ec-scripts-preset-react": "^0.3.0",
-    "raw-loader": "^0.5.1",
-    "webpack": "3.8.x"
+    "@confy/core": "^0.5.1",
+    "@confy/preset-react": "^0.3.2",
+    "@confy/preset-sass": "^0.1.2",
+    "raw-loader": "^2.0.0"
   }
 }

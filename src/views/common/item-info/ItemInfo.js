@@ -12,9 +12,10 @@ export default function ItemInfo(props) {
     ));
     const className = classNames(
         styles.container,
-        Object.keys(styles).reduce((obj, key) => (
-            qualityId === key ? { ...obj, [styles[key]]: true } : obj
-        ), {})
+        Object.keys(styles).reduce(
+            (obj, key) => (qualityId === key ? { ...obj, [styles[key]]: true } : obj),
+            {}
+        )
     );
 
     const [prefix] = props.item.prefixes || [];
@@ -37,12 +38,14 @@ export default function ItemInfo(props) {
             <div className={styles.description}>
                 <T>items.{itemType.id}.descr</T>
             </div>
-            <div className={styles.effects}>
-                {effects}
-            </div>
+            <div className={styles.effects}>{effects}</div>
             <div className={styles.meta}>
-                <Attribute base={props.item.level}><T>common.level</T></Attribute>
-                <Attribute base={itemType.size}><T>common.itemSize</T></Attribute>
+                <Attribute base={props.item.level}>
+                    <T>common.level</T>
+                </Attribute>
+                <Attribute base={itemType.size}>
+                    <T>common.itemSize</T>
+                </Attribute>
                 <Block noGap>
                     {itemType.slot && <T>common.wearableItem</T>}
                     {itemType.consumable && <T>common.consumableItem</T>}

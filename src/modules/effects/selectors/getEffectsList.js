@@ -5,8 +5,6 @@ import getEffectsState from './getEffectsState';
  * @param {Object} state The global state
  * @returns {Array} A list of effects
  */
-const getEffectsList = (state) => (
-    Object.values(getEffectsState(state).byId)
-);
+const getEffectsList = state => Object.values(getEffectsState(state).byId);
 
 export default getEffectsList;

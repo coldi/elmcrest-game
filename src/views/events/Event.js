@@ -7,7 +7,6 @@ import Scene from './Scene';
 import styles from './Event.scss';
 
 export default class Event extends React.Component {
-
     static propTypes = {
         script: PropTypes.shape(),
         scenes: PropTypes.arrayOf(PropTypes.string),
@@ -53,10 +52,7 @@ export default class Event extends React.Component {
                 setRef={this.handleSceneElementRef}
             />
         ));
-        const className = classNames(
-            styles.container,
-            { [styles.hidden]: hidden }
-        );
+        const className = classNames(styles.container, { [styles.hidden]: hidden });
 
         return (
             <div className={className}>

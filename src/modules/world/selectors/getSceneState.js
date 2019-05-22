@@ -5,6 +5,6 @@ import getWorldState from './getWorldState';
  * @param {Object} state The global state
  * @returns {Object} The scene state
  */
-const getSceneState = (state) => getWorldState(state).scene;
+const getSceneState = state => getWorldState(state).scene;
 
 export default getSceneState;

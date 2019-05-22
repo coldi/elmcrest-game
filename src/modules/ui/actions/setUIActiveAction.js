@@ -3,9 +3,7 @@
  * @param {boolean} active The active state
  * @returns {Object} A redux action
  */
-const setUIActiveAction = (
-    active
-) => ({
+const setUIActiveAction = active => ({
     type: `${setUIActiveAction}`,
     payload: { active },
 });

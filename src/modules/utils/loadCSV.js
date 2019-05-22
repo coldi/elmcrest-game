@@ -5,7 +5,7 @@ import Papa from 'papaparse';
  * @param {string} file
  * @return {Promise<Array>}
  */
-export default function loadCSV (file) {
+export default function loadCSV(file) {
     return new Promise((resolve, reject) => {
         Papa.parse(`assets/payloads/${file}`, {
             download: true,

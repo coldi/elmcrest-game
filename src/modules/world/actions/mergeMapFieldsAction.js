@@ -3,11 +3,9 @@
  * @param {Object[]} fields An array of fields to be added.
  * @returns {Object} A redux action
  */
-const mergeMapFieldsAction = (
-    fields
-) => ({
+const mergeMapFieldsAction = fields => ({
     type: `${mergeMapFieldsAction}`,
-    payload: { fields }
+    payload: { fields },
 });
 
 mergeMapFieldsAction.toString = () => 'world/merge map fields';

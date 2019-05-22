@@ -1,5 +1,5 @@
 /* eslint-disable  no-param-reassign */
-import 'pixi.js';
+import * as PIXI from 'pixi.js';
 import { makePropReceiver } from '../utils';
 /* eslint-disable  no-undef */
 const { Graphics, Text } = PIXI;
@@ -10,10 +10,10 @@ const ANGLE = (Math.PI * 2) / CORNERS;
 
 const calcCorner = (i, size) => {
     const angle = ANGLE * i;
-    return [(size * Math.cos(angle)), (size * Math.sin(angle))];
+    return [size * Math.cos(angle), size * Math.sin(angle)];
 };
 
-const calcPoints = (size) => {
+const calcPoints = size => {
     const points = [];
 
     for (let i = 0; i < CORNERS; i += 1) {
@@ -32,12 +32,11 @@ const textStyle = {
 };
 
 export default class Coord {
-
     instance = null;
     text = null;
     props = {};
 
-    constructor (container, props) {
+    constructor(container, props) {
         this.instance = new Graphics();
         this.text = new Text('', textStyle);
         this.text.anchor.set(0.5, 0.5);
@@ -50,7 +49,7 @@ export default class Coord {
         }
     }
 
-    draw (props) {
+    draw(props) {
         const size = props.size || this.props.size;
         const color = props.color || this.props.color;
 
@@ -70,7 +69,7 @@ export default class Coord {
         this.instance.endFill();
     }
 
-    update (props) {
+    update(props) {
         const { instance } = this;
         const receivedProp = makePropReceiver(this, props);
 
@@ -101,7 +100,7 @@ export default class Coord {
         };
     }
 
-    remove () {
+    remove() {
         this.instance.clear();
         this.instance.destroy();
         this.instance = null;

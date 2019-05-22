@@ -14,8 +14,8 @@ const getExpGainForGroup = (state, groupId, sourceGroupId) => {
     const group = getGroupById(state, groupId);
     const sourceGroup = getGroupById(state, sourceGroupId);
 
-    return group.characterIds.map(
-        charId => sourceGroup.characterIds
+    return group.characterIds.map(charId =>
+        sourceGroup.characterIds
             // only consider dead characters
             .filter(sourceCharId => !isCharacterAlive(state, sourceCharId))
             .map(sourceCharId => getExpGain(state, charId, sourceCharId))

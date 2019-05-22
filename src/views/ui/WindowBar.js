@@ -5,7 +5,6 @@ import T from '../i18n';
 import { KEY } from '../constants';
 
 export default class WindowBar extends React.Component {
-
     static propTypes = {
         windows: PropTypes.shape(),
         activeId: PropTypes.string,
@@ -16,21 +15,21 @@ export default class WindowBar extends React.Component {
         windows: {},
     };
 
-    constructor (props) {
+    constructor(props) {
         super(props);
 
         this.handleKeyUp = this.handleKeyUp.bind(this);
     }
 
-    componentDidMount () {
+    componentDidMount() {
         document.addEventListener('keyup', this.handleKeyUp);
     }
 
-    componentWillUnmount () {
+    componentWillUnmount() {
         document.removeEventListener('keyup', this.handleKeyUp);
     }
 
-    handleKeyUp (e) {
+    handleKeyUp(e) {
         const { windows, onSelect } = this.props;
 
         if (e.which === KEY.ESC) {
@@ -38,7 +37,7 @@ export default class WindowBar extends React.Component {
             return;
         }
 
-        Object.keys(windows).forEach((id) => {
+        Object.keys(windows).forEach(id => {
             const window = windows[id];
             if (e.which === window.key) {
                 onSelect(id);
@@ -46,36 +45,24 @@ export default class WindowBar extends React.Component {
         });
     }
 
-    render () {
+    render() {
         const { windows, activeId, onSelect } = this.props;
-        const activeWindow = (activeId)
-            ? windows[activeId].component
-            : null;
+        const activeWindow = activeId ? windows[activeId].component : null;
 
-        const buttons = Object.keys(windows).map(
-            (id) => (
-                <Grid.Item key={id}>
-                    <Button
-                        small
-                        active={activeId === id}
-                        onClick={() => onSelect(id)}
-                    >
-                        <T>ui.windows.{id}.name</T>
-                    </Button>
-                </Grid.Item>
-            )
-        );
+        const buttons = Object.keys(windows).map(id => (
+            <Grid.Item key={id}>
+                <Button small active={activeId === id} onClick={() => onSelect(id)}>
+                    <T>ui.windows.{id}.name</T>
+                </Button>
+            </Grid.Item>
+        ));
 
         return (
             <Block>
                 <Block>
-                    <Grid smallGap>
-                        {buttons}
-                    </Grid>
+                    <Grid smallGap>{buttons}</Grid>
                 </Block>
-                <Block>
-                    {activeWindow}
-                </Block>
+                <Block>{activeWindow}</Block>
             </Block>
         );
     }

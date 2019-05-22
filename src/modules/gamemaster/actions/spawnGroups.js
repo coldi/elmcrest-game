@@ -16,8 +16,9 @@ const spawnGroups = () => (dispatch, getState) => {
     const player = getPlayerGroup(state);
     const { groupSpawnRadius, groupDetectRadius } = getGamemasterSettings(state);
     // get all groups in range, excluding player
-    const groupsInRange = getGroupsInRange(state, player.coord, groupDetectRadius)
-        .filter(grp => grp.id !== player.id);
+    const groupsInRange = getGroupsInRange(state, player.coord, groupDetectRadius).filter(
+        grp => grp.id !== player.id
+    );
 
     if (!groupsInRange.length) {
         // get a ring of cells in a radius around the player

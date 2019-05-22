@@ -3,9 +3,7 @@
  * @param {Object} battle Battle information
  * @returns {Object} A redux action
  */
-const setCurrentBattleAction = (
-    battle
-) => ({
+const setCurrentBattleAction = battle => ({
     type: `${setCurrentBattleAction}`,
     payload: { battle },
 });

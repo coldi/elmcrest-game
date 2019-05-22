@@ -7,8 +7,7 @@ import getFieldTypesState from './getFieldTypesState';
  * @param {number} elevation
  * @returns {Object}
  */
-const getFieldType = (state, climate, elevation) => (
-    getFieldTypesState(state)[`${climate}_${elevation}`]
-);
+const getFieldType = (state, climate, elevation) =>
+    getFieldTypesState(state)[`${climate}_${elevation}`];
 
 export default getFieldType;

@@ -6,24 +6,22 @@ import createItemTypesAction from '../actions/createItemTypesAction';
  * @param {Object} action The dispatched action
  * @returns {Object} The next state
  */
-export default function itemTypes (
-    state = {},
-    action = {}
-) {
+export default function itemTypes(state = {}, action = {}) {
     switch (action.type) {
-
         case `${createItemTypesAction}`: {
             const { list } = action.payload;
 
-            return list.reduce((obj, type) => ({
-                ...obj,
-                [type.id]: type
-            }), state);
+            return list.reduce(
+                (obj, type) => ({
+                    ...obj,
+                    [type.id]: type,
+                }),
+                state
+            );
         }
 
         default: {
             return state;
         }
-
     }
 }

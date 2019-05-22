@@ -5,7 +5,7 @@ import T from '../../i18n';
 import { Block, Grid, ProgressBar } from '../';
 import { getCharacterById, getExpByLevel } from '../../../modules/characters';
 
-function CharacterBars (props) {
+function CharacterBars(props) {
     return (
         <Block>
             {props.exp ? (
@@ -24,7 +24,9 @@ function CharacterBars (props) {
                         <Grid.Item>
                             <ProgressBar
                                 label={<T>char.attr.HP</T>}
-                                maxLabel={`${props.character.computed.HP} / ${props.character.computed.HPMax}`}
+                                maxLabel={`${props.character.computed.HP} / ${
+                                    props.character.computed.HPMax
+                                }`}
                                 value={props.character.computed.HP}
                                 max={props.character.computed.HPMax}
                             />
@@ -34,7 +36,9 @@ function CharacterBars (props) {
                         <Grid.Item>
                             <ProgressBar
                                 label={<T>char.attr.AP</T>}
-                                maxLabel={`${props.character.computed.AP} / ${props.character.computed.APMax}`}
+                                maxLabel={`${props.character.computed.AP} / ${
+                                    props.character.computed.APMax
+                                }`}
                                 value={props.character.computed.AP}
                                 max={props.character.computed.APMax}
                                 segmented
@@ -49,7 +53,9 @@ function CharacterBars (props) {
                         <ProgressBar
                             type="water"
                             label={<T>char.attr.water</T>}
-                            maxLabel={`${Math.round(props.character.condition.water * 100)}%`}
+                            maxLabel={`${Math.round(
+                                props.character.condition.water * 100
+                            )}%`}
                             value={props.character.condition.water}
                         />
                     </Grid.Item>
@@ -57,7 +63,9 @@ function CharacterBars (props) {
                         <ProgressBar
                             type="food"
                             label={<T>char.attr.food</T>}
-                            maxLabel={`${Math.round(props.character.condition.food * 100)}%`}
+                            maxLabel={`${Math.round(
+                                props.character.condition.food * 100
+                            )}%`}
                             value={props.character.condition.food}
                         />
                     </Grid.Item>
@@ -65,7 +73,9 @@ function CharacterBars (props) {
                         <ProgressBar
                             type="energy"
                             label={<T>char.attr.energy</T>}
-                            maxLabel={`${Math.round(props.character.condition.energy * 100)}%`}
+                            maxLabel={`${Math.round(
+                                props.character.condition.energy * 100
+                            )}%`}
                             value={props.character.condition.energy}
                         />
                     </Grid.Item>
@@ -85,21 +95,17 @@ CharacterBars.propTypes = {
     resources: PropTypes.bool,
 };
 
-export default connect(
-    (state, props) => {
-        const character = getCharacterById(state, props.characterId);
-        const currentLevelExp = (
-            character.progress.exp - getExpByLevel(state, character.computed.level)
-        );
-        const nextLevelExp = (
-            getExpByLevel(state, character.computed.level + 1) -
-            getExpByLevel(state, character.computed.level)
-        );
+export default connect((state, props) => {
+    const character = getCharacterById(state, props.characterId);
+    const currentLevelExp =
+        character.progress.exp - getExpByLevel(state, character.computed.level);
+    const nextLevelExp =
+        getExpByLevel(state, character.computed.level + 1) -
+        getExpByLevel(state, character.computed.level);
 
-        return {
-            character,
-            currentLevelExp,
-            nextLevelExp,
-        };
-    }
-)(CharacterBars);
+    return {
+        character,
+        currentLevelExp,
+        nextLevelExp,
+    };
+})(CharacterBars);

@@ -1,10 +1,6 @@
 import range from 'lodash/range';
 import createStore from '../../store';
-import {
-    getCharacterById,
-    createCharacter,
-    spendAPAction,
-} from '../characters';
+import { getCharacterById, createCharacter, spendAPAction } from '../characters';
 import { groupCreated$ } from './streams';
 import {
     getGroupById,
@@ -18,7 +14,6 @@ import {
     setActionQueueAction,
     removeFromActionQueueAction,
 } from './';
-
 
 describe('modules/groups', () => {
     let dispatch;
@@ -55,7 +50,7 @@ describe('modules/groups', () => {
         });
 
         it('should have custom props if passed', () => {
-            Object.keys(groupProps).forEach((prop) => {
+            Object.keys(groupProps).forEach(prop => {
                 expect(group[prop]).toEqual(groupProps[prop]);
             });
         });
@@ -73,7 +68,9 @@ describe('modules/groups', () => {
             let character;
 
             beforeEach(() => {
-                characterIds = range(settings.maxCharactersInGroup + 1).map((i) => `char-${i}`);
+                characterIds = range(settings.maxCharactersInGroup + 1).map(
+                    i => `char-${i}`
+                );
 
                 dispatch(createCharacter({ id: characterIds[0] }));
                 dispatch(addCharacter(groupId, characterIds[0]));
@@ -113,7 +110,7 @@ describe('modules/groups', () => {
                 beforeEach(() => {
                     console = { warn: jest.fn() };
 
-                    characterIds.slice(1).forEach((charId) => {
+                    characterIds.slice(1).forEach(charId => {
                         dispatch(createCharacter({ id: charId }));
                         dispatch(addCharacter(groupId, charId));
                     });
@@ -165,7 +162,9 @@ describe('modules/groups', () => {
             });
 
             it('should calculate the correct amount of MAX available action points', () => {
-                const { computed: { APMax } } = lowCharacter;
+                const {
+                    computed: { APMax },
+                } = lowCharacter;
                 expect(getGroupAPMax(getState(), groupId)).toBe(APMax);
             });
 
@@ -187,17 +186,12 @@ describe('modules/groups', () => {
                 });
 
                 it('should have enough action points to perform the action', () => {
-                    expect(
-                        hasGroupEnoughAP(getState(), groupId, sampleCost)
-                    ).toBe(true);
+                    expect(hasGroupEnoughAP(getState(), groupId, sampleCost)).toBe(true);
                 });
 
                 describe('Given the action gets performed', () => {
                     beforeEach(() => {
-                        dispatch(spendAPAction(
-                            group.characterIds,
-                            sampleCost
-                        ));
+                        dispatch(spendAPAction(group.characterIds, sampleCost));
                         dispatch(removeFromActionQueueAction(groupId));
                         group = getGroupById(getState(), groupId);
                         lowCharacter = getCharacterById(getState(), lowCharId);
@@ -208,7 +202,9 @@ describe('modules/groups', () => {
                     });
 
                     it('should calculate the correct amount of REMAINING action points', () => {
-                        const { computed: { AP } } = lowCharacter;
+                        const {
+                            computed: { AP },
+                        } = lowCharacter;
                         expect(getGroupAP(getState(), groupId)).toBe(AP);
                     });
                 });

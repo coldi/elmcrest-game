@@ -6,7 +6,7 @@ import applyEffects from '../../effects/actions/applyEffects';
  * @param {Object} skill A skill script result
  * @returns {Object} A redux thunk
  */
-const applySkill = (skill) => (dispatch) => {
+const applySkill = skill => dispatch => {
     invariant(
         Array.isArray(skill),
         `The skill script result to apply should be an array. Received: ${typeof skill}`

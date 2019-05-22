@@ -8,11 +8,8 @@ import styles from './Stack.scss';
 function Stack(props) {
     const { stack, onClick, onContext } = props;
 
-    const amount = (stack.amount > 1) ? (
-        <span className={styles.amount}>
-            {stack.amount}
-        </span>
-    ) : null;
+    const amount =
+        stack.amount > 1 ? <span className={styles.amount}>{stack.amount}</span> : null;
 
     return (
         <div
@@ -37,10 +34,8 @@ Stack.defaultProps = {
     onContext: () => {},
 };
 
-export default connect(
-    (state, props) => ({
-        stack: props.stack.item.itemType
-            ? props.stack
-            : getPopulatedStack(state, props.stack)
-    })
-)(Stack);
+export default connect((state, props) => ({
+    stack: props.stack.item.itemType
+        ? props.stack
+        : getPopulatedStack(state, props.stack),
+}))(Stack);

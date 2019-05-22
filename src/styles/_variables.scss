@@ -1,12 +1,16 @@
-$images: 'assets/textures/';
+$images: '/assets/textures/';
 
 // TODO: embed fonts
 // @import url('https://fonts.googleapis.com/css?family=Geo');
 // @import url('https://fonts.googleapis.com/css?family=PT+Serif:400i|PT+Sans:400,400i,700');
 @import url('https://fonts.googleapis.com/css?family=Oswald:300,400,500');
 // @import url('https://fonts.googleapis.com/css?family=Bangers:400|Tillana:400,700');
-$primary-font: 'Oswald', Times, serif;
-$secondary-font: 'Oswald', 'Open Sans', sans-serif;
+$primary-font: 'Oswald',
+Times,
+serif;
+$secondary-font: 'Oswald',
+'Open Sans',
+sans-serif;
 
 $primary-font-weight: 500;
 $secondary-font-weight: 400;

@@ -1,5 +1,5 @@
 /* eslint-disable  no-param-reassign */
-import 'pixi.js';
+import * as PIXI from 'pixi.js';
 import debounce from 'lodash/debounce';
 import { getCell } from '../../../modules/hex';
 import { getKeyFromCoord } from '../../../modules/world';
@@ -10,7 +10,6 @@ const { Container } = PIXI;
 /* eslint-enable  no-undef */
 
 export default class FieldContainer {
-
     instance = null;
     props = {
         fields: [],
@@ -21,7 +20,7 @@ export default class FieldContainer {
     refreshWhenIdle = null;
     refreshCallback = null;
 
-    constructor (container, layout, props) {
+    constructor(container, layout, props) {
         this.instance = new Container();
         this.layout = layout;
 
@@ -32,13 +31,12 @@ export default class FieldContainer {
         }
 
         this.refresh = this.refresh.bind(this);
-        this.refreshWhenIdle = debounce(
-            () => { this.refreshCallback = requestIdleCallback(this.refresh); },
-            FIELD_REFRESH_DELAY
-        );
+        this.refreshWhenIdle = debounce(() => {
+            this.refreshCallback = requestIdleCallback(this.refresh);
+        }, FIELD_REFRESH_DELAY);
     }
 
-    refresh () {
+    refresh() {
         // find all field instances that are not visible anymore and remove them
         this.cache.forEach((instance, key) => {
             if (!this.props.fields.find(field => getKeyFromCoord(field.coord) === key)) {
@@ -48,7 +46,7 @@ export default class FieldContainer {
         });
     }
 
-    update (props) {
+    update(props) {
         const { instance } = this;
 
         if (props.fields !== undefined) {
@@ -84,7 +82,7 @@ export default class FieldContainer {
         };
     }
 
-    remove () {
+    remove() {
         cancelIdleCallback(this.refreshCallback);
         this.instance.destroy();
         this.instance = null;

@@ -25,8 +25,10 @@ export default function EffectsList(props) {
                 {commonEffects.length ? (
                     <Grid.Item>
                         <div className={styles.rel}>
-                            <Heading sub><T>rel.common</T></Heading>
-                            {commonEffects.map((effect) => (
+                            <Heading sub>
+                                <T>rel.common</T>
+                            </Heading>
+                            {commonEffects.map(effect => (
                                 <Effect key={effect.name} effect={effect} />
                             ))}
                         </div>
@@ -35,8 +37,10 @@ export default function EffectsList(props) {
                 {Object.entries(effectsByRel).map(([rel, effects]) => (
                     <Grid.Item key={rel}>
                         <div className={styles.rel}>
-                            <Heading sub><T>rel.{rel}</T></Heading>
-                            {effects.map((effect) => (
+                            <Heading sub>
+                                <T>rel.{rel}</T>
+                            </Heading>
+                            {effects.map(effect => (
                                 <Effect key={effect.name} effect={effect} />
                             ))}
                         </div>

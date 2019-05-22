@@ -9,7 +9,7 @@ import createModalAction from './createModalAction';
  * @param {Object|string} options The modal options or message as string
  * @return {Function} A redux thunk
  */
-const showModal = options => (dispatch) => {
+const showModal = options => dispatch => {
     const id = uid();
     let modalOptions = {};
 
@@ -19,11 +19,13 @@ const showModal = options => (dispatch) => {
         modalOptions.message = options;
     }
 
-    dispatch(createModalAction({
-        id,
-        ...modalDefaults,
-        ...modalOptions,
-    }));
+    dispatch(
+        createModalAction({
+            id,
+            ...modalDefaults,
+            ...modalOptions,
+        })
+    );
 
     return promiseMap.create(id);
 };

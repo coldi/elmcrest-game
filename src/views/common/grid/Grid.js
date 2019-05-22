@@ -3,20 +3,13 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styles from './Grid.scss';
 
-const Item = (props) => {
-    const className = classNames(
-        styles.col,
-        {
-            [styles.growWidth]: props.growWidth,
-            [styles.growHeight]: props.growHeight,
-        },
-    );
+const Item = props => {
+    const className = classNames(styles.col, {
+        [styles.growWidth]: props.growWidth,
+        [styles.growHeight]: props.growHeight,
+    });
 
-    return (
-        <div className={className}>
-            {props.children}
-        </div>
-    );
+    return <div className={className}>{props.children}</div>;
 };
 
 Item.propTypes = {
@@ -26,16 +19,13 @@ Item.propTypes = {
 };
 
 export default function Grid(props) {
-    const className = classNames(
-        styles.container,
-        {
-            [styles.noGap]: props.noGap,
-            [styles.smallGap]: props.smallGap,
-            [styles.noWrap]: props.noWrap,
-            [styles.column]: props.column,
-            [styles.consistent]: props.consistent,
-        },
-    );
+    const className = classNames(styles.container, {
+        [styles.noGap]: props.noGap,
+        [styles.smallGap]: props.smallGap,
+        [styles.noWrap]: props.noWrap,
+        [styles.column]: props.column,
+        [styles.consistent]: props.consistent,
+    });
 
     const style = { width: props.width };
 

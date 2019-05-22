@@ -29,9 +29,7 @@ import {
 import T from '../../i18n';
 import styles from './Character.scss';
 
-
 export class CharacterContainer extends React.PureComponent {
-
     static propTypes = {
         groupId: PropTypes.string.isRequired,
         group: PropTypes.shape(),
@@ -49,7 +47,7 @@ export class CharacterContainer extends React.PureComponent {
 
     state = {};
 
-    useStack (stackId) {
+    useStack(stackId) {
         const {
             group: { inventoryId },
             selectedStackId,
@@ -69,7 +67,7 @@ export class CharacterContainer extends React.PureComponent {
         }
     }
 
-    unequipStack (stackId) {
+    unequipStack(stackId) {
         const {
             group: { inventoryId },
             selectedCharacterId,
@@ -79,7 +77,7 @@ export class CharacterContainer extends React.PureComponent {
         unequipInventoryStack(inventoryId, stackId, selectedCharacterId);
     }
 
-    removeFromStack (stackId) {
+    removeFromStack(stackId) {
         const {
             group: { inventoryId },
             selectedStackId,
@@ -92,7 +90,7 @@ export class CharacterContainer extends React.PureComponent {
         }
     }
 
-    render () {
+    render() {
         const { props } = this;
 
         return (
@@ -101,18 +99,21 @@ export class CharacterContainer extends React.PureComponent {
                     <Grid.Item>
                         <Panel title={<T>ui.windows.equipment.title</T>}>
                             <CharacterSelection characterIds={props.group.characterIds}>
-                                {(charId) => (
+                                {charId => (
                                     <div className={styles.stats}>
                                         <Block>
                                             <Equipment
                                                 characterId={charId}
-                                                onUnequip={stackId => this.unequipStack(stackId)}
+                                                onUnequip={stackId =>
+                                                    this.unequipStack(stackId)
+                                                }
                                             />
                                         </Block>
                                         <div className={styles.name}>
                                             <Heading minor>
                                                 {props.character.name},&nbsp;
-                                                <T>common.level</T> {props.character.computed.level}
+                                                <T>common.level</T>{' '}
+                                                {props.character.computed.level}
                                             </Heading>
                                         </div>
                                         <CharacterBars
@@ -133,7 +134,9 @@ export class CharacterContainer extends React.PureComponent {
                                             </Tabs.Item>
 
                                             <Tabs.Item label={<T>common.effects</T>}>
-                                                <EffectsList effects={props.character.effects} />
+                                                <EffectsList
+                                                    effects={props.character.effects}
+                                                />
                                             </Tabs.Item>
                                         </Tabs>
                                     </div>
@@ -147,8 +150,8 @@ export class CharacterContainer extends React.PureComponent {
                                 inventoryId={props.group.inventoryId}
                                 selectedStackId={props.selectedStackId}
                                 onSelect={props.selectStackId}
-                                onUse={(stackId) => this.useStack(stackId)}
-                                contextMenuList={(stackId) => (
+                                onUse={stackId => this.useStack(stackId)}
+                                contextMenuList={stackId => (
                                     <StackContextMenuList
                                         stackId={stackId}
                                         inventoryId={props.group.inventoryId}
@@ -168,10 +171,9 @@ export class CharacterContainer extends React.PureComponent {
 export default connect(
     (state, props) => {
         const group = getGroupById(state, props.groupId);
-        const selectedCharacterId = (
-            getGeneralUIState(state).selectedCharacterId || group.characterIds[0]
-        );
-        const selectedStackId = getWindowById(state, CHARACTER_WINDOW).selectedStackId;
+        const selectedCharacterId =
+            getGeneralUIState(state).selectedCharacterId || group.characterIds[0];
+        const { selectedStackId } = getWindowById(state, CHARACTER_WINDOW);
         const character = getCharacterById(state, selectedCharacterId);
 
         return {
@@ -181,24 +183,14 @@ export default connect(
             selectedStackId,
         };
     },
-    (dispatch) => ({
-        closeWindow: () => (
-            dispatch(toggleWindow(CHARACTER_WINDOW, false))
-        ),
-        selectStackId: (stackId) => (
-            dispatch(updateWindowStateAction(
-                CHARACTER_WINDOW,
-                { selectedStackId: stackId }
-            ))
-        ),
-        useInventoryStack: (...args) => (
-            dispatch(useStack(...args))
-        ),
-        unequipInventoryStack: (...args) => (
-            dispatch(unequipStack(...args))
-        ),
-        removeFromInventoryStack: (...args) => (
-            dispatch(removeFromStack(...args))
-        ),
+    dispatch => ({
+        closeWindow: () => dispatch(toggleWindow(CHARACTER_WINDOW, false)),
+        selectStackId: stackId =>
+            dispatch(
+                updateWindowStateAction(CHARACTER_WINDOW, { selectedStackId: stackId })
+            ),
+        useInventoryStack: (...args) => dispatch(useStack(...args)),
+        unequipInventoryStack: (...args) => dispatch(unequipStack(...args)),
+        removeFromInventoryStack: (...args) => dispatch(removeFromStack(...args)),
     })
 )(CharacterContainer);

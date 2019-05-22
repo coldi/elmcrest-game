@@ -4,10 +4,7 @@
  * @param {Object} stateUpdate The state to update
  * @returns {Object} A redux action
  */
-const updateWindowStateAction = (
-    id,
-    stateUpdate
-) => ({
+const updateWindowStateAction = (id, stateUpdate) => ({
     type: `${updateWindowStateAction}`,
     payload: { id, stateUpdate },
 });

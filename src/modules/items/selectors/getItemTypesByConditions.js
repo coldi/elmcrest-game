@@ -7,8 +7,7 @@ import getItemTypesList from './getItemTypesList';
  * @param {Object} conditions
  * @returns {Array}
  */
-const getItemTypesByConditions = (state, conditions) => (
-    filter(getItemTypesList(state), conditions)
-);
+const getItemTypesByConditions = (state, conditions) =>
+    filter(getItemTypesList(state), conditions);
 
 export default getItemTypesByConditions;

@@ -7,12 +7,7 @@ import getGroupCharacters from './getGroupCharacters';
  * @param {string} id A group id
  * @returns {number} The lowest action point capacity
  */
-const getGroupAPMax = (state, id) => (
-    min(
-        getGroupCharacters(state, id).map(
-            char => char.computed.APMax
-        )
-    )
-);
+const getGroupAPMax = (state, id) =>
+    min(getGroupCharacters(state, id).map(char => char.computed.APMax));
 
 export default getGroupAPMax;

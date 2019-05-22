@@ -7,8 +7,6 @@ import getGroupAP from './getGroupAP';
  * @param {number} cost Some cost
  * @returns {boolean}
  */
-const hasGroupEnoughAP = (state, id, cost = 0) => (
-    getGroupAP(state, id) >= cost
-);
+const hasGroupEnoughAP = (state, id, cost = 0) => getGroupAP(state, id) >= cost;
 
 export default hasGroupEnoughAP;

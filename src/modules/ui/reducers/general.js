@@ -14,12 +14,8 @@ const initialState = {
  * @param {Object} action The dispatched action
  * @returns {Object} The next state
  */
-export default function general (
-    state = initialState,
-    action = {}
-) {
+export default function general(state = initialState, action = {}) {
     switch (action.type) {
-
         case `${selectCharacterIdAction}`: {
             const { id } = action.payload;
             return { ...state, selectedCharacterId: id };
@@ -38,6 +34,5 @@ export default function general (
         default: {
             return state;
         }
-
     }
 }

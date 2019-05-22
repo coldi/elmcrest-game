@@ -1,8 +1,4 @@
-import {
-    turn$,
-    playerPhase$,
-    computePhase$,
-} from '../cycle/streams';
+import { turn$, playerPhase$, computePhase$ } from '../cycle/streams';
 import { coordSelected$, coordInteraction$ } from '../world/streams';
 import { battleDidEnd$ } from '../combat/streams';
 import { eventDidStart$ } from '../events/streams';
@@ -22,7 +18,7 @@ import performTask from './actions/performTask';
  * Subscription wrapper.
  * @param {Function} subscribe
  */
-export default function (subscribe) {
+export default function(subscribe) {
     /**
      * Reset group's state on each new turn.
      */
@@ -57,13 +53,10 @@ export default function (subscribe) {
     /**
      * Generate temporary action queue for player based on currently selected coord.
      */
-    subscribe(
-        coordSelected$.merge(playerPhase$),
-        ({ dispatch, getState, coord }) => {
-            const player = getPlayerGroup(getState());
-            if (player) dispatch(setTempActionQueue(player.id, coord));
-        }
-    );
+    subscribe(coordSelected$.merge(playerPhase$), ({ dispatch, getState, coord }) => {
+        const player = getPlayerGroup(getState());
+        if (player) dispatch(setTempActionQueue(player.id, coord));
+    });
 
     /**
      * Generate temporary action queue for player based on currently selected coord.

@@ -10,9 +10,7 @@ import createGroupAction from './createGroupAction';
  * @param {Object} [props] Specific group props
  * @returns {Function} A redux thunk
  */
-const createGroup = (
-    props = {},
-) => (dispatch) => {
+const createGroup = (props = {}) => dispatch => {
     const group = {
         ...groupDefaults,
         ...props,

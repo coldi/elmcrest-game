@@ -6,7 +6,6 @@ import {
     removeGroupFromPhaseAction,
 } from '../';
 
-
 const initialState = {
     turn: 0,
     phaseIndex: 0,
@@ -19,10 +18,7 @@ const initialState = {
  * @param {Object} action The dispatched action
  * @returns {Object} The next state
  */
-export default function cycle(
-    state = initialState,
-    action = {}
-) {
+export default function cycle(state = initialState, action = {}) {
     switch (action.type) {
         case `${addGroupToPhaseAction}`: {
             const { groupId, phaseIndex } = action.payload;
@@ -34,7 +30,7 @@ export default function cycle(
         case `${removeGroupFromPhaseAction}`: {
             const { groupId, phaseIndex } = action.payload;
             const phase = state.phases[phaseIndex].filter(
-                (member) => member.groupId !== groupId
+                member => member.groupId !== groupId
             );
 
             return Immutable.setIn(state, ['phases', phaseIndex], phase);

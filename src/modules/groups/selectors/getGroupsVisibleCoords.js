@@ -13,8 +13,7 @@ import getGroupById from './getGroupById';
  * @returns {Array[]} A list of coords
  */
 const getGroupsVisibleCoords = memoize(
-    (state, id) =>
-        getGroupById(state, id),
+    (state, id) => getGroupById(state, id),
     (state, id, range) => {
         const { sightRange } = getGroupsSettings(state);
         const { elevationSightLimit } = getWorldSettings(state);

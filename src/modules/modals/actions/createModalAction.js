@@ -3,9 +3,7 @@
  * @param {Object} modal A modal object
  * @returns {Object} A redux action
  */
-const createModalAction = (
-    modal
-) => ({
+const createModalAction = modal => ({
     type: `${createModalAction}`,
     payload: { modal },
 });

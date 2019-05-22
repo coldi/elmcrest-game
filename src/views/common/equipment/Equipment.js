@@ -8,7 +8,6 @@ import { Item } from '../';
 import styles from './Equipment.scss';
 
 export class EquipmentContainer extends React.PureComponent {
-
     static propTypes = {
         characterId: PropTypes.string.isRequired,
         items: PropTypes.shape(),
@@ -21,23 +20,20 @@ export class EquipmentContainer extends React.PureComponent {
 
     state = {};
 
-    constructor (props) {
+    constructor(props) {
         super(props);
 
         this.renderSlot = this.renderSlot.bind(this);
     }
 
-    handleUnequip (itemSlot) {
+    handleUnequip(itemSlot) {
         if (itemSlot) this.props.onUnequip(itemSlot.stackId);
     }
 
-    renderSlot (slot) {
+    renderSlot(slot) {
         const itemSlot = this.props.items[slot];
 
-        const className = classNames(
-            styles.slot,
-            { [styles.clickable]: itemSlot }
-        );
+        const className = classNames(styles.slot, { [styles.clickable]: itemSlot });
 
         return (
             <li
@@ -46,11 +42,11 @@ export class EquipmentContainer extends React.PureComponent {
                 onClick={() => this.handleUnequip(itemSlot)}
                 onContextMenu={() => this.handleUnequip(itemSlot)}
             >
-                {
-                    itemSlot
-                        ? <Item item={itemSlot} />
-                        : <T className={styles.slotLabel}>char.equip.{slot}</T>
-                }
+                {itemSlot ? (
+                    <Item item={itemSlot} />
+                ) : (
+                    <T className={styles.slotLabel}>char.equip.{slot}</T>
+                )}
             </li>
         );
     }
@@ -68,8 +64,6 @@ export class EquipmentContainer extends React.PureComponent {
     }
 }
 
-export default connect(
-    (state, props) => ({
-        items: getEquippedItemsOfCharacter(state, props.characterId),
-    })
-)(EquipmentContainer);
+export default connect((state, props) => ({
+    items: getEquippedItemsOfCharacter(state, props.characterId),
+}))(EquipmentContainer);

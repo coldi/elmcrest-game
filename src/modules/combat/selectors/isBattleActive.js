@@ -5,8 +5,6 @@ import getCurrentBattle from './getCurrentBattle';
  * @param {Object} state The global state
  * @returns {boolean}
  */
-const isBattleActive = (state) => (
-    getCurrentBattle(state).active
-);
+const isBattleActive = state => getCurrentBattle(state).active;
 
 export default isBattleActive;

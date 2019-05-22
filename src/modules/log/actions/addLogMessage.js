@@ -8,16 +8,15 @@ import addMessageAction from './addMessageAction';
  * @param {Object} params The message params
  * @returns {Function} A redux thunk
  */
-const addLogMessage = (
-    text,
-    params,
-) => (dispatch) => {
-    dispatch(addMessageAction({
-        ...messageDefaults,
-        id: uid('log'),
-        text,
-        params,
-    }));
+const addLogMessage = (text, params) => dispatch => {
+    dispatch(
+        addMessageAction({
+            ...messageDefaults,
+            id: uid('log'),
+            text,
+            params,
+        })
+    );
 };
 
 export default addLogMessage;

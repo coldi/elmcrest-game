@@ -17,19 +17,14 @@ import {
  * @param {Object} action The dispatched action
  * @returns {Object} The next state
  */
-export default function characters (
-    state = {},
-    action = {}
-) {
+export default function characters(state = {}, action = {}) {
     switch (action.type) {
         case `${addEffectsAction}`: {
             const { id } = action.payload;
             const newEffects = action.payload.effects;
 
-            return Immutable.updateIn(
-                state,
-                [id, 'effects'],
-                (effects) => effects.concat(newEffects)
+            return Immutable.updateIn(state, [id, 'effects'], effects =>
+                effects.concat(newEffects)
             );
         }
 
@@ -48,31 +43,33 @@ export default function characters (
         case `${removeEffectAction}`: {
             const { id, props } = action.payload;
 
-            return Immutable.updateIn(
-                state,
-                [id, 'effects'],
-                (effects) => reject(effects, props)
+            return Immutable.updateIn(state, [id, 'effects'], effects =>
+                reject(effects, props)
             );
         }
 
         case `${spendAPAction}`: {
             const { ids, cost } = action.payload;
 
-            return ids.reduce((nextState, id) => (
-                Immutable.updateIn(
-                    nextState,
-                    [id, 'condition', 'APUsed'],
-                    (APUsed) => APUsed + cost
-                )
-            ), state);
+            return ids.reduce(
+                (nextState, id) =>
+                    Immutable.updateIn(
+                        nextState,
+                        [id, 'condition', 'APUsed'],
+                        APUsed => APUsed + cost
+                    ),
+                state
+            );
         }
 
         case `${resetAPAction}`: {
             const { ids } = action.payload;
 
-            return ids.reduce((nextState, id) => (
-                Immutable.setIn(nextState, [id, 'condition', 'APUsed'], 0)
-            ), state);
+            return ids.reduce(
+                (nextState, id) =>
+                    Immutable.setIn(nextState, [id, 'condition', 'APUsed'], 0),
+                state
+            );
         }
 
         case `${addExpAction}`: {
@@ -81,20 +78,16 @@ export default function characters (
             return Immutable.updateIn(
                 state,
                 [id, 'progress', 'exp'],
-                (currentExp) => currentExp + exp
+                currentExp => currentExp + exp
             );
         }
 
         case `${updateCharacterAction}`: {
             const { id, props } = action.payload;
 
-            return Immutable.updateIn(state, [id], (character) => (
-                Immutable.merge(
-                    character,
-                    props,
-                    { deep: true }
-                )
-            ));
+            return Immutable.updateIn(state, [id], character =>
+                Immutable.merge(character, props, { deep: true })
+            );
         }
 
         default:

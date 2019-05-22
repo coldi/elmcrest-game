@@ -6,11 +6,7 @@ import getPlayerGroup from './getPlayerGroup';
  * @param {Object} state The global state
  * @returns {Array} The list of characters
  */
-const getPlayerGroupCharacters = (state) => (
-    getGroupCharacters(
-        state,
-        getPlayerGroup(state).id
-    )
-);
+const getPlayerGroupCharacters = state =>
+    getGroupCharacters(state, getPlayerGroup(state).id);
 
 export default getPlayerGroupCharacters;

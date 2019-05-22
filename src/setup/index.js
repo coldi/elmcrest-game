@@ -16,7 +16,7 @@ import start from './start';
  * @param {boolean} hasSavedState
  * @returns {Promise}
  */
-export default async function runSetup (dispatch, hasSavedState) {
+export default async function runSetup(dispatch, hasSavedState) {
     // set up scripts that should always run
     const batch = [
         i18n,
@@ -36,10 +36,12 @@ export default async function runSetup (dispatch, hasSavedState) {
     }
 
     // run all scripts sequentially
-    await batch.reduce((current, next) => (
-        current.then(() => {
-            log.info(`[SETUP] Prepare ${next.name} ...`);
-            return dispatch(next);
-        })
-    ), Promise.resolve());
+    await batch.reduce(
+        (current, next) =>
+            current.then(() => {
+                log.info(`[SETUP] Prepare ${next.name} ...`);
+                return dispatch(next);
+            }),
+        Promise.resolve()
+    );
 }

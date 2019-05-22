@@ -7,9 +7,7 @@ import getGroupsList from './getGroupsList';
  * @param {number[]} coord A coord
  * @returns {Object} A group object
  */
-const getGroupByCoord = (state, coord = []) => (
-    getGroupsList(state)
-        .find((group) => group && isEqual(group.coord, coord))
-);
+const getGroupByCoord = (state, coord = []) =>
+    getGroupsList(state).find(group => group && isEqual(group.coord, coord));
 
 export default getGroupByCoord;

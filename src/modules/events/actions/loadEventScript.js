@@ -6,7 +6,7 @@ import initEventApi from './initEventApi';
  * @param {string} id An event id
  * @return {Function} A redux thunk
  */
-const loadEventScript = (id) => async (dispatch) => {
+const loadEventScript = id => async dispatch => {
     const script = await getEventScriptById(id);
 
     const eventApi = dispatch(initEventApi());

@@ -6,8 +6,6 @@ import curry from 'lodash/curry';
  * @param {number[]} b Other Coord
  * @returns {boolean}
  */
-const compareCoords = curry(
-    (a, b) => (a[0] === b[0]) && (a[1] === b[1])
-);
+const compareCoords = curry((a, b) => a[0] === b[0] && a[1] === b[1]);
 
 export default compareCoords;

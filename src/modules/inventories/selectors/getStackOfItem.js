@@ -8,13 +8,12 @@ import getStacksList from './getStacksList';
  * @param {string} item An item object
  * @returns {Object} An item stack
  */
-const getStackOfItem = (state, id, item) => (
-    getStacksList(state, id)
-        .find(stack => (
+const getStackOfItem = (state, id, item) =>
+    getStacksList(state, id).find(
+        stack =>
             stack.item.itemTypeId === item.itemTypeId &&
             (!item.level || stack.item.level === item.level) &&
             (!item.qualityId || stack.item.qualityId === item.qualityId)
-        ))
-);
+    );
 
 export default getStackOfItem;

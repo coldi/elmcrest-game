@@ -5,6 +5,6 @@ import getCycleState from './getCycleState';
  * @param {Object} state The global state
  * @returns {Object}
  */
-const getCycleSettings = (state) => getCycleState(state).settings;
+const getCycleSettings = state => getCycleState(state).settings;
 
 export default getCycleSettings;

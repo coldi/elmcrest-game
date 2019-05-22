@@ -4,10 +4,10 @@
  * @param {number[]} coord A coord
  * @returns {number}
  */
-const getNumHashFromCoord = (coord) => {
+const getNumHashFromCoord = coord => {
     const [x, y] = coord;
-    const tmp = (y + ((x + 1) / 2));
-    return (x + (tmp * tmp)) * 100;
+    const tmp = y + (x + 1) / 2;
+    return (x + tmp * tmp) * 100;
 };
 
 export default getNumHashFromCoord;

@@ -19,16 +19,18 @@ const startEvent = (id, coord = null) => async (dispatch, getState) => {
 
     await dispatch(extendLocales(`events/${id}/locales`));
 
-    const state = (coord)
+    const state = coord
         ? getEventByCoord(getState(), coord).state
         : currentEventDefaults.state;
 
-    dispatch(setCurrentEventAction({
-        ...currentEventDefaults,
-        id,
-        coord,
-        state,
-    }));
+    dispatch(
+        setCurrentEventAction({
+            ...currentEventDefaults,
+            id,
+            coord,
+            state,
+        })
+    );
 
     return promiseMap.create(id);
 };

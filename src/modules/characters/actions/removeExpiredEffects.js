@@ -10,19 +10,15 @@ import removeEffectAction from '../actions/removeEffectAction';
  * @param {string} charId A character id
  * @returns {Function} A redux thunk
  */
-const removeExpiredEffects = (
-    charId,
-) => (dispatch, getState) => {
+const removeExpiredEffects = charId => (dispatch, getState) => {
     const state = getState();
     const inBattle = isCharacterInBattle(state, charId);
     const turn = inBattle ? getBattleTurn(state) : getCurrentTurn(state);
     const character = getCharacterById(state, charId);
     const { id, effects = [] } = character;
 
-    effects.forEach((effect) => {
-        const duration = isNaN(effect.duration)
-            ? Infinity
-            : effect.duration;
+    effects.forEach(effect => {
+        const duration = Number.isNaN(effect.duration) ? Infinity : effect.duration;
 
         const hasExpired = turn > effect.begin + duration;
         const hasObsoleteContext = !inBattle && effect.context === COMBAT_CONTEXT;

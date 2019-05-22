@@ -3,7 +3,7 @@ import React from 'react';
 import { MessageLog } from '../common';
 import styles from './Log.scss';
 
-export default function Log (props) {
+export default function Log(props) {
     return (
         <div className={styles.container}>
             <MessageLog messages={props.messages} />

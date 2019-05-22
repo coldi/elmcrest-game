@@ -6,16 +6,18 @@ import transformEffects from './utils/transformEffects';
 /**
  * Creates affixes.
  */
-export default function affixes (dispatch, getState) {
+export default function affixes(dispatch, getState) {
     const state = getState();
 
     return loadCSV('affixes.csv')
         .then(result => result.data)
-        .then(data => data.map(affix => ({
-            ...affixDefaults,
-            ...affix,
-            effects: transformEffects(state, affix.effects),
-        })))
+        .then(data =>
+            data.map(affix => ({
+                ...affixDefaults,
+                ...affix,
+                effects: transformEffects(state, affix.effects),
+            }))
+        )
         .then(createAffixesAction)
         .then(dispatch);
 }

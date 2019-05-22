@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import styles from './CharacterAvatar.scss';
 
 export default class CharacterAvatar extends React.Component {
-
     static propTypes = {
         character: PropTypes.shape(),
         flip: PropTypes.bool,
@@ -20,29 +19,25 @@ export default class CharacterAvatar extends React.Component {
         setRef: () => {},
     };
 
-    constructor (props) {
+    constructor(props) {
         super(props);
 
         this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick () {
+    handleClick() {
         this.props.onClick(this.props.character.id);
     }
 
-    render () {
+    render() {
         const { props } = this;
         const { resourceId, computed } = props.character;
 
-        const wrapClassName = classNames(
-            styles.wrap,
-            { [styles.flipped]: props.flip }
-        );
+        const wrapClassName = classNames(styles.wrap, { [styles.flipped]: props.flip });
 
-        const spriteClassName = classNames(
-            styles.sprite,
-            { [styles.alive]: computed.HP > 0 }
-        );
+        const spriteClassName = classNames(styles.sprite, {
+            [styles.alive]: computed.HP > 0,
+        });
 
         const backgroundSrc = `assets/textures/characters/${resourceId}/world.png`;
         const spriteStyle = {
@@ -53,13 +48,10 @@ export default class CharacterAvatar extends React.Component {
             spriteStyle.transform = `scale(${props.scale})`;
         }
 
-        const activeAreaClassName = classNames(
-            styles.activeArea,
-            {
-                [styles.selected]: props.selected,
-                [styles.interactive]: props.interactive,
-            }
-        );
+        const activeAreaClassName = classNames(styles.activeArea, {
+            [styles.selected]: props.selected,
+            [styles.interactive]: props.interactive,
+        });
 
         return (
             <div className={styles.container} ref={props.setRef}>

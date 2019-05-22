@@ -11,12 +11,8 @@ import {
  * @param {Object} action The dispatched action
  * @returns {Object} The next state
  */
-export default function currentEvent (
-    state = null,
-    action = {}
-) {
+export default function currentEvent(state = null, action = {}) {
     switch (action.type) {
-
         case `${setCurrentEventAction}`: {
             const { event } = action.payload;
 
@@ -28,39 +24,34 @@ export default function currentEvent (
 
             return {
                 ...state,
-                scenes: [
-                    ...state.scenes,
-                    sceneId,
-                ],
+                scenes: [...state.scenes, sceneId],
             };
         }
 
         case `${setCurrentEventStateAction}`: {
             const { eventState } = action.payload;
 
-            return state ? {
-                ...state,
-                state: {
-                    ...state.state,
-                    ...eventState,
-                },
-            } : null;
+            return state
+                ? {
+                      ...state,
+                      state: {
+                          ...state.state,
+                          ...eventState,
+                      },
+                  }
+                : null;
         }
 
         case `${addActionToCurrentEventAction}`: {
             const { actionId } = action.payload;
             return {
                 ...state,
-                actions: [
-                    ...state.actions,
-                    actionId,
-                ],
+                actions: [...state.actions, actionId],
             };
         }
 
         default: {
             return state;
         }
-
     }
 }

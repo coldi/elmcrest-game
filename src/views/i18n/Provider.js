@@ -6,7 +6,6 @@ import { getLang } from '../../modules/i18n';
 export const I18nContext = React.createContext({});
 
 export class ProviderContainer extends React.PureComponent {
-
     static propTypes = {
         lang: PropTypes.string.isRequired,
         children: PropTypes.node,
@@ -29,6 +28,4 @@ export class ProviderContainer extends React.PureComponent {
     }
 }
 
-export default connect(
-    (state) => ({ lang: getLang(state) })
-)(ProviderContainer);
+export default connect(state => ({ lang: getLang(state) }))(ProviderContainer);

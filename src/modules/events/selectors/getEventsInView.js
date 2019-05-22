@@ -10,23 +10,18 @@ import getEventsState from './getEventsState';
  * @param {Object} state The global state
  * @returns {Object[]} A list of events
  */
-const getEventsInView = memoize(
-    getEventsState,
-    (state) => {
-        const { coordsInView } = getSceneState(state);
-        return coordsInView
-            .reduce(
-                (list, coord) => {
-                    const event = getEventByCoord(state, coord);
-                    const isActive = event && event.active;
-                    return isActive ? list.concat([event]) : list;
-                }, []
-            )
-            .map((instance) => ({
-                ...instance,
-                meta: getEventById(state, instance.id),
-            }));
-    }
-);
+const getEventsInView = memoize(getEventsState, state => {
+    const { coordsInView } = getSceneState(state);
+    return coordsInView
+        .reduce((list, coord) => {
+            const event = getEventByCoord(state, coord);
+            const isActive = event && event.active;
+            return isActive ? list.concat([event]) : list;
+        }, [])
+        .map(instance => ({
+            ...instance,
+            meta: getEventById(state, instance.id),
+        }));
+});
 
 export default getEventsInView;

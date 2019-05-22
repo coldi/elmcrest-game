@@ -1,5 +1,5 @@
 /* eslint-disable  no-param-reassign */
-import 'pixi.js';
+import * as PIXI from 'pixi.js';
 import differenceBy from 'lodash/differenceBy';
 import { getCell } from '../../../modules/hex';
 import Group from './Group';
@@ -8,16 +8,17 @@ const { Container } = PIXI;
 /* eslint-enable  no-undef */
 
 export default class GroupContainer {
-
     instance = null;
+
     props = {
         groups: [],
     };
 
     layout = null;
+
     cache = new Map();
 
-    constructor (container, layout, props) {
+    constructor(container, layout, props) {
         this.instance = new Container();
         this.layout = layout;
 
@@ -28,7 +29,7 @@ export default class GroupContainer {
         }
     }
 
-    update (props) {
+    update(props) {
         const { instance } = this;
 
         if (props.groups !== undefined) {
@@ -37,7 +38,7 @@ export default class GroupContainer {
                 // update their visibility
                 .forEach(({ id }) => this.cache.get(id).update({ visible: false }));
 
-            props.groups.forEach((group) => {
+            props.groups.forEach(group => {
                 const { id, coord } = group;
 
                 let groupInstance;
@@ -67,7 +68,7 @@ export default class GroupContainer {
         };
     }
 
-    remove () {
+    remove() {
         this.instance.destroy();
         this.instance = null;
     }

@@ -19,7 +19,7 @@ let rangeCoordsCache = [];
  * @param {Array[]} boundingCoords A set of four corners that describe the screens rectangle
  * @returns {Function} A redux thunk
  */
-const updateView = (boundingCoords) => (dispatch, getState) => {
+const updateView = boundingCoords => (dispatch, getState) => {
     const state = getState();
 
     // calc visible coords based on player's group position
@@ -29,7 +29,11 @@ const updateView = (boundingCoords) => (dispatch, getState) => {
     const combinedRangeCoords = rangeCoords.concat(rangeCoordsCache);
 
     // calc appearing and vanishing coords
-    const vanishingCoords = differenceWith(combinedRangeCoords, visibleCoords, compareCoords);
+    const vanishingCoords = differenceWith(
+        combinedRangeCoords,
+        visibleCoords,
+        compareCoords
+    );
 
     if (boundingCoords) dispatch(updateSceneAction({ boundingCoords }));
 

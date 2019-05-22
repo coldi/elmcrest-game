@@ -22,10 +22,7 @@ const initialState = {
  * @param {Object} action The dispatched action
  * @returns {Object} The next state
  */
-export default function ui (
-    state = initialState,
-    action = {}
-) {
+export default function ui(state = initialState, action = {}) {
     switch (action.type) {
         case `${setControlledGroupIdAction}`: {
             const { groupId } = action.payload;
@@ -64,10 +61,7 @@ export default function ui (
 
             return {
                 ...state,
-                rollouts: [
-                    ...state.rollouts,
-                    rollout,
-                ],
+                rollouts: [...state.rollouts, rollout],
             };
         }
 
@@ -94,6 +88,5 @@ export default function ui (
         default: {
             return state;
         }
-
     }
 }

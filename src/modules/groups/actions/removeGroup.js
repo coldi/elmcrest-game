@@ -10,19 +10,16 @@ import removeGroupAction from './removeGroupAction';
  * @param {boolean} [inventory=false] A flag if inventory should be removed
  * @returns {Function} A redux thunk
  */
-const removeGroup = (
-    id,
-    characters = false,
-    inventory = false
-) => (dispatch, getState) => {
+const removeGroup = (id, characters = false, inventory = false) => (
+    dispatch,
+    getState
+) => {
     const group = getGroupById(getState(), id);
 
     dispatch(removeGroupAction(id));
 
     if (characters) {
-        group.characterIds.forEach(
-            charId => dispatch(removeCharacterAction(charId))
-        );
+        group.characterIds.forEach(charId => dispatch(removeCharacterAction(charId)));
     }
 
     if (inventory) {

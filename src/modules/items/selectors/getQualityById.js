@@ -6,8 +6,6 @@ import getItemsState from './getItemsState';
  * @param {string} id A quality id
  * @returns {Object} An item type object
  */
-const getQualityById = (state, id) => (
-    getItemsState(state).qualities[id]
-);
+const getQualityById = (state, id) => getItemsState(state).qualities[id];
 
 export default getQualityById;

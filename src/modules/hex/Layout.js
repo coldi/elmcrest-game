@@ -40,18 +40,13 @@ export const FLAT = {
  * See http://www.redblobgames.com/grids/hexagons/#pixel-to-hex
  */
 export default class Layout {
-
     /**
      * Constructor.
      * @param {number} size The size of a hexagon (opposing corners)
      * @param {Object} orientation The hexagon orientation (pointy or flat)
      * @param {Point} origin The origin of the layout
      */
-    constructor (
-        size = 1,
-        orientation = FLAT,
-        origin = new Point(0, 0)
-    ) {
+    constructor(size = 1, orientation = FLAT, origin = new Point(0, 0)) {
         this.size = size;
         this.segment = new Point(size / 2, size / 2);
         this.orientation = orientation;
@@ -63,10 +58,10 @@ export default class Layout {
      * @param {Cell} c The cell to translate
      * @returns {Point}
      */
-    cellToPixel (c) {
+    cellToPixel(c) {
         const M = this.orientation;
-        const segment = this.segment;
-        const origin = this.origin;
+        const { segment } = this;
+        const { origin } = this;
         const x = (M.f0 * c.x + M.f1 * c.y) * segment.x;
         const y = (M.f2 * c.x + M.f3 * c.y) * segment.y;
         return new Point(x + origin.x, y + origin.y);
@@ -77,10 +72,10 @@ export default class Layout {
      * @param {Point} p The point to translate
      * @returns {Cell}
      */
-    pixelToCell (p) {
+    pixelToCell(p) {
         const M = this.orientation;
-        const segment = this.segment;
-        const origin = this.origin;
+        const { segment } = this;
+        const { origin } = this;
         const pt = new Point((p.x - origin.x) / segment.x, (p.y - origin.y) / segment.y);
         const q = M.b0 * pt.x + M.b1 * pt.y;
         const r = M.b2 * pt.x + M.b3 * pt.y;
@@ -93,10 +88,10 @@ export default class Layout {
      * @param {number} offset An optional range offset
      * @returns {Point}
      */
-    getCornerOffset (corner, offset = 0) {
+    getCornerOffset(corner, offset = 0) {
         const M = this.orientation;
-        const segment = this.segment;
-        const angle = 2.0 * Math.PI * (corner + M.startAngle) / 6;
+        const { segment } = this;
+        const angle = (2.0 * Math.PI * (corner + M.startAngle)) / 6;
         return new Point(
             (segment.x + offset) * Math.cos(angle),
             (segment.y + offset) * Math.sin(angle)
@@ -109,9 +104,9 @@ export default class Layout {
      * @param {number} offset An optional range offset
      * @returns {Point[]}
      */
-    getCellCorners (cell = null, offset = 0) {
+    getCellCorners(cell = null, offset = 0) {
         const corners = [];
-        const origin = (cell) ? this.cellToPixel(cell) : new Point(0, 0);
+        const origin = cell ? this.cellToPixel(cell) : new Point(0, 0);
         for (let i = 0; i < 6; i += 1) {
             const corner = this.getCornerOffset(i, offset);
             corners.push(new Point(origin.x + corner.x, origin.y + corner.y));

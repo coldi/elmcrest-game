@@ -5,6 +5,6 @@ import getItemsState from './getItemsState';
  * @param {Object} state The global state
  * @returns {Object}
  */
-const getItemsSettings = (state) => getItemsState(state).settings;
+const getItemsSettings = state => getItemsState(state).settings;
 
 export default getItemsSettings;

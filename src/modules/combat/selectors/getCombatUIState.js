@@ -5,8 +5,6 @@ import getCombatState from './getCombatState';
  * @param {Object} state The global state
  * @returns {Object} The combat UI state
  */
-const getCombatUIState = (state) => (
-    getCombatState(state).ui
-);
+const getCombatUIState = state => getCombatState(state).ui;
 
 export default getCombatUIState;

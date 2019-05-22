@@ -6,24 +6,22 @@ import createQualitiesAction from '../actions/createQualitiesAction';
  * @param {Object} action The dispatched action
  * @returns {Object} The next state
  */
-export default function qualities (
-    state = {},
-    action = {}
-) {
+export default function qualities(state = {}, action = {}) {
     switch (action.type) {
-
         case `${createQualitiesAction}`: {
             const { list } = action.payload;
 
-            return list.reduce((obj, quality) => ({
-                ...obj,
-                [quality.id]: quality
-            }), state);
+            return list.reduce(
+                (obj, quality) => ({
+                    ...obj,
+                    [quality.id]: quality,
+                }),
+                state
+            );
         }
 
         default: {
             return state;
         }
-
     }
 }

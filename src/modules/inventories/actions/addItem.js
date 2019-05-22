@@ -13,16 +13,13 @@ import addToStack from './addToStack';
  * @param {number} [amount] An optional amount
  * @returns {Function} A redux thunk
  */
-const addItem = (
-    invId,
-    itemOrTypeId,
-    amount = 1,
-) => (dispatch, getState) => {
+const addItem = (invId, itemOrTypeId, amount = 1) => (dispatch, getState) => {
     const state = getState();
     const inventory = getInventoryById(state, invId);
-    const item = typeof itemOrTypeId === 'string'
-        ? { ...itemDefaults, itemTypeId: itemOrTypeId }
-        : { ...itemDefaults, ...itemOrTypeId };
+    const item =
+        typeof itemOrTypeId === 'string'
+            ? { ...itemDefaults, itemTypeId: itemOrTypeId }
+            : { ...itemDefaults, ...itemOrTypeId };
     const itemType = getItemTypeById(state, item.itemTypeId);
 
     invariant(itemType, `Item type with id '${item.itemTypeId}' does not exist.`);

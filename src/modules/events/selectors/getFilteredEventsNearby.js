@@ -18,9 +18,7 @@ const getFilteredEventsNearby = (state, events, coord) => {
         .map(cell => getEventByCoord(state, cell.toArray2D()))
         .filter(event => event);
 
-    return events.filter(
-        event => !nearbyEvents.some(({ id }) => id === event.id)
-    );
+    return events.filter(event => !nearbyEvents.some(({ id }) => id === event.id));
 };
 
 export default getFilteredEventsNearby;

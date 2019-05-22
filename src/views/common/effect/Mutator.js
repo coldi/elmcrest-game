@@ -6,7 +6,7 @@ import { Attribute } from '../';
 
 export const processDescription = memoize(
     effect => effect,
-    (effect) => {
+    effect => {
         const pattern = { percent: /^[%]/ };
 
         return (
@@ -18,9 +18,7 @@ export const processDescription = memoize(
 );
 
 export default function Mutator({ effect }) {
-    return (
-        <div>{processDescription(effect)}</div>
-    );
+    return <div>{processDescription(effect)}</div>;
 }
 
 Mutator.propTypes = {

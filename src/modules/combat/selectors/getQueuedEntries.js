@@ -7,14 +7,8 @@ import getCurrentBattle from './getCurrentBattle';
  * @param {Object} state The global state
  * @returns {Array} An ordered list of character entries.
  */
-const getQueuedEntries = memoize(
-    getCurrentBattle,
-    (state) => (
-        sortBy(
-            getCurrentBattle(state).characters,
-            ['delay']
-        )
-    )
+const getQueuedEntries = memoize(getCurrentBattle, state =>
+    sortBy(getCurrentBattle(state).characters, ['delay'])
 );
 
 export default getQueuedEntries;

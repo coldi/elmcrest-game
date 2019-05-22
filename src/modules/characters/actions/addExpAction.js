@@ -6,7 +6,7 @@
  */
 const addExpAction = (id, exp = 0) => ({
     type: `${addExpAction}`,
-    payload: { id, exp }
+    payload: { id, exp },
 });
 
 addExpAction.toString = () => 'characters/add exp';

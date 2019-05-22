@@ -10,8 +10,6 @@ import { MODIFIER_REGEX } from '../constants';
  * @param {Object} effect
  * @returns {boolean}
  */
-const isModifier = (effect) => (
-    MODIFIER_REGEX.test(effect.name)
-);
+const isModifier = effect => MODIFIER_REGEX.test(effect.name);
 
 export default isModifier;

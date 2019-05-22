@@ -4,10 +4,7 @@
  * @param {Object} stack An item stack
  * @returns {Object} A redux action
  */
-const createStackAction = (
-    id,
-    stack,
-) => ({
+const createStackAction = (id, stack) => ({
     type: `${createStackAction}`,
     payload: { id, stack },
 });

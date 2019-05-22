@@ -6,24 +6,22 @@ import createAffixesAction from '../actions/createAffixesAction';
  * @param {Object} action The dispatched action
  * @returns {Object} The next state
  */
-export default function affixes (
-    state = {},
-    action = {}
-) {
+export default function affixes(state = {}, action = {}) {
     switch (action.type) {
-
         case `${createAffixesAction}`: {
             const { list } = action.payload;
 
-            return list.reduce((obj, affix) => ({
-                ...obj,
-                [affix.id]: affix
-            }), state);
+            return list.reduce(
+                (obj, affix) => ({
+                    ...obj,
+                    [affix.id]: affix,
+                }),
+                state
+            );
         }
 
         default: {
             return state;
         }
-
     }
 }

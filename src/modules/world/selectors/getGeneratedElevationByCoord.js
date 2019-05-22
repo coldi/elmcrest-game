@@ -21,7 +21,7 @@ const getGeneratedElevationByCoord = (state, coord) => {
 
     // perform some not so scientifically correct comparisons
     // and tweak the value of level.
-    let level = generator.scaled(coord);
+    let level = generator.scaled2D(coord[0], coord[1]);
     if (level < maxElevation * settings.waterRatio) {
         level -= settings.waterRatio;
         level = Math.floor(level);

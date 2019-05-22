@@ -5,8 +5,6 @@ import { MUTATOR_SCRIPT_REGEX } from '../constants';
  * @param {Object} effect
  * @returns {boolean}
  */
-const isMutatorScript = (effect) => (
-    MUTATOR_SCRIPT_REGEX.test(effect.name)
-);
+const isMutatorScript = effect => MUTATOR_SCRIPT_REGEX.test(effect.name);
 
 export default isMutatorScript;

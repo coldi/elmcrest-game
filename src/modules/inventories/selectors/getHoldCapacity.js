@@ -9,15 +9,10 @@ import getStackSize from './getStackSize';
  * @param {string} id An inventory id
  * @returns {number}
  */
-const getHoldCapacity = memoize(
-    getStacks,
-    (state, id) => (
-        getStacksList(state, id)
-            .filter(stack => !stack.equipped)
-            .reduce((totalSize, stack) => (
-                totalSize + getStackSize(state, id, stack.id)
-            ), 0)
-    )
+const getHoldCapacity = memoize(getStacks, (state, id) =>
+    getStacksList(state, id)
+        .filter(stack => !stack.equipped)
+        .reduce((totalSize, stack) => totalSize + getStackSize(state, id, stack.id), 0)
 );
 
 export default getHoldCapacity;

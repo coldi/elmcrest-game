@@ -22,7 +22,9 @@ const reset = () => {
  */
 const start = () => {
     if (cachedTime !== null) {
-        console.warn('You called start() multiple times without stop(). Make sure to use return value.');
+        console.warn(
+            'You called start() multiple times without stop(). Make sure to use return value.'
+        );
     }
     cachedTime = performance.now();
     return cachedTime;

@@ -7,10 +7,7 @@ import reduceModifier from './reduceModifier';
  * @param {Object} base An object with base values
  * @returns {Object} An attribute object with increased values
  */
-const applyAddModifiers = (modifiers, base = {}) => (
-    modifiers
-        .filter(isAddModifier)
-        .reduce(reduceModifier, base)
-);
+const applyAddModifiers = (modifiers, base = {}) =>
+    modifiers.filter(isAddModifier).reduce(reduceModifier, base);
 
 export default applyAddModifiers;

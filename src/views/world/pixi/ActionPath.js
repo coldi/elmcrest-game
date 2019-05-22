@@ -1,5 +1,5 @@
 /* eslint-disable  no-param-reassign */
-import 'pixi.js';
+import * as PIXI from 'pixi.js';
 import { getCell } from '../../../modules/hex';
 import { moveGroupAction } from '../../../modules/groups';
 import Coord from './Coord';
@@ -8,14 +8,13 @@ const { Graphics } = PIXI;
 /* eslint-enable  no-undef */
 
 export default class Field {
-
     instance = null;
     props = {};
 
     layout = null;
     children = [];
 
-    constructor (container, layout, props) {
+    constructor(container, layout, props) {
         this.instance = new Graphics();
         this.layout = layout;
 
@@ -26,13 +25,13 @@ export default class Field {
         }
     }
 
-    clear () {
+    clear() {
         this.instance.clear();
         this.children.forEach(instance => instance.remove());
         this.children = [];
     }
 
-    update (props) {
+    update(props) {
         const { instance, layout } = this;
 
         if (props.group !== this.props.group) {
@@ -83,26 +82,29 @@ export default class Field {
                     // determine if path requires more AP than available
                     const exceedsAP = totalActionCosts > availableAP;
                     // set up color
-                    const color = (isDangerous || exceedsAP) ? 0xee0000 : 0xffffff;
-                    const textColor = (isDangerous || exceedsAP) ? 0xffffff : 0x666666;
+                    const color = isDangerous || exceedsAP ? 0xee0000 : 0xffffff;
+                    const textColor = isDangerous || exceedsAP ? 0xffffff : 0x666666;
 
                     const numSteps = 3;
                     // draw steps for next action
                     for (let i = 1; i <= numSteps; i += 1) {
-                        const size = (i < numSteps) // eslint-disable-line
-                            ? stepSize
-                            : isDangerous
+                        const size =
+                            i < numSteps // eslint-disable-line
+                                ? stepSize
+                                : isDangerous
                                 ? dangerSize
                                 : coordSize;
 
-                        const text = (i === numSteps && nextCost)
-                            ? totalActionCosts
-                            : '';
+                        const text = i === numSteps && nextCost ? totalActionCosts : '';
 
                         this.children.push(
                             new Coord(instance, {
-                                x: currentPos.x + (((nextPos.x - currentPos.x) / numSteps) * i),
-                                y: currentPos.y + (((nextPos.y - currentPos.y) / numSteps) * i),
+                                x:
+                                    currentPos.x +
+                                    ((nextPos.x - currentPos.x) / numSteps) * i,
+                                y:
+                                    currentPos.y +
+                                    ((nextPos.y - currentPos.y) / numSteps) * i,
                                 text,
                                 size,
                                 color,
@@ -120,7 +122,7 @@ export default class Field {
         };
     }
 
-    remove () {
+    remove() {
         this.instance.destroy();
         this.instance = null;
     }

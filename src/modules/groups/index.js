@@ -14,7 +14,9 @@ export { default as getGroupsSettings } from './selectors/getGroupsSettings';
 export { default as getGroupsState } from './selectors/getGroupsState';
 export { default as getGroupsVisibleCoords } from './selectors/getGroupsVisibleCoords';
 export { default as getPlayerGroup } from './selectors/getPlayerGroup';
-export { default as getPlayerGroupCharacters } from './selectors/getPlayerGroupCharacters';
+export {
+    default as getPlayerGroupCharacters,
+} from './selectors/getPlayerGroupCharacters';
 export { default as hasGroupEnoughAP } from './selectors/hasGroupEnoughAP';
 export { default as isGroupOverloaded } from './selectors/isGroupOverloaded';
 export { default as isPlayerGroup } from './selectors/isPlayerGroup';
@@ -32,7 +34,9 @@ export { default as proceedWithActionQueue } from './actions/proceedWithActionQu
 export { default as removeGroup } from './actions/removeGroup';
 export { default as removeGroupAction } from './actions/removeGroupAction';
 export { default as removeCharacterAction } from './actions/removeCharacterAction';
-export { default as removeFromActionQueueAction } from './actions/removeFromActionQueueAction';
+export {
+    default as removeFromActionQueueAction,
+} from './actions/removeFromActionQueueAction';
 export { default as setActionQueueAction } from './actions/setActionQueueAction';
 export { default as setGroupDoneAction } from './actions/setGroupDoneAction';
 export { default as setTempActionQueue } from './actions/setTempActionQueue';

@@ -7,10 +7,7 @@ import registerSkillAction from '../actions/registerSkillAction';
  * @param {Object} action The dispatched action
  * @returns {Object} The next state
  */
-export default function skills (
-    state = {},
-    action = {}
-) {
+export default function skills(state = {}, action = {}) {
     switch (action.type) {
         case `${registerSkillAction}`: {
             const { skill } = action.payload;

@@ -3,9 +3,7 @@
  * @param {Object} inventory An inventory object
  * @returns {Object} A redux action
  */
-const createInventoryAction = (
-    inventory,
-) => ({
+const createInventoryAction = inventory => ({
     type: `${createInventoryAction}`,
     payload: { inventory },
 });

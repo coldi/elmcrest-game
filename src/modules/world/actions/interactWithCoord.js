@@ -4,10 +4,10 @@
  * @param {number[]} coord A coord
  * @returns {Object} A redux action
  */
-const interactWithCoord = (coord) => ({
+const interactWithCoord = coord => ({
     type: `${interactWithCoord}`,
     payload: { coord },
-    meta: { onlyObserve: true }
+    meta: { onlyObserve: true },
 });
 
 interactWithCoord.toString = () => 'world/interact with coord';

@@ -1,4 +1,4 @@
-import 'pixi.js';
+import * as PIXI from 'pixi.js';
 import { makePropReceiver } from '../utils';
 import debugShader from './shaders/debug.glsl';
 /* eslint-disable  no-undef */
@@ -14,7 +14,7 @@ export default class CompositeFilter {
         height: 0,
     };
     uniforms = {
-        uTime: 0
+        uTime: 0,
     };
     animationFrame = null;
 
@@ -24,7 +24,7 @@ export default class CompositeFilter {
 
         this.uniforms = {
             ...this.uniforms,
-            ...uniforms
+            ...uniforms,
         };
 
         // Use the debug shader if no shader is set.
@@ -60,17 +60,14 @@ export default class CompositeFilter {
         const receivedProp = makePropReceiver(this, props);
 
         if (receivedProp('width') || receivedProp('height')) {
-            const {
-                width = this.props.width,
-                height = this.props.height,
-            } = props;
+            const { width = this.props.width, height = this.props.height } = props;
 
             this.container.filterArea = new Rectangle(0, 0, width, height);
         }
 
         this.props = {
             ...this.props,
-            ...props
+            ...props,
         };
     }
 

@@ -11,11 +11,7 @@ import unequipStack from './unequipStack';
  * @param {string} targetInvId An inventory id
  * @returns {Function} A redux thunk
  */
-const transferStack = (
-    invId,
-    stackId,
-    targetInvId,
-) => (dispatch, getState) => {
+const transferStack = (invId, stackId, targetInvId) => (dispatch, getState) => {
     const state = getState();
     const stack = getStackById(state, invId, stackId);
 

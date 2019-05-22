@@ -12,8 +12,7 @@ import getGroupById from './getGroupById';
  * @returns {Array[]} A list of coords
  */
 const getGroupsRangeCoords = memoize(
-    (state, id) =>
-        getGroupById(state, id),
+    (state, id) => getGroupById(state, id),
     (state, id, range) => {
         const { sightRange } = getGroupsSettings(state);
         const group = getGroupById(state, id);

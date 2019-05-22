@@ -8,10 +8,7 @@ import removeCharacterAction from './removeCharacterAction';
  * @param {string} characterId A character id
  * @returns {Function} A redux thunk
  */
-const removeCharacter = (
-    groupId,
-    characterId,
-) => (dispatch, getState) => {
+const removeCharacter = (groupId, characterId) => (dispatch, getState) => {
     const state = getState();
     const group = getGroupById(state, groupId);
 

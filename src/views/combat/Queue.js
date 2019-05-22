@@ -8,7 +8,6 @@ import { CharacterPortrait, Tooltip, EffectsList, Heading } from '../common';
 import styles from './Queue.scss';
 
 export default class Queue extends React.Component {
-
     static propTypes = {
         entries: PropTypes.arrayOf(PropTypes.shape()),
         characters: PropTypes.arrayOf(PropTypes.shape()),
@@ -24,23 +23,23 @@ export default class Queue extends React.Component {
 
     queue = [];
 
-    constructor (props) {
+    constructor(props) {
         super(props);
 
         this.renderQueueEntry = this.renderQueueEntry.bind(this);
     }
 
-    sortEntries () {
+    sortEntries() {
         // sort received entries 'temporary' like so,
         // because we want React to preserve the entries render order.
         this.queue = sortBy(this.props.entries, ['delay']);
     }
 
-    getSortedIndex (charId) {
+    getSortedIndex(charId) {
         return this.queue.findIndex(entry => entry.characterId === charId);
     }
 
-    renderQueueEntry (entry) {
+    renderQueueEntry(entry) {
         const character = this.props.characters.find(
             char => char.id === entry.characterId
         );
@@ -55,7 +54,9 @@ export default class Queue extends React.Component {
             [styles.selected]: isSelected,
         });
 
-        const effects = character.effects.filter(effect => effect.context === COMBAT_CONTEXT);
+        const effects = character.effects.filter(
+            effect => effect.context === COMBAT_CONTEXT
+        );
 
         return (
             <div
@@ -67,10 +68,16 @@ export default class Queue extends React.Component {
                 <div className={styles.portrait}>
                     <Tooltip>
                         <Tooltip.Content>
-                            <Heading sub><T>common.effects</T></Heading>
+                            <Heading sub>
+                                <T>common.effects</T>
+                            </Heading>
                             <EffectsList effects={effects} />
                         </Tooltip.Content>
-                        <CharacterPortrait character={character} large={isFirst} progressBar />
+                        <CharacterPortrait
+                            character={character}
+                            large={isFirst}
+                            progressBar
+                        />
                     </Tooltip>
                     {!isFirst && <span className={styles.delay}>+{entry.delay}</span>}
                 </div>
@@ -78,7 +85,7 @@ export default class Queue extends React.Component {
         );
     }
 
-    render () {
+    render() {
         const { props } = this;
 
         this.sortEntries();

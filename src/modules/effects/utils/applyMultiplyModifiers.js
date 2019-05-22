@@ -6,10 +6,7 @@ import reduceModifier from './reduceModifier';
  * @param {Object} modifiers A list of modifier effects
  * @returns {Object} An object with multipliers
  */
-const applyMultiplyModifiers = (modifiers) => (
-    modifiers
-        .filter(isMultiplyModifier)
-        .reduce(reduceModifier, {})
-);
+const applyMultiplyModifiers = modifiers =>
+    modifiers.filter(isMultiplyModifier).reduce(reduceModifier, {});
 
 export default applyMultiplyModifiers;

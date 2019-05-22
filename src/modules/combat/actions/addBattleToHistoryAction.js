@@ -3,9 +3,7 @@
  * @param {Object} result A battle result object
  * @returns {Object} A redux action
  */
-const addBattleToHistoryAction = (
-    result
-) => ({
+const addBattleToHistoryAction = result => ({
     type: `${addBattleToHistoryAction}`,
     payload: { result },
 });

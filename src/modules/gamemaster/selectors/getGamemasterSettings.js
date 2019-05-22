@@ -5,6 +5,6 @@ import getGamemasterState from './getGamemasterState';
  * @param {Object} state The global state
  * @returns {Object}
  */
-const getGamemasterSettings = (state) => getGamemasterState(state).settings;
+const getGamemasterSettings = state => getGamemasterState(state).settings;
 
 export default getGamemasterSettings;

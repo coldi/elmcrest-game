@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import snarkdown from 'snarkdown';
 
 export default class Markdown extends React.PureComponent {
-
     static propTypes = {
         children: PropTypes.node,
         container: PropTypes.string,
@@ -16,7 +15,7 @@ export default class Markdown extends React.PureComponent {
 
     renderChildren(children) {
         /* eslint-disable  react/no-danger */
-        return Children.map(children, (child) => {
+        return Children.map(children, child => {
             if (typeof child === 'string') {
                 return <div dangerouslySetInnerHTML={{ __html: snarkdown(child) }} />;
             }

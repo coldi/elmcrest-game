@@ -10,9 +10,7 @@ import {
 import { getGeneralUIState } from '../../modules/ui';
 import Event from './Event';
 
-
 class EventContainer extends React.PureComponent {
-
     static propTypes = {
         event: PropTypes.shape(),
         hidden: PropTypes.bool,
@@ -43,18 +41,14 @@ class EventContainer extends React.PureComponent {
         const currentEvent = prevProps.event;
         const nextEvent = this.props.event;
 
-        if (
-            nextEvent &&
-            (!currentEvent || currentEvent.id !== nextEvent.id)
-        ) {
+        if (nextEvent && (!currentEvent || currentEvent.id !== nextEvent.id)) {
             this.handleEventScript(nextEvent);
         }
     }
 
     async handleEventScript(event) {
-        const script = (event && event.id)
-            ? await this.props.loadEventScript(event.id)
-            : null;
+        const script =
+            event && event.id ? await this.props.loadEventScript(event.id) : null;
 
         this.setState({ script });
     }
@@ -71,20 +65,18 @@ class EventContainer extends React.PureComponent {
     }
 
     render() {
-        return this.props.event && this.state.script
-            ? this.renderEvent()
-            : null;
+        return this.props.event && this.state.script ? this.renderEvent() : null;
     }
 }
 
 export default connect(
-    (state) => ({
+    state => ({
         event: getCurrentEvent(state),
         hidden: !getGeneralUIState(state).visible,
     }),
-    (dispatch) => ({
-        addAction: (actionId) => dispatch(addActionToCurrentEventAction(actionId)),
+    dispatch => ({
+        addAction: actionId => dispatch(addActionToCurrentEventAction(actionId)),
         endEvent: () => dispatch(endCurrentEvent()),
-        loadEventScript: (id) => dispatch(loadEventScript(id)),
+        loadEventScript: id => dispatch(loadEventScript(id)),
     })
 )(EventContainer);

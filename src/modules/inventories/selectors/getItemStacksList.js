@@ -9,11 +9,8 @@ import getPopulatedStack from './getPopulatedStack';
  * @param {string} id An inventory id
  * @returns {Array} The list of stacks with item types
  */
-const getItemStacksList = memoize(
-    getStacks,
-    (state, id) => (
-        getStacksList(state, id).map(stack => getPopulatedStack(state, stack))
-    )
+const getItemStacksList = memoize(getStacks, (state, id) =>
+    getStacksList(state, id).map(stack => getPopulatedStack(state, stack))
 );
 
 export default getItemStacksList;

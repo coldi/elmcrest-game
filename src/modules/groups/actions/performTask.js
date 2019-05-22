@@ -12,10 +12,7 @@ import setTempActionQueue from './setTempActionQueue';
  * @param {number[]} coord The coord the group wants to interact with
  * @returns {Function} A redux thunk
  */
-const performTask = (
-    id,
-    coord,
-) => async (dispatch, getState) => {
+const performTask = (id, coord) => async (dispatch, getState) => {
     const state = getState();
 
     if (!isMemberInCurrentPhase(state, id)) {
@@ -26,10 +23,10 @@ const performTask = (
     const { tempActionQueue } = getGroupById(state, id);
 
     const actions = tempActionQueue.length
-        // use existing temporary queue (player)
-        ? tempActionQueue
-        // create new temporary queue (npc)
-        : await dispatch(setTempActionQueue(id, coord));
+        ? // use existing temporary queue (player)
+          tempActionQueue
+        : // create new temporary queue (npc)
+          await dispatch(setTempActionQueue(id, coord));
 
     // commit actions from temporary queue
     dispatch(setActionQueueAction(id, actions));

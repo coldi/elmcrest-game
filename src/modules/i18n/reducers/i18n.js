@@ -13,12 +13,8 @@ const initialState = {
  * @param {Object} action The dispatched action
  * @returns {Object} The next state
  */
-export default function i18n (
-    state = initialState,
-    action = {}
-) {
+export default function i18n(state = initialState, action = {}) {
     switch (action.type) {
-
         case `${setLangAction}`: {
             const { lang } = action.payload;
             return { ...state, lang };
@@ -30,10 +26,7 @@ export default function i18n (
             if (!state.localePaths.includes(path)) {
                 return {
                     ...state,
-                    localePaths: [
-                        ...state.localePaths,
-                        path,
-                    ],
+                    localePaths: [...state.localePaths, path],
                 };
             }
 
@@ -43,6 +36,5 @@ export default function i18n (
         default: {
             return state;
         }
-
     }
 }

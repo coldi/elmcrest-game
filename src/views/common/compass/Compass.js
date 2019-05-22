@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styles from './Compass.scss';
 
-function calcAngle (props, state) {
+function calcAngle(props, state) {
     const { origin, destination } = props;
 
     if (origin && destination) {
@@ -30,7 +30,6 @@ function calcAngle (props, state) {
 }
 
 export default class Compass extends React.Component {
-
     static propTypes = {
         origin: PropTypes.arrayOf(PropTypes.number),
         destination: PropTypes.arrayOf(PropTypes.number),
@@ -45,17 +44,16 @@ export default class Compass extends React.Component {
 
     state = { angle: 0 };
 
-    static getDerivedStateFromProps (nextProps, prevState) {
+    static getDerivedStateFromProps(nextProps, prevState) {
         const angle = calcAngle(nextProps, prevState);
         return { angle };
     }
 
-    render () {
+    render() {
         const style = { transform: `rotate(${this.state.angle}deg)` };
-        const className = classNames(
-            styles.container,
-            { [styles.small]: this.props.small }
-        );
+        const className = classNames(styles.container, {
+            [styles.small]: this.props.small,
+        });
 
         return (
             <div className={className}>

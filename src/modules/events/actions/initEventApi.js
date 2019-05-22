@@ -1,9 +1,5 @@
 import getScriptApi from '../../app/selectors/getScriptApi';
-import {
-    getCurrentEvent,
-    getCurrentEventState,
-    getEventByCoord,
-} from '../';
+import { getCurrentEvent, getCurrentEventState, getEventByCoord } from '../';
 import endCurrentEvent from './endCurrentEvent';
 import setCurrentEventSceneAction from './setCurrentEventSceneAction';
 import setCurrentEventStateAction from './setCurrentEventStateAction';
@@ -16,11 +12,11 @@ import setCurrentEventStateAction from './setCurrentEventStateAction';
 const initEventApi = () => (dispatch, getState) => {
     const currentEvent = getCurrentEvent(getState());
     // set event API methods
-    const endEvent = (active) => dispatch(endCurrentEvent(active));
-    const gotoScene = (sceneId) => dispatch(setCurrentEventSceneAction(sceneId));
-    const setEventState = (eventState) => dispatch(setCurrentEventStateAction(eventState));
+    const endEvent = active => dispatch(endCurrentEvent(active));
+    const gotoScene = sceneId => dispatch(setCurrentEventSceneAction(sceneId));
+    const setEventState = eventState => dispatch(setCurrentEventStateAction(eventState));
     const getEventState = () => getCurrentEventState(getState());
-    const instance = (currentEvent.coord)
+    const instance = currentEvent.coord
         ? getEventByCoord(getState(), currentEvent.coord)
         : null;
 

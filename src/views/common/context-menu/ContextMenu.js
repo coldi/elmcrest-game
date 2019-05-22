@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 import { Portal } from '../';
 import styles from './ContextMenu.scss';
 
-
 const ContextMenuList = props => props.children;
 
 ContextMenuList.propTypes = {
     children: PropTypes.node.isRequired,
 };
 
-const ContextMenuItem = (props) => (
+const ContextMenuItem = props => (
     <div className={styles.item} onClick={props.onClick}>
         {props.label || props.children}
     </div>
@@ -27,7 +26,6 @@ ContextMenuItem.defaultProps = {
 };
 
 export default class ContextMenu extends React.Component {
-
     static propTypes = {
         children: PropTypes.node.isRequired,
         render: PropTypes.func.isRequired,
@@ -40,7 +38,7 @@ export default class ContextMenu extends React.Component {
 
     element = null;
 
-    constructor (props) {
+    constructor(props) {
         super(props);
 
         this.handleOpen = this.handleOpen.bind(this);
@@ -49,11 +47,11 @@ export default class ContextMenu extends React.Component {
         this.setElementRef = this.setElementRef.bind(this);
     }
 
-    componentWillUnmount () {
+    componentWillUnmount() {
         document.removeEventListener('click', this.handleClickOutside);
     }
 
-    handleOpen (e) {
+    handleOpen(e) {
         if (this.state.active) {
             this.handleClose();
             return;
@@ -68,13 +66,13 @@ export default class ContextMenu extends React.Component {
         document.addEventListener('click', this.handleClickOutside);
     }
 
-    handleClose () {
+    handleClose() {
         this.setState({ active: false });
 
         document.removeEventListener('click', this.handleClickOutside);
     }
 
-    handleClickOutside (e) {
+    handleClickOutside(e) {
         if (!this.element || this.element.contains(e.target)) return;
 
         if (this.state.active) {
@@ -82,32 +80,27 @@ export default class ContextMenu extends React.Component {
         }
     }
 
-    setElementRef (ref) {
+    setElementRef(ref) {
         this.element = ref;
     }
 
-    render () {
+    render() {
         const { active, x, y } = this.state;
 
-        const menu = (active) ? (
+        const menu = active ? (
             <Portal>
                 <div
                     className={styles.offset}
                     style={{ left: x, top: y }}
                     ref={this.setElementRef}
                 >
-                    <div className={styles.content}>
-                        {this.props.render()}
-                    </div>
+                    <div className={styles.content}>{this.props.render()}</div>
                 </div>
             </Portal>
         ) : null;
 
         return (
-            <div
-                className={styles.container}
-                onClick={this.handleOpen}
-            >
+            <div className={styles.container} onClick={this.handleOpen}>
                 {this.props.children}
                 {menu}
             </div>

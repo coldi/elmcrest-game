@@ -3,9 +3,7 @@
  * @param {Object} id A event id
  * @returns {Object} A redux action
  */
-const preEventAction = (
-    id
-) => ({
+const preEventAction = id => ({
     type: `${preEventAction}`,
     payload: { id },
     meta: { onlyObserve: true },

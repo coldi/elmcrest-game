@@ -39,11 +39,8 @@ export const getCoord = ([col, row]) => new Coord(col, row);
  * @param {number[]} arr An array with 2 or 3 numeric values
  * @returns {Cell}
  */
-export const getCell = (arr) => (
-    arr.length === 3
-        ? new Cell(...arr)
-        : new Coord(...arr).toCell()
-);
+export const getCell = arr =>
+    arr.length === 3 ? new Cell(...arr) : new Coord(...arr).toCell();
 
 /**
  * Shorthand to create a Layout.
@@ -52,8 +49,5 @@ export const getCell = (arr) => (
  * @param {Point} origin
  * @returns {Layout}
  */
-export const getLayout = (
-    size,
-    orientation,
-    origin
-) => new Layout(size, orientation, origin);
+export const getLayout = (size, orientation, origin) =>
+    new Layout(size, orientation, origin);

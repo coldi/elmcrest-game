@@ -3,7 +3,7 @@
  * @param {Object} result A battle result object
  * @returns {Object} A redux action
  */
-const endBattleAction = (result) => ({
+const endBattleAction = result => ({
     type: `${endBattleAction}`,
     payload: { result },
     meta: { onlyObserve: true },

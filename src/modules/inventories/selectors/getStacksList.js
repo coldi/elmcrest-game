@@ -7,9 +7,8 @@ import getStacks from './getStacks';
  * @param {string} id An inventory id
  * @returns {Array} The list of stacks
  */
-const getStacksList = memoize(
-    getStacks,
-    (state, id) => Object.values(getStacks(state, id))
+const getStacksList = memoize(getStacks, (state, id) =>
+    Object.values(getStacks(state, id))
 );
 
 export default getStacksList;

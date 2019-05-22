@@ -21,14 +21,8 @@ export default function Image(props) {
 
 Image.propTypes = {
     src: PropTypes.string,
-    width: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string,
-    ]),
-    height: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string,
-    ]),
+    width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 Image.defaultProps = {

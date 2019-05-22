@@ -2,7 +2,8 @@
  * The skill default properties.
  * @type {Object}
  */
-export const skillDefaults = { // eslint-disable-line
+export const skillDefaults = {
+    // eslint-disable-line
     id: null,
     resourceId: null,
     animationType: null,

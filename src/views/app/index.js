@@ -7,7 +7,7 @@ import ModalContainer from '../modals';
 import { Dialog, ErrorBoundary } from '../common';
 import AppLayout from './AppLayout';
 
-export default function App () {
+export default function App() {
     return (
         <AppLayout>
             <ErrorBoundary scope="World" alert>

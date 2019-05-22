@@ -7,15 +7,9 @@ import transferStack from './transferStack';
  * @param {string} targetInvId An inventory id
  * @returns {Function} A redux thunk
  */
-const transferAllStacks = (
-    invId,
-    targetInvId,
-) => (dispatch, getState) => (
+const transferAllStacks = (invId, targetInvId) => (dispatch, getState) =>
     getItemStacksList(getState(), invId)
-        .map(stack => dispatch(
-            transferStack(invId, stack.id, targetInvId)
-        ))
-        .every(success => success)
-);
+        .map(stack => dispatch(transferStack(invId, stack.id, targetInvId)))
+        .every(success => success);
 
 export default transferAllStacks;

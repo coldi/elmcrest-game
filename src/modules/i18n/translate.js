@@ -16,10 +16,7 @@ const getMessageFromCache = memoizeHash(
     (lang, key) => {
         const strings = getCurrentStrings();
 
-        return new IntlMessageFormat(
-            get(strings, key, /* fallback: */ key),
-            lang
-        );
+        return new IntlMessageFormat(get(strings, key, /* fallback: */ key), lang);
     }
 );
 
@@ -30,12 +27,7 @@ const getMessageFromCache = memoizeHash(
  * @param {Object} [args] Arguments for the translation
  * @returns {string}
  */
-const translate = (lang, key, args = {}) => (
-    typeof key === 'string' ? (
-        getMessageFromCache(lang, key).format(args)
-    ) : (
-        key
-    )
-);
+const translate = (lang, key, args = {}) =>
+    typeof key === 'string' ? getMessageFromCache(lang, key).format(args) : key;
 
 export default translate;

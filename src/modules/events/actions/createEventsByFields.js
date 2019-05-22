@@ -7,7 +7,7 @@ import createEventAtCoord from './createEventAtCoord';
  * @param {Array} fields A list of fields
  * @returns {Function} A redux thunk
  */
-const createEventsByFields = (fields) => (dispatch, getState) => {
+const createEventsByFields = fields => (dispatch, getState) => {
     fields.forEach(({ coord }) => {
         const event = getEventByCoord(getState(), coord);
         if (event) return;

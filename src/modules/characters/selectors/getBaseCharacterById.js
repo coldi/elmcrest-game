@@ -6,8 +6,6 @@ import getCharactersState from './getCharactersState';
  * @param {string} id A character id
  * @returns {Object} A character object
  */
-const getBaseCharacterById = (state, id) => (
-    getCharactersState(state).byId[id]
-);
+const getBaseCharacterById = (state, id) => getCharactersState(state).byId[id];
 
 export default getBaseCharacterById;

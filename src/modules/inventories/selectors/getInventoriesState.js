@@ -3,6 +3,6 @@
  * @param {Object} state The global state
  * @returns {Object} The inventories state
  */
-const getInventoriesState = (state) => state.inventories;
+const getInventoriesState = state => state.inventories;
 
 export default getInventoriesState;

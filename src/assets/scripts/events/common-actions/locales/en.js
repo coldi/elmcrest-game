@@ -1,4 +1,4 @@
-function script () {
+function script() {
     return {
         events: {
             'common-actions': {
@@ -8,7 +8,7 @@ function script () {
                 REST: 'Build a place to rest. [{amount}x Wood] (End turn)',
                 END_TURN: 'Wait here. (End turn)',
                 LEAVE: 'Continue.',
-            }
-        }
+            },
+        },
     };
 }

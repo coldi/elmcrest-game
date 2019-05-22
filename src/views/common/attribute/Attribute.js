@@ -56,15 +56,12 @@ export default function Attribute(props) {
         [styles.percent]: props.percent,
     });
 
-    const modifiedClassName = classNames(
-        styles.modified,
-        {
-            [styles.hidden]: enhanced === null && props.base !== null,
-            [styles.better]: enhanced === true,
-            [styles.even]: enhanced === null,
-            [styles.worse]: enhanced === false,
-        }
-    );
+    const modifiedClassName = classNames(styles.modified, {
+        [styles.hidden]: enhanced === null && props.base !== null,
+        [styles.better]: enhanced === true,
+        [styles.even]: enhanced === null,
+        [styles.worse]: enhanced === false,
+    });
 
     const labelElement = props.children ? (
         <span className={styles.label}>{props.children}</span>
@@ -73,9 +70,7 @@ export default function Attribute(props) {
     // by default show base and modified values
     let valuesElement = (
         <span>
-            <span className={styles.base}>
-                {formatNumber(props.base, props.percent)}
-            </span>
+            <span className={styles.base}>{formatNumber(props.base, props.percent)}</span>
             <span className={modifiedClassName}>
                 {formatNumber(props.modified, props.percent)}
             </span>
@@ -93,7 +88,8 @@ export default function Attribute(props) {
 
         valuesElement = (
             <span className={modifiedClassName}>
-                {prefix}{formatNumber(props.modified, props.percent)}
+                {prefix}
+                {formatNumber(props.modified, props.percent)}
             </span>
         );
     }
@@ -101,9 +97,7 @@ export default function Attribute(props) {
     return (
         <div className={containerClassName}>
             {labelElement}
-            <span className={styles.values}>
-                {valuesElement}
-            </span>
+            <span className={styles.values}>{valuesElement}</span>
         </div>
     );
 }

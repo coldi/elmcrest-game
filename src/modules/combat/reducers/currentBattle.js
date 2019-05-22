@@ -14,10 +14,7 @@ const initialState = {
  * @param {Object} action The dispatched action
  * @returns {Object} The next state
  */
-export default function currentBattle (
-    state = initialState,
-    action = {}
-) {
+export default function currentBattle(state = initialState, action = {}) {
     switch (action.type) {
         case `${setCurrentBattleAction}`: {
             const { battle } = action.payload;

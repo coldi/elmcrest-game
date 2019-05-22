@@ -30,7 +30,7 @@ const mockFieldTypes = [
 const clock = start => {
     if (!start) return process.hrtime();
     const end = process.hrtime(start);
-    return Number(((end[0] * 1000) + (end[1] / 1000000)).toFixed(2));
+    return Number((end[0] * 1000 + end[1] / 1000000).toFixed(2));
 };
 
 describe('modules/pathfinder', () => {
@@ -49,7 +49,7 @@ describe('modules/pathfinder', () => {
 
         return findPath(getState(), {
             fromCoord: from,
-            toCoord: to
+            toCoord: to,
         }).then(
             path => {
                 expect(path).toHaveLength(result.length);
@@ -89,7 +89,7 @@ describe('modules/pathfinder', () => {
             calcPath(getState(), {
                 fromCoord: from,
                 toCoord: to,
-                callback: callback(i)
+                callback: callback(i),
             });
         }
     });

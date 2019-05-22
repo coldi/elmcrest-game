@@ -9,17 +9,15 @@ import Modifier from './Modifier';
 import Mutator from './Mutator';
 import styles from './Effect.scss';
 
-
 const calcDuration = (effect, currentTurn) => {
     if (effect.begin !== null) {
-        return (effect.begin + effect.duration) - currentTurn;
+        return effect.begin + effect.duration - currentTurn;
     }
 
     return effect.duration;
 };
 
 export class EffectContainer extends React.PureComponent {
-
     static propTypes = {
         effect: PropTypes.shape().isRequired,
         currentTurn: PropTypes.number,
@@ -28,10 +26,7 @@ export class EffectContainer extends React.PureComponent {
     state = {};
 
     render() {
-        const {
-            currentTurn,
-            effect,
-        } = this.props;
+        const { currentTurn, effect } = this.props;
 
         let element;
 
@@ -50,7 +45,9 @@ export class EffectContainer extends React.PureComponent {
                 <Grid noWrap smallGap>
                     <Grid.Item growWidth>{element}</Grid.Item>
                     {duration > 0 && (
-                        <Grid.Item><span>{duration}&#9684;</span></Grid.Item>
+                        <Grid.Item>
+                            <span>{duration}&#9684;</span>
+                        </Grid.Item>
                     )}
                 </Grid>
             </div>
@@ -58,10 +55,9 @@ export class EffectContainer extends React.PureComponent {
     }
 }
 
-export default connect(
-    (state, props) => ({
-        currentTurn: props.effect.context === COMBAT_CONTEXT
+export default connect((state, props) => ({
+    currentTurn:
+        props.effect.context === COMBAT_CONTEXT
             ? getBattleTurn(state)
             : getCurrentTurn(state),
-    })
-)(EffectContainer);
+}))(EffectContainer);
