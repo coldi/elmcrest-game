@@ -5,11 +5,7 @@
  * @param {Object} props The stack props to update
  * @returns {Object} A redux action
  */
-const updateStackAction = (
-    id,
-    stackId,
-    props,
-) => ({
+const updateStackAction = (id, stackId, props) => ({
     type: `${updateStackAction}`,
     payload: { id, stackId, props },
 });

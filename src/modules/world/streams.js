@@ -7,11 +7,11 @@ import mergeMapFieldsAction from './actions/mergeMapFieldsAction';
  * Emits when the selected coord changed.
  */
 export const coordSelected$ = store$
-    .filter(({ action }) => (
-        action.type === `${updateSceneAction}` &&
-        action.payload.update.selectedCoord
-    ))
-    .map((input) => ({
+    .filter(
+        ({ action }) =>
+            action.type === `${updateSceneAction}` && action.payload.update.selectedCoord
+    )
+    .map(input => ({
         ...input,
         coord: input.action.payload.update.selectedCoord,
     }));
@@ -21,7 +21,7 @@ export const coordSelected$ = store$
  */
 export const coordInteraction$ = store$
     .filter(({ action }) => action.type === `${interactWithCoord}`)
-    .map((input) => ({
+    .map(input => ({
         ...input,
         coord: input.action.payload.coord,
     }));
@@ -30,11 +30,11 @@ export const coordInteraction$ = store$
  * Emits when the world map updated.
  */
 export const mapDidUpdate$ = store$
-    .filter(({ action }) => (
-        action.type === `${mergeMapFieldsAction}` &&
-        action.payload.fields.length > 0
-    ))
-    .map((input) => ({
+    .filter(
+        ({ action }) =>
+            action.type === `${mergeMapFieldsAction}` && action.payload.fields.length > 0
+    )
+    .map(input => ({
         ...input,
         fields: input.action.payload.fields,
     }));

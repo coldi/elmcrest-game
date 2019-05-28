@@ -10,10 +10,7 @@ import createStackAction from './createStackAction';
  * @param {Object} stackProps The stack props
  * @returns {Function} A redux thunk
  */
-const createStack = (
-    invId,
-    stackProps,
-) => (dispatch, getState) => {
+const createStack = (invId, stackProps) => (dispatch, getState) => {
     invariant(stackProps.item, 'Stack requires an item property.');
     invariant(
         getItemTypeById(getState(), stackProps.item.itemTypeId),

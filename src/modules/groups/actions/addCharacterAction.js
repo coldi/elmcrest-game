@@ -4,10 +4,7 @@
  * @param {string} characterId A character id
  * @returns {Object} A redux action
  */
-const addCharacterAction = (
-    groupId,
-    characterId,
-) => ({
+const addCharacterAction = (groupId, characterId) => ({
     type: `${addCharacterAction}`,
     payload: { groupId, characterId },
 });

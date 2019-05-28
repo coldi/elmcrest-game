@@ -17,6 +17,4 @@ export const setCurrentStrings = (strings = {}) => {
  * Gets the current strings.
  * @returns {Object}
  */
-export const getCurrentStrings = () => (
-    locale.strings
-);
+export const getCurrentStrings = () => locale.strings;

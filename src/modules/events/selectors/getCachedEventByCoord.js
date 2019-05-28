@@ -21,11 +21,13 @@ const getCachedEventByCoord = (state, coord) => {
     const { cache } = getCachedEventByCoord;
     if (!cache.has(key)) {
         const id = getGeneratedEventIdByCoord(state, coord);
-        const event = id ? {
-            ...eventInstanceDefaults,
-            id,
-            coord,
-        } : null;
+        const event = id
+            ? {
+                  ...eventInstanceDefaults,
+                  id,
+                  coord,
+              }
+            : null;
 
         cache.set(key, event);
     }

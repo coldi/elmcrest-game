@@ -6,16 +6,10 @@ import { getCombatHistoryState } from '../../modules/combat';
 import { getPlayerGroup } from '../../modules/groups';
 import { transferStack, transferAllStacks } from '../../modules/inventories';
 import T from '../i18n';
-import {
-    Dialog,
-    ExpProgressBar,
-    Block,
-    InventoryList,
-} from '../common';
+import { Dialog, ExpProgressBar, Block, InventoryList } from '../common';
 import styles from './Result.scss';
 
 class Result extends React.PureComponent {
-
     static propTypes = {
         result: PropTypes.shape(),
         playerId: PropTypes.string,
@@ -29,18 +23,18 @@ class Result extends React.PureComponent {
         onClose: () => {},
     };
 
-    constructor (props) {
+    constructor(props) {
         super(props);
 
         this.handleTakeAll = this.handleTakeAll.bind(this);
     }
 
-    handleTakeAll () {
+    handleTakeAll() {
         this.props.transferAllStacks();
         this.props.onClose();
     }
 
-    render () {
+    render() {
         const { props } = this;
 
         return (
@@ -54,7 +48,9 @@ class Result extends React.PureComponent {
                 <div className={styles.container}>
                     <Block>
                         <p>
-                            <T params={{ exp: props.result.expGains[0] }}>ui.messages.gainedExp</T>
+                            <T params={{ exp: props.result.expGains[0] }}>
+                                ui.messages.gainedExp
+                            </T>
                         </p>
                         <ExpProgressBar
                             characterId={props.playerId}
@@ -62,7 +58,9 @@ class Result extends React.PureComponent {
                         />
                     </Block>
                     <Block>
-                        <p><T>ui.messages.pickLoot</T></p>
+                        <p>
+                            <T>ui.messages.pickLoot</T>
+                        </p>
                         <InventoryList
                             inventoryId={props.result.lootInventoryId}
                             onSelect={stackId => props.transferStack(stackId)}
@@ -76,12 +74,12 @@ class Result extends React.PureComponent {
 }
 
 export default connect(
-    (state) => ({
+    state => ({
         result: getCombatHistoryState(state)[0],
         playerId: getPlayer(state).id,
         playerInventoryId: getPlayerGroup(state).inventoryId,
     }),
-    (dispatch) => ({
+    dispatch => ({
         transferStack: (...args) => {
             dispatch(transferStack(...args));
         },
@@ -93,18 +91,17 @@ export default connect(
         ...stateProps,
         ...dispatchProps,
         ...ownProps,
-        transferStack: (stackId) => (
-            stackId && dispatchProps.transferStack(
+        transferStack: stackId =>
+            stackId &&
+            dispatchProps.transferStack(
                 stateProps.result.lootInventoryId,
                 stackId,
                 stateProps.playerInventoryId
-            )
-        ),
-        transferAllStacks: () => (
+            ),
+        transferAllStacks: () =>
             dispatchProps.transferAllStacks(
                 stateProps.result.lootInventoryId,
                 stateProps.playerInventoryId
-            )
-        ),
+            ),
     })
 )(Result);

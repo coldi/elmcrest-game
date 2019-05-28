@@ -10,13 +10,9 @@ const getCloudWeights = (clouds, humidity) => [
     // stay as is
     [1, clouds],
     // less clouds
-    [2, clouds > 0
-        ? clouds - 0.2
-        : 0],
+    [2, clouds > 0 ? clouds - 0.2 : 0],
     // more clouds until humidity is reached
-    [2, clouds < humidity
-        ? clouds + 0.2
-        : clouds - 0.2],
+    [2, clouds < humidity ? clouds + 0.2 : clouds - 0.2],
     // sudden cloudburst
     [Number(humidity > 0.5) / 2, humidity],
 ];
@@ -27,9 +23,7 @@ const getRainWeights = (rain, clouds, humidity) => [
     // less rain
     [Number(rain > 0) * 2, rain - 0.4],
     // more rain until humidity is reached
-    [clouds * 3, rain < humidity
-        ? rain + 0.2
-        : rain - 0.2],
+    [clouds * 3, rain < humidity ? rain + 0.2 : rain - 0.2],
 ];
 
 /**
@@ -53,16 +47,15 @@ const updateWeather = (forceUpdate = false) => (dispatch, getState) => {
     const cloudWeights = getCloudWeights(weather.clouds, fieldType.humidity);
     const clouds = clamp(
         fieldType.humidity && pickWeighted(cloudWeights, 0)[1],
-        0.1 + (fieldType.humidity / 2), 1
+        0.1 + fieldType.humidity / 2,
+        1
     );
 
     const rainWeights = getRainWeights(weather.rain, clouds, fieldType.humidity);
-    const rain = clouds > 0.5
-        ? pickWeighted(rainWeights, 0)[1]
-        : 0;
+    const rain = clouds > 0.5 ? pickWeighted(rainWeights, 0)[1] : 0;
 
-    const climate = field.climate;
-    const temperature = fieldType.temperature;
+    const { climate } = field;
+    const { temperature } = fieldType;
     // const clouds = clamp(((rain * 2) - (temperature - 0.5)) / 2, 0.1, 1);
 
     dispatch(updateWeatherAction({ climate, rain, temperature, clouds }));

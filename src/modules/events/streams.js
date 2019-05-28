@@ -6,8 +6,8 @@ import preEventAction from './actions/preEventAction';
  * Emits when the current event state changed.
  */
 export const eventWillStart$ = store$
-    .filter(({ action }) => (action.type === `${preEventAction}`))
-    .map((input) => ({
+    .filter(({ action }) => action.type === `${preEventAction}`)
+    .map(input => ({
         ...input,
         eventId: input.action.payload.id,
     }));
@@ -16,7 +16,7 @@ export const eventWillStart$ = store$
  * Emits when the current event state changed.
  */
 export const currentEventChanged$ = store$.filter(
-    ({ action }) => (action.type === `${setCurrentEventAction}`)
+    ({ action }) => action.type === `${setCurrentEventAction}`
 );
 
 /**
@@ -24,7 +24,7 @@ export const currentEventChanged$ = store$.filter(
  */
 export const eventDidStart$ = currentEventChanged$
     .filter(({ action }) => !!action.payload.event)
-    .map((input) => ({
+    .map(input => ({
         ...input,
         eventId: input.action.payload.event.id,
     }));
@@ -32,5 +32,6 @@ export const eventDidStart$ = currentEventChanged$
 /**
  * Emits when an event did start.
  */
-export const eventDidEnd$ = currentEventChanged$
-    .filter(({ action }) => action.payload.event === null);
+export const eventDidEnd$ = currentEventChanged$.filter(
+    ({ action }) => action.payload.event === null
+);

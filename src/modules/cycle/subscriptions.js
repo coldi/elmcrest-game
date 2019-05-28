@@ -12,7 +12,7 @@ import {
  * Subscription wrapper.
  * @param {Function} subscribe
  */
-export default function (subscribe) {
+export default function(subscribe) {
     /**
      * When a new group was created, add it to a phase.
      */

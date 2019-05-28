@@ -8,15 +8,10 @@ import registerEventAction from './registerEventAction';
  * @param {Object} props Specific event props
  * @returns {Function} A redux thunk
  */
-const registerEvent = (
-    props = {},
-) => (dispatch) => {
+const registerEvent = (props = {}) => dispatch => {
     invariant(props.id, 'An id is required to register an event.');
 
-    const event = Immutable.merge(
-        eventMetaDefaults,
-        props
-    );
+    const event = Immutable.merge(eventMetaDefaults, props);
 
     dispatch(registerEventAction(event));
 

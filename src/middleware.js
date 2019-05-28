@@ -16,9 +16,7 @@ export const store$ = Observable.from(storeSubject);
 const observableMiddleware = ({ dispatch, getState }) => next => action => {
     const prevState = getState();
     const onlyObserve = action.meta && action.meta.onlyObserve;
-    const result = onlyObserve
-        ? null
-        : next(action);
+    const result = onlyObserve ? null : next(action);
 
     storeSubject.next({
         action,

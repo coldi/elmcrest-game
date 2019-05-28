@@ -7,10 +7,7 @@ import registerEventAction from '../actions/registerEventAction';
  * @param {Object} action The dispatched action
  * @returns {Object} The next state
  */
-export default function events (
-    state = {},
-    action = {}
-) {
+export default function events(state = {}, action = {}) {
     switch (action.type) {
         case `${registerEventAction}`: {
             const { event } = action.payload;

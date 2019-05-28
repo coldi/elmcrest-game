@@ -10,10 +10,7 @@ import addCharacterAction from './addCharacterAction';
  * @param {string} characterId A character id
  * @returns {Function} A redux thunk
  */
-const addCharacter = (
-    groupId,
-    characterId,
-) => (dispatch, getState) => {
+const addCharacter = (groupId, characterId) => (dispatch, getState) => {
     const state = getState();
     const group = getGroupById(state, groupId);
     const { maxCharactersInGroup } = getGroupsSettings(state);

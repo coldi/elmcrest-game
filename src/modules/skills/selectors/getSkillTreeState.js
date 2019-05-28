@@ -5,6 +5,6 @@ import getSkillsState from './getSkillsState';
  * @param {Object} state The global state
  * @returns {Object} The skill tree state
  */
-const getSkillTreeState = (state) => getSkillsState(state).skillTree;
+const getSkillTreeState = state => getSkillsState(state).skillTree;
 
 export default getSkillTreeState;

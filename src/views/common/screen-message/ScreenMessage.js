@@ -5,7 +5,6 @@ import { Portal } from '../';
 import styles from './ScreenMessage.scss';
 
 export default class ScreenMessage extends React.PureComponent {
-
     static propTypes = {
         message: PropTypes.shape(),
     };
@@ -17,7 +16,7 @@ export default class ScreenMessage extends React.PureComponent {
         lastShownMessageId: null,
     };
 
-    static getDerivedStateFromProps (nextProps, prevState) {
+    static getDerivedStateFromProps(nextProps, prevState) {
         const { message } = nextProps;
         const [lastMessage] = prevState.messages.slice(-1);
 
@@ -39,7 +38,7 @@ export default class ScreenMessage extends React.PureComponent {
         return null;
     }
 
-    constructor (props) {
+    constructor(props) {
         super(props);
 
         if (props.message) {
@@ -55,13 +54,13 @@ export default class ScreenMessage extends React.PureComponent {
     }
     */
 
-    removeMessage () {
-        this.setState((state) => ({
-            messages: state.messages.slice(1)
+    removeMessage() {
+        this.setState(state => ({
+            messages: state.messages.slice(1),
         }));
     }
 
-    render () {
+    render() {
         const [currentMessage] = this.state.messages;
 
         if (!currentMessage) return null;
@@ -70,9 +69,7 @@ export default class ScreenMessage extends React.PureComponent {
             <Portal>
                 <div key={currentMessage.id} className={styles.container}>
                     <h2 className={styles.message} onAnimationEnd={this.removeMessage}>
-                        <T params={currentMessage.params}>
-                            {currentMessage.text}
-                        </T>
+                        <T params={currentMessage.params}>{currentMessage.text}</T>
                     </h2>
                 </div>
             </Portal>

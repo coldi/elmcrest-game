@@ -4,16 +4,12 @@
  * A simple representation of a position in 2d space.
  */
 export default class Point {
-
     /**
      * Constructor.
      * @param {number} x
      * @param {number} y
      */
-    constructor(
-        x = 0,
-        y = 0
-    ) {
+    constructor(x = 0, y = 0) {
         this.x = x;
         this.y = y;
     }
@@ -23,7 +19,7 @@ export default class Point {
      * @param {Point|number} p The point or number to add
      * @returns {Point}
      */
-    add (p) {
+    add(p) {
         if (p instanceof Point) {
             return new Point(this.x + p.x, this.y + p.y);
         }
@@ -35,7 +31,7 @@ export default class Point {
      * @param {Point|number} p The point or number to subtract
      * @returns {Point}
      */
-    sub (p) {
+    sub(p) {
         if (p instanceof Point) {
             return new Point(this.x - p.x, this.y - p.y);
         }
@@ -47,7 +43,7 @@ export default class Point {
      * @param {Point} p The point to compare
      * @returns {boolean}
      */
-    equals (p) {
+    equals(p) {
         return this.x === p.x && this.y === p.y;
     }
 
@@ -57,7 +53,7 @@ export default class Point {
      * @param {number} y
      * @returns {Point}
      */
-    init (x, y) {
+    init(x, y) {
         this.x = x;
         this.y = y;
         return this;
@@ -67,7 +63,7 @@ export default class Point {
      * Rounds the values of this point and returns a new one.
      * @returns {Point}
      */
-    round () {
+    round() {
         const x = Math.round(this.x);
         const y = Math.round(this.y);
         return new Point(x, y);
@@ -78,10 +74,10 @@ export default class Point {
      * @param {Point} p
      * @returns {number}
      */
-    squareDistance (p) {
+    squareDistance(p) {
         const dx = this.x - p.x;
         const dy = this.y - p.y;
-        return (dx * dx) + (dy * dy);
+        return dx * dx + dy * dy;
     }
 
     /**
@@ -89,7 +85,7 @@ export default class Point {
      * @param {Point} p
      * @returns {number}
      */
-    distance (p) {
+    distance(p) {
         return Math.sqrt(this.squareDistance(p));
     }
 
@@ -97,7 +93,7 @@ export default class Point {
      * Clones this point.
      * @returns {Point}
      */
-    clone () {
+    clone() {
         return new Point(this.x, this.y);
     }
 
@@ -105,7 +101,7 @@ export default class Point {
      * Transforms this point to a string.
      * @returns {string}
      */
-    toString () {
+    toString() {
         return `${this.x}, ${this.y}`;
     }
 
@@ -113,7 +109,7 @@ export default class Point {
      * Transforms this point to an array.
      * @returns {number[]}
      */
-    toArray () {
+    toArray() {
         return [this.x, this.y];
     }
 }

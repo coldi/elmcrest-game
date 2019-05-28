@@ -6,10 +6,7 @@ import setSkillTreeAction from '../actions/setSkillTreeAction';
  * @param {Object} action The dispatched action
  * @returns {Object} The next state
  */
-export default function skillTree (
-    state = [],
-    action = {}
-) {
+export default function skillTree(state = [], action = {}) {
     switch (action.type) {
         case `${setSkillTreeAction}`:
             return action.payload.tree;

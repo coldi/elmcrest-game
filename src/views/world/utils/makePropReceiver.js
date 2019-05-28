@@ -5,9 +5,7 @@ const makePropReceiver = (context, nextProps) => (key, ignorePrev = false) => {
         return false;
     }
 
-    return ignorePrev
-        ? true
-        : nextValue !== context.props[key];
+    return ignorePrev ? true : nextValue !== context.props[key];
 };
 
 export default makePropReceiver;

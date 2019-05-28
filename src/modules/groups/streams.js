@@ -22,10 +22,8 @@ const filterByPlayer = ({ getState, groupId }) => isPlayerGroup(getState(), grou
  * A Stream of every action performed by a group.
  */
 export const groupAction$ = store$
-    .filter(({ action }) => (
-        action.meta && action.meta.isGroupCommand
-    ))
-    .map((input) => ({
+    .filter(({ action }) => action.meta && action.meta.isGroupCommand)
+    .map(input => ({
         ...input,
         groupId: input.action.payload.id,
         coord: input.action.payload.coord,
@@ -60,28 +58,22 @@ export const playerGroupMoved$ = groupMoved$.filter(filterByPlayer);
  */
 export const playerGroupAttacked$ = groupAttacked$.filter(filterByPlayer);
 
-
 /**
  * A Stream of every action performed by a group.
  */
 export const groupDone$ = store$
-    .filter(({ action }) => (
-        action.type === `${setGroupDoneAction}`
-    ))
-    .map((input) => ({
+    .filter(({ action }) => action.type === `${setGroupDoneAction}`)
+    .map(input => ({
         ...input,
         groupId: input.action.payload.id,
     }));
-
 
 /**
  * A Stream of group creations.
  */
 export const groupCreated$ = store$
-    .filter(({ action }) => (
-        action.type === `${createGroupAction}`
-    ))
-    .map((input) => ({
+    .filter(({ action }) => action.type === `${createGroupAction}`)
+    .map(input => ({
         ...input,
         group: input.action.payload.group,
     }));
@@ -90,10 +82,8 @@ export const groupCreated$ = store$
  * A Stream of group removals.
  */
 export const groupRemoved$ = store$
-    .filter(({ action }) => (
-        action.type === `${removeGroupAction}`
-    ))
-    .map((input) => ({
+    .filter(({ action }) => action.type === `${removeGroupAction}`)
+    .map(input => ({
         ...input,
         groupId: input.action.payload.id,
     }));
@@ -101,9 +91,10 @@ export const groupRemoved$ = store$
 /**
  * A Stream that emits when the player group died.
  */
-export const playerGroupDied$ = characterDied$.filter(({ character, getState }) => (
-    isPlayerGroup(getState(), character.groupId) &&
-    getGroupById(getState(), character.groupId)
-        .characterIds
-        .every(id => !isCharacterAlive(getState(), id))
-));
+export const playerGroupDied$ = characterDied$.filter(
+    ({ character, getState }) =>
+        isPlayerGroup(getState(), character.groupId) &&
+        getGroupById(getState(), character.groupId).characterIds.every(
+            id => !isCharacterAlive(getState(), id)
+        )
+);

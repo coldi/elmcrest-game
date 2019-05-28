@@ -1,6 +1,6 @@
 import React, { Children } from 'react';
 
-const makeChildTransformer = (match, transformProps) => (element) => {
+const makeChildTransformer = (match, transformProps) => element => {
     // skip primitive nodes
     if (typeof element.type !== 'function') {
         return element;
@@ -9,10 +9,7 @@ const makeChildTransformer = (match, transformProps) => (element) => {
     const { props } = element;
 
     if (match(element)) {
-        return React.cloneElement(
-            element,
-            transformProps(props)
-        );
+        return React.cloneElement(element, transformProps(props));
     }
 
     if (props && props.children) {

@@ -5,8 +5,8 @@
  * @param {Object} field
  * @returns {Array}
  */
-const getFilteredEventsByField = (state, events, field) => (
-    events.filter((event) => {
+const getFilteredEventsByField = (state, events, field) =>
+    events.filter(event => {
         if (typeof event.spawnConditions !== 'object') return true;
 
         const { climates } = event.spawnConditions;
@@ -16,12 +16,12 @@ const getFilteredEventsByField = (state, events, field) => (
                 const elevations = climates[climate];
                 if (Array.isArray(elevations)) {
                     return elevations.includes(field.elevation);
-                } else if (elevations) return true;
+                }
+                if (elevations) return true;
             }
         }
 
         return false;
-    })
-);
+    });
 
 export default getFilteredEventsByField;

@@ -7,7 +7,7 @@ import T from '../i18n';
 import styles from './StatusBar.scss';
 import Portrait from './Portrait';
 
-function StatusBar (props) {
+function StatusBar(props) {
     const rightId = props.rollout ? props.rollout.targetId : props.rightId;
 
     return (
@@ -44,8 +44,6 @@ StatusBar.propTypes = {
     skill: PropTypes.shape(),
 };
 
-export default connect(
-    (state, props) => ({
-        skill: props.rollout && getSkillById(state, props.rollout.skillId),
-    })
-)(StatusBar);
+export default connect((state, props) => ({
+    skill: props.rollout && getSkillById(state, props.rollout.skillId),
+}))(StatusBar);

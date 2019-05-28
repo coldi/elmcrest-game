@@ -19,7 +19,7 @@ import {
  * Subscription wrapper.
  * @param {Function} subscribe
  */
-export default function (subscribe) {
+export default function(subscribe) {
     /**
      * Apply active mutator effects to characters on each new turn.
      * Also remove expired effects.
@@ -44,11 +44,11 @@ export default function (subscribe) {
      */
     subscribe(battleTurn$, ({ dispatch, getState }) => {
         // only select characters that are in combat
-        getCurrentBattle(getState()).characters
-            .map(entry => entry.characterId)
+        getCurrentBattle(getState())
+            .characters.map(entry => entry.characterId)
             // only consider characters that are alive
             .filter(charId => isCharacterAlive(getState(), charId))
-            .forEach((charId) => {
+            .forEach(charId => {
                 dispatch(removeExpiredEffects(charId));
                 dispatch(applyEffects(charId));
             });
@@ -79,8 +79,10 @@ export default function (subscribe) {
         const { progress } = getBaseCharacterById(getState(), characterId);
         const basePoints = progress.basePoints + (level - prevLevel);
 
-        dispatch(updateCharacterAction(characterId, {
-            progress: { basePoints },
-        }));
+        dispatch(
+            updateCharacterAction(characterId, {
+                progress: { basePoints },
+            })
+        );
     });
 }

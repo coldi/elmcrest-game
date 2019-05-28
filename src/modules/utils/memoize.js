@@ -12,13 +12,16 @@ import invariant from './invariant';
  * @returns {Function}
  */
 const defaultMemoize = (MapCache, resolver, func) => {
-    invariant(typeof resolver === 'function', 'Memoization expects resolver to be function.');
+    invariant(
+        typeof resolver === 'function',
+        'Memoization expects resolver to be function.'
+    );
     invariant(typeof func === 'function', 'Memoization expects func to be function.');
 
     /* eslint-disable  func-names, prefer-rest-params */
     const memoizedFn = function() {
         const args = arguments;
-        const cache = memoizedFn.cache;
+        const { cache } = memoizedFn;
         const key = resolver.apply(this, args);
 
         if (cache.has(key)) {
@@ -62,7 +65,5 @@ export const memoizeHash = memoizeWith(Map);
  * @param {*[]} args
  * @returns {string}
  */
-memoizeHash.stringify = (...args) => args.reduce(
-    (str, val) => `${str}_${JSON.stringify(val)}`,
-    ''
-);
+memoizeHash.stringify = (...args) =>
+    args.reduce((str, val) => `${str}_${JSON.stringify(val)}`, '');

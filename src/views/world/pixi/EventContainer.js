@@ -1,5 +1,5 @@
 /* eslint-disable  no-param-reassign */
-import 'pixi.js';
+import * as PIXI from 'pixi.js';
 import differenceBy from 'lodash/differenceBy';
 import { getCell } from '../../../modules/hex';
 import Event from './Event';
@@ -8,7 +8,6 @@ const { Container } = PIXI;
 /* eslint-enable  no-undef */
 
 export default class EventContainer {
-
     instance = null;
     props = {
         events: [],
@@ -17,7 +16,7 @@ export default class EventContainer {
     layout = null;
     cache = new Map();
 
-    constructor (container, layout, props) {
+    constructor(container, layout, props) {
         this.instance = new Container();
         this.layout = layout;
 
@@ -28,7 +27,7 @@ export default class EventContainer {
         }
     }
 
-    update (props) {
+    update(props) {
         const { instance } = this;
 
         if (props.events !== undefined) {
@@ -42,7 +41,7 @@ export default class EventContainer {
                     }
                 });
 
-            props.events.forEach((event) => {
+            props.events.forEach(event => {
                 const { instanceId, coord } = event;
 
                 let eventInstance;
@@ -72,7 +71,7 @@ export default class EventContainer {
         };
     }
 
-    remove () {
+    remove() {
         this.instance.destroy();
         this.instance = null;
     }

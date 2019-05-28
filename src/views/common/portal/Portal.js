@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
 export default class Portal extends React.Component {
-
     static propTypes = {
         children: PropTypes.element,
         onOpen: PropTypes.func,
@@ -50,9 +49,6 @@ export default class Portal extends React.Component {
     }
 
     render() {
-        return ReactDOM.createPortal(
-            this.props.children,
-            this.getNode()
-        );
+        return ReactDOM.createPortal(this.props.children, this.getNode());
     }
 }

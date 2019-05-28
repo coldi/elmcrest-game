@@ -11,10 +11,7 @@ import performSelection from './performSelection';
  * @param {*} value A value
  * @returns {Function} A redux thunk
  */
-const makeSelection = (
-    key,
-    value
-) => (dispatch, getState) => {
+const makeSelection = (key, value) => (dispatch, getState) => {
     const ui = getCombatUIState(getState());
 
     invariant(key in ui.selection, `Unknown combat UI selection key '${key}'.`);

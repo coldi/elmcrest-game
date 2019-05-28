@@ -27,12 +27,12 @@ const updateCharacterDelays = (delay = 0) => (dispatch, getState) => {
     if (delay) {
         // add delay to first character entry and normalize
         // by subtracting delay of upcoming character (second).
-        nextEntries = entries.map((entry) => {
+        nextEntries = entries.map(entry => {
             const isFirstEntry = entry.characterId === first.characterId;
             // mark active character as 'hasPerformed'
             const hasPerformed = isFirstEntry || entry.hasPerformed;
             const nextDelay = isFirstEntry
-                ? (entry.delay - second.delay) + delay
+                ? entry.delay - second.delay + delay
                 : entry.delay - second.delay;
 
             return {
@@ -51,16 +51,18 @@ const updateCharacterDelays = (delay = 0) => (dispatch, getState) => {
         }
     } else {
         // only normalize by subtracting delay of active character (first)
-        nextEntries = entries.map((entry) => ({
+        nextEntries = entries.map(entry => ({
             ...entry,
             delay: entry.delay - first.delay,
         }));
     }
 
-    dispatch(setCurrentBattleAction({
-        characters: nextEntries,
-        turn: nextTurn,
-    }));
+    dispatch(
+        setCurrentBattleAction({
+            characters: nextEntries,
+            turn: nextTurn,
+        })
+    );
 };
 
 export default updateCharacterDelays;

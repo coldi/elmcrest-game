@@ -14,13 +14,13 @@ import applyRollout from './actions/applyRollout';
 import removeRollout from './actions/removeRollout';
 
 // mock simple skill script
-jest.mock('../skills/selectors/getSkillScriptById', () => (
-    () => ({ origin, target }) => [{
+jest.mock('../skills/selectors/getSkillScriptById', () => () => ({ origin, target }) => [
+    {
         originId: origin.id,
         targetId: target.id,
         effects: [{ name: '+=condition.HPLost', value: 1 }],
-    }])
-);
+    },
+]);
 
 describe('modules/combat', () => {
     let getState;
@@ -38,12 +38,14 @@ describe('modules/combat', () => {
         getState = store.getState;
         dispatch = store.dispatch;
 
-        dispatch(registerSkill({
-            ...skillDefaults,
-            id: 'attack',
-            baseValue: 100,
-            cost: 50,
-        }));
+        dispatch(
+            registerSkill({
+                ...skillDefaults,
+                id: 'attack',
+                baseValue: 100,
+                cost: 50,
+            })
+        );
 
         themChars = [
             { id: 'char1', base: { end: 10 } },
@@ -90,13 +92,18 @@ describe('modules/combat', () => {
             const { characters } = currentBattle;
 
             expect(
-                themChars.every(char => characters.find(entry => entry.characterId === char.id))
+                themChars.every(char =>
+                    characters.find(entry => entry.characterId === char.id)
+                )
             ).toBe(true);
         });
 
         it('should start with the character with the lowest initial delay', () => {
             const [firstEntry] = queue;
-            const [expectedFirstChar] = sortBy(themChars, char => char.base.end).reverse();
+            const [expectedFirstChar] = sortBy(
+                themChars,
+                char => char.base.end
+            ).reverse();
 
             expect(firstEntry.characterId).toBe(expectedFirstChar.id);
         });
@@ -153,7 +160,7 @@ describe('modules/combat', () => {
                     expect(charStats).not.toEqual(prevCharStats);
                 });
 
-                it('should decrease target\'s HP', () => {
+                it("should decrease target's HP", () => {
                     expect(charStats.computed.HP).toBeLessThan(prevCharStats.computed.HP);
                 });
             });
@@ -181,15 +188,19 @@ describe('modules/combat', () => {
                 });
 
                 it('should update character battle queue', () => {
-                    expect(activeCharEntry.characterId).toBe(nextActiveCharEntry.characterId);
+                    expect(activeCharEntry.characterId).toBe(
+                        nextActiveCharEntry.characterId
+                    );
                 });
 
                 it('should update character delays', () => {
                     const charEntry = queue.find(
                         entry => entry.characterId === prevActiveCharEntry.characterId
                     );
-                    const updatedDelay = (prevActiveCharEntry.delay + skill.cost)
-                        - nextActiveCharEntry.delay;
+                    const updatedDelay =
+                        prevActiveCharEntry.delay +
+                        skill.cost -
+                        nextActiveCharEntry.delay;
 
                     expect(charEntry.delay).toBe(updatedDelay);
                 });
@@ -237,7 +248,9 @@ describe('modules/combat', () => {
 
                 it('should have automatically created a rollout for NPC', () => {
                     expect(uiState.rollouts).toHaveLength(1);
-                    expect(uiState.rollouts[0].originId).toBe(activeCharEntry.characterId);
+                    expect(uiState.rollouts[0].originId).toBe(
+                        activeCharEntry.characterId
+                    );
                 });
             });
         });

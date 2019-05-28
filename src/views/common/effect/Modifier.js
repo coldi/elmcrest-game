@@ -10,9 +10,8 @@ import {
 import T from '../../i18n';
 import { Attribute } from '../';
 
-
-const renderAttributes = (values, isMultiplier) => (
-    Object.keys(values).map((attr) => {
+const renderAttributes = (values, isMultiplier) =>
+    Object.keys(values).map(attr => {
         if (typeof values[attr] === 'object') {
             return renderAttributes(values[attr], isMultiplier);
         }
@@ -26,8 +25,7 @@ const renderAttributes = (values, isMultiplier) => (
                 <T>char.attr.{attr}</T>
             </Attribute>
         );
-    })
-);
+    });
 
 export default function Modifier({ effect }) {
     let values;
@@ -42,9 +40,7 @@ export default function Modifier({ effect }) {
         isMultiplier = true;
     }
 
-    return (
-        <div>{renderAttributes(values, isMultiplier)}</div>
-    );
+    return <div>{renderAttributes(values, isMultiplier)}</div>;
 }
 
 Modifier.propTypes = {

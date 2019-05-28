@@ -8,11 +8,9 @@ import reducers from './modules/reducers';
 const { NODE_ENV } = process.env;
 
 /* eslint-disable  no-underscore-dangle */
-export default function createCustomStore (preloadedState) {
+export default function createCustomStore(preloadedState) {
     const reducer = combineReducers(reducers);
-    const enhancers = [
-        applyMiddleware(ReduxThunk, observableMiddleware),
-    ];
+    const enhancers = [applyMiddleware(ReduxThunk, observableMiddleware)];
     let composeEnhancers = compose;
 
     if (NODE_ENV !== 'production') {

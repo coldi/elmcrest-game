@@ -27,13 +27,8 @@ const applyMutatorEffect = (charId, effect, options) => async (dispatch, getStat
     const char = getBaseCharacterById(getState(), charId);
     const operator = effect.name.slice(0, 2);
     const path = effect.name.slice(2).split('.');
-    const updatedChar = Immutable.updateIn(
-        char,
-        path,
-        (prop = 0) => applyMutatorOptions(
-            operate(prop, operator, effect.value),
-            options
-        )
+    const updatedChar = Immutable.updateIn(char, path, (prop = 0) =>
+        applyMutatorOptions(operate(prop, operator, effect.value), options)
     );
 
     return dispatch(updateCharacterAction(charId, updatedChar));

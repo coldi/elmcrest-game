@@ -8,9 +8,10 @@ export default function Item(props) {
     const { qualityId } = props.item;
     const wrapClassName = classNames(
         styles.wrap,
-        Object.keys(styles).reduce((obj, key) => (
-            qualityId === key ? { ...obj, [styles[key]]: true } : obj
-        ), {})
+        Object.keys(styles).reduce(
+            (obj, key) => (qualityId === key ? { ...obj, [styles[key]]: true } : obj),
+            {}
+        )
     );
 
     const imgSrc = `items/${props.item.itemType.resourceId}.png`;

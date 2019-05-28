@@ -14,7 +14,7 @@ import {
 } from '../common';
 import styles from './Portrait.scss';
 
-function Portrait (props) {
+function Portrait(props) {
     const className = classNames(styles.container, {
         [styles.left]: props.left,
         [styles.right]: props.right,
@@ -23,7 +23,9 @@ function Portrait (props) {
     return (
         <Tooltip>
             <Tooltip.Content>
-                <Heading sub><T>common.attributes</T></Heading>
+                <Heading sub>
+                    <T>common.attributes</T>
+                </Heading>
                 <CharacterStats characterId={props.characterId} />
             </Tooltip.Content>
             <div key={props.characterId} className={className}>
@@ -54,8 +56,6 @@ Portrait.propTypes = {
     right: PropTypes.bool,
 };
 
-export default connect(
-    (state, props) => ({
-        character: getCharacterById(state, props.characterId),
-    }),
-)(Portrait);
+export default connect((state, props) => ({
+    character: getCharacterById(state, props.characterId),
+}))(Portrait);

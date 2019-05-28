@@ -24,7 +24,9 @@ export { default as Item } from './item/Item';
 export { default as ItemInfo } from './item-info/ItemInfo';
 export { default as Markdown } from './markdown/Markdown';
 export { default as Stack } from './stack/Stack';
-export { default as StackContextMenuList } from './stack-context-menu-list/StackContextMenuList';
+export {
+    default as StackContextMenuList,
+} from './stack-context-menu-list/StackContextMenuList';
 export { default as StepperButton } from './stepper-button/StepperButton';
 export { default as MessageLog } from './message-log/MessageLog';
 export { default as Panel } from './panel/Panel';

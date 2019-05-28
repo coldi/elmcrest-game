@@ -5,14 +5,9 @@ import { SAVED_STATE_KEY } from '../constants';
  * @param {string} [key] A localStorage item key
  * @returns {Function} A redux thunk
  */
-const saveState = (
-    key = SAVED_STATE_KEY
-) => (dispatch, getState) => {
+const saveState = (key = SAVED_STATE_KEY) => (dispatch, getState) => {
     // save game state
-    localStorage.setItem(
-        key,
-        JSON.stringify(getState())
-    );
+    localStorage.setItem(key, JSON.stringify(getState()));
 };
 
 export default saveState;

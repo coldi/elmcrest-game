@@ -3,9 +3,9 @@
  * @param {Object} effect The effect props
  * @returns {Object} A redux action
  */
-const registerEffectAction = (effect) => ({
+const registerEffectAction = effect => ({
     type: `${registerEffectAction}`,
-    payload: { effect }
+    payload: { effect },
 });
 
 registerEffectAction.toString = () => 'effects/register effect';

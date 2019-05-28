@@ -1,25 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import T from '../../i18n';
-import {
-    Backdrop,
-    Button,
-    Grid,
-    Panel,
-    Portal,
-} from '../';
+import { Backdrop, Button, Grid, Panel, Portal } from '../';
 import styles from './Dialog.scss';
 
-
 export default function Dialog(props) {
-    const {
-        title,
-        children,
-        confirmLabel,
-        dismissLabel,
-        onConfirm,
-        onDismiss,
-    } = props;
+    const { title, children, confirmLabel, dismissLabel, onConfirm, onDismiss } = props;
 
     const confirmBtn = confirmLabel ? (
         <Grid.Item>
@@ -37,9 +23,7 @@ export default function Dialog(props) {
         </Grid.Item>
     ) : null;
 
-    const panelTitle = title ? (
-        <T>{title}</T>
-    ) : null;
+    const panelTitle = title ? <T>{title}</T> : null;
 
     return (
         <Portal>

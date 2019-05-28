@@ -6,9 +6,8 @@ import getItemsState from './getItemsState';
  * @param {Object} state The global state
  * @returns {Array} A list of affixes
  */
-const getAffixesList = memoize(
-    getItemsState,
-    (state) => Object.values(getItemsState(state).affixes)
+const getAffixesList = memoize(getItemsState, state =>
+    Object.values(getItemsState(state).affixes)
 );
 
 export default getAffixesList;

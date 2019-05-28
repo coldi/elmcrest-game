@@ -3,13 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCachedFieldByCoord } from '../../modules/world';
 import { getGroupByCoord } from '../../modules/groups';
-import {
-    Block,
-    GroupPortraits,
-} from '../common';
+import { Block, GroupPortraits } from '../common';
 
 export class FieldContextContainer extends React.PureComponent {
-
     static propTypes = {
         coord: PropTypes.arrayOf(PropTypes.number),
         field: PropTypes.shape(),
@@ -24,7 +20,7 @@ export class FieldContextContainer extends React.PureComponent {
 
     state = {};
 
-    renderFieldInfo () {
+    renderFieldInfo() {
         const { coord, field } = this.props;
 
         if (coord && field.discovered) {
@@ -42,7 +38,7 @@ export class FieldContextContainer extends React.PureComponent {
         return null;
     }
 
-    renderGroup () {
+    renderGroup() {
         const { group, field } = this.props;
 
         if (group && field.visible) {
@@ -58,7 +54,7 @@ export class FieldContextContainer extends React.PureComponent {
         return null;
     }
 
-    render () {
+    render() {
         const fieldInfo = this.renderFieldInfo();
         const group = this.renderGroup();
 
@@ -72,9 +68,7 @@ export class FieldContextContainer extends React.PureComponent {
     }
 }
 
-export default connect(
-    (state, props) => ({
-        field: getCachedFieldByCoord(state, props.coord),
-        group: getGroupByCoord(state, props.coord),
-    })
-)(FieldContextContainer);
+export default connect((state, props) => ({
+    field: getCachedFieldByCoord(state, props.coord),
+    group: getGroupByCoord(state, props.coord),
+}))(FieldContextContainer);

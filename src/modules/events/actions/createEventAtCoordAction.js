@@ -3,9 +3,7 @@
  * @param {Object} event An event object with a coord prop
  * @returns {Object} A redux action
  */
-const createEventAtCoordAction = (
-    event
-) => ({
+const createEventAtCoordAction = event => ({
     type: `${createEventAtCoordAction}`,
     payload: { event },
 });

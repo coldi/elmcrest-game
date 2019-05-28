@@ -4,10 +4,7 @@ import classNames from 'classnames';
 import styles from './Block.scss';
 
 export default function Block(props) {
-    const className = classNames(
-        styles.block,
-        { [styles.noGap]: props.noGap }
-    );
+    const className = classNames(styles.block, { [styles.noGap]: props.noGap });
 
     return <div className={className}>{props.children}</div>;
 }

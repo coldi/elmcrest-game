@@ -1,16 +1,11 @@
-import {
-    battleDidStart$,
-    battleDidEnd$,
-} from '../combat/streams';
-import {
-    setUIVisibleAction,
-} from './';
+import { battleDidStart$, battleDidEnd$ } from '../combat/streams';
+import { setUIVisibleAction } from './';
 
 /**
  * Subscription wrapper.
  * @param {Function} subscribe
  */
-export default function (subscribe) {
+export default function(subscribe) {
     /**
      * Toggle UI visibility based on combat mode.
      */

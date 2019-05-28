@@ -3,20 +3,14 @@ import PropTypes from 'prop-types';
 import { translate } from '../../modules/i18n';
 import { I18nContext } from './Provider';
 
-
-const Placeholder = ({ children, forKey, ...otherProps }) => (
-    React.cloneElement(Children.only(children), otherProps)
-    // React.createElement('span', otherProps, children)
-);
+const Placeholder = ({ children, forKey, ...otherProps }) =>
+    React.cloneElement(Children.only(children), otherProps);
+// React.createElement('span', otherProps, children)
 
 Placeholder.propTypes = {
     children: PropTypes.node.isRequired,
-    forKey: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-    ]),
+    forKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
-
 
 const matchPattern = (textParts, pattern) => {
     const patternKeys = Object.keys(pattern);
@@ -32,35 +26,32 @@ const matchPattern = (textParts, pattern) => {
          */
 
         // test for pattern matches and map boolean result to object
-        const matches = patternKeys.reduce((obj, key) => ({
-            [key]: (
-                nextText &&
-                (pattern[key] instanceof RegExp) &&
-                (pattern[key]).test(nextText)
-            ),
-        }), {});
+        const matches = patternKeys.reduce(
+            (obj, key) => ({
+                [key]:
+                    nextText &&
+                    pattern[key] instanceof RegExp &&
+                    pattern[key].test(nextText),
+            }),
+            {}
+        );
 
         // remove matched patterns from current text
-        const matchedText = patternKeys.reduce((str, key) => (
-            (pattern[key] instanceof RegExp)
-                ? str.replace(pattern[key], '')
-                : str
-        ), text);
+        const matchedText = patternKeys.reduce(
+            (str, key) =>
+                pattern[key] instanceof RegExp ? str.replace(pattern[key], '') : str,
+            text
+        );
 
         return { text: matchedText, matches };
     });
 };
 
-
 export default class Translate extends React.Component {
-
     static propTypes = {
         children: PropTypes.node,
         string: PropTypes.string,
-        params: PropTypes.oneOfType([
-            PropTypes.shape(),
-            PropTypes.array,
-        ]),
+        params: PropTypes.oneOfType([PropTypes.shape(), PropTypes.array]),
         pattern: PropTypes.shape(),
     };
 
@@ -74,7 +65,7 @@ export default class Translate extends React.Component {
     static text = translate;
     static place = Placeholder;
 
-    renderTranslation (lang) {
+    renderTranslation(lang) {
         const { children, string, params, pattern, ...otherProps } = this.props;
         const childrenArray = Children.toArray(children);
         let result;
@@ -95,10 +86,13 @@ export default class Translate extends React.Component {
             const separator = '@@@';
 
             // replace every occurence of a translation key with a separator
-            const values = childrenArray.reduce((obj, child) => ({
-                ...obj,
-                [child.props.forKey]: separator,
-            }), { ...params });
+            const values = childrenArray.reduce(
+                (obj, child) => ({
+                    ...obj,
+                    [child.props.forKey]: separator,
+                }),
+                { ...params }
+            );
 
             // split the tokenized string at the separators.
             const textParts = translate(lang, string, values).split(separator);
@@ -120,12 +114,12 @@ export default class Translate extends React.Component {
             }, []);
         }
 
-        return (typeof result !== 'string' || Object.keys(otherProps).length)
+        return typeof result !== 'string' || Object.keys(otherProps).length
             ? React.createElement('span', otherProps, result)
             : result;
     }
 
-    render () {
+    render() {
         return (
             <I18nContext.Consumer>
                 {context => this.renderTranslation(context.lang)}

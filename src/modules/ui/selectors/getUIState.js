@@ -3,6 +3,6 @@
  * @param {Object} state The global state
  * @returns {Object} The UI state
  */
-const getUIState = (state) => state.ui;
+const getUIState = state => state.ui;
 
 export default getUIState;

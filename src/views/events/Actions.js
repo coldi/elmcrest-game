@@ -4,12 +4,8 @@ import T from '../i18n';
 import { Button } from '../common';
 import styles from './Actions.scss';
 
-export default function Actions({
-    eventId,
-    actions,
-    onSelect,
-}) {
-    const handleClick = (action) => {
+export default function Actions({ eventId, actions, onSelect }) {
+    const handleClick = action => {
         onSelect(action.id);
         action.resolve();
     };
@@ -32,7 +28,7 @@ export default function Actions({
                         <T params={action.params}>
                             events.{eventId}.{action.id}
                         </T>
-                    </Button>
+                    </Button>,
                 ];
             }, [])}
         </div>

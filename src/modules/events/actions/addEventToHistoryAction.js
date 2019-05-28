@@ -3,9 +3,7 @@
  * @param {Object} event An event object
  * @returns {Object} A redux action
  */
-const addEventToHistoryAction = (
-    event
-) => ({
+const addEventToHistoryAction = event => ({
     type: `${addEventToHistoryAction}`,
     payload: { event },
 });

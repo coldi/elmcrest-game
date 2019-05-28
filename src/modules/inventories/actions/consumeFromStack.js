@@ -11,11 +11,7 @@ import removeFromStack from './removeFromStack';
  * @param {string} charId A character id
  * @returns {Function} A redux thunk
  */
-const consumeFromStack = (
-    invId,
-    stackId,
-    charId,
-) => (dispatch, getState) => {
+const consumeFromStack = (invId, stackId, charId) => (dispatch, getState) => {
     const state = getState();
     const stack = getStackById(state, invId, stackId);
     const itemType = getItemTypeById(state, stack.item.itemTypeId);

@@ -6,9 +6,8 @@ import getGroupsState from './getGroupsState';
  * @param {Object} state The global state
  * @returns {Array} A list of groups
  */
-const getGroupsList = memoize(
-    getGroupsState,
-    (state) => Object.values(getGroupsState(state).byId)
+const getGroupsList = memoize(getGroupsState, state =>
+    Object.values(getGroupsState(state).byId)
 );
 
 export default getGroupsList;

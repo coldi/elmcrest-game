@@ -3,11 +3,9 @@ import PropTypes from 'prop-types';
 import styles from './Panel.scss';
 import { Heading, Grid } from '../';
 
-const PanelTitle = (props) => (
+const PanelTitle = props => (
     <header className={styles.title}>
-        <Heading>
-            {props.children}
-        </Heading>
+        <Heading>{props.children}</Heading>
     </header>
 );
 
@@ -15,7 +13,7 @@ PanelTitle.propTypes = {
     children: PropTypes.node.isRequired,
 };
 
-export default function Panel (props) {
+export default function Panel(props) {
     const classNames = [styles.container];
     if (props.slim) {
         classNames.push(styles.slim);
@@ -23,7 +21,7 @@ export default function Panel (props) {
 
     const className = classNames.join(' ');
 
-    const title = (props.title) ? (
+    const title = props.title ? (
         <Grid.Item>
             <PanelTitle>{props.title}</PanelTitle>
         </Grid.Item>
@@ -33,9 +31,7 @@ export default function Panel (props) {
         <div className={className}>
             <Grid column noWrap noGap>
                 {title}
-                <Grid.Item growHeight>
-                    {props.children}
-                </Grid.Item>
+                <Grid.Item growHeight>{props.children}</Grid.Item>
             </Grid>
         </div>
     );

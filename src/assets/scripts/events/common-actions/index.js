@@ -1,9 +1,4 @@
-function script ({
-    dispatch,
-    getState,
-    endEvent,
-    modules,
-}) {
+function script({ dispatch, getState, endEvent, modules }) {
     // get api
     const { getStackOfItem, removeItem } = modules.inventories;
     const { getPlayerGroup, setGroupDoneAction } = modules.groups;
@@ -35,21 +30,29 @@ function script ({
                             params: { amount },
                             condition: hasItem(restItem, amount),
                             resolve: () => {
-                                dispatch(removeItem(group.inventoryId, { itemTypeId: restItem }, amount));
+                                dispatch(
+                                    removeItem(
+                                        group.inventoryId,
+                                        { itemTypeId: restItem },
+                                        amount
+                                    )
+                                );
                                 dispatch(resetAPAction(group.characterIds));
-                                group.characterIds.forEach(
-                                    id => dispatch(applyEffects(id, { name: 'energy', value: 1 }))
+                                group.characterIds.forEach(id =>
+                                    dispatch(
+                                        applyEffects(id, { name: 'energy', value: 1 })
+                                    )
                                 );
                                 endTurn();
                                 endEvent();
-                            }
+                            },
                         },
                         {
                             id: 'END_TURN',
                             resolve: () => {
                                 endTurn();
                                 endEvent();
-                            }
+                            },
                         },
                         {
                             id: 'LEAVE',

@@ -7,7 +7,7 @@ import updateWeather from './actions/updateWeather';
  * Subscription wrapper.
  * @param {Function} subscribe
  */
-export default function (subscribe) {
+export default function(subscribe) {
     /**
      * When the player group moves, update map and related stuff.
      */

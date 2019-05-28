@@ -8,9 +8,7 @@ import createEventAtCoordAction from './createEventAtCoordAction';
  * @param {Object} props Specific event props
  * @returns {Function} A redux thunk
  */
-const createEventAtCoord = (
-    props = {},
-) => (dispatch) => {
+const createEventAtCoord = (props = {}) => dispatch => {
     invariant(props.id, 'An id is required to add an event instance.');
     invariant(props.coord, 'A coord is required to add an event instance.');
 

@@ -5,9 +5,7 @@ import { getLogMessages, getScreenMessages } from '../../modules/log';
 import { MessageLog, ScreenMessage } from '../common';
 import styles from './UILog.scss';
 
-
 export class UILogContainer extends React.PureComponent {
-
     static propTypes = {
         messages: PropTypes.arrayOf(PropTypes.shape()),
         screenMessage: PropTypes.shape(),
@@ -18,7 +16,7 @@ export class UILogContainer extends React.PureComponent {
         screenMessage: null,
     };
 
-    render () {
+    render() {
         return (
             <div className={styles.container}>
                 <MessageLog messages={this.props.messages} />
@@ -28,9 +26,7 @@ export class UILogContainer extends React.PureComponent {
     }
 }
 
-export default connect(
-    (state) => ({
-        messages: getLogMessages(state),
-        screenMessage: getScreenMessages(state).slice(-1)[0],
-    })
-)(UILogContainer);
+export default connect(state => ({
+    messages: getLogMessages(state),
+    screenMessage: getScreenMessages(state).slice(-1)[0],
+}))(UILogContainer);

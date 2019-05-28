@@ -1,8 +1,7 @@
 import React, { Children } from 'react';
 import PropTypes from 'prop-types';
-import { Portal } from '../';
+import { Portal } from '..';
 import styles from './Tooltip.scss';
-
 
 const CustomTooltipContent = props => props.children;
 
@@ -11,7 +10,6 @@ CustomTooltipContent.propTypes = {
 };
 
 export default class Tooltip extends React.Component {
-
     static propTypes = {
         children: PropTypes.node.isRequired,
         text: PropTypes.string,
@@ -29,7 +27,7 @@ export default class Tooltip extends React.Component {
 
     element = null;
 
-    constructor (props) {
+    constructor(props) {
         super(props);
 
         this.handleEnter = this.handleEnter.bind(this);
@@ -38,32 +36,32 @@ export default class Tooltip extends React.Component {
         this.setElementRef = this.setElementRef.bind(this);
     }
 
-    processChildren () {
+    processChildren() {
         const { text, children } = this.props;
         this.tooltipContent = text;
 
         // remove custom tooltip content from children
-        return Children.toArray(children)
-            .filter((child) => child.type.name !== Tooltip.Content.name);
+        return Children.toArray(children).filter(
+            child => child.type.name !== Tooltip.Content.name
+        );
     }
 
-    processContent () {
+    processContent() {
         const { children, text } = this.props;
 
         // find custom tooltip content in children
-        const content =
-            Children.toArray(children)
-                .filter((child) => child.type.name === Tooltip.Content.name)
-                .pop();
+        const content = Children.toArray(children)
+            .filter(child => child.type.name === Tooltip.Content.name)
+            .pop();
 
         return content || text;
     }
 
-    handleEnter () {
+    handleEnter() {
         this.setState({ active: true });
     }
 
-    handleMouseMove (e) {
+    handleMouseMove(e) {
         if (!this.element) {
             return;
         }
@@ -89,28 +87,23 @@ export default class Tooltip extends React.Component {
         this.element.style.transform = `translate3d(${x}px, ${y}px, 0)`;
     }
 
-    handleLeave () {
+    handleLeave() {
         this.setState({ active: false });
     }
 
-    setElementRef (ref) {
+    setElementRef(ref) {
         this.element = ref;
     }
 
-    render () {
+    render() {
         const { active } = this.state;
         const content = this.processContent();
         const children = this.processChildren();
 
-        const tooltip = (active) ? (
+        const tooltip = active ? (
             <Portal>
-                <div
-                    className={styles.offset}
-                    ref={this.setElementRef}
-                >
-                    <div className={styles.content}>
-                        {content}
-                    </div>
+                <div className={styles.offset} ref={this.setElementRef}>
+                    <div className={styles.content}>{content}</div>
                 </div>
             </Portal>
         ) : null;

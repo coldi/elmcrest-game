@@ -1,7 +1,7 @@
-function script () {
+function script() {
     return {
         events: {
-            'wilderness': {
+            wilderness: {
                 title: 'The wilderness',
                 // scenes
                 START: 'You discover a calm place in the wilds.',

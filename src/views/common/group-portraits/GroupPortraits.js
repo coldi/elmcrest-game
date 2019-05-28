@@ -7,7 +7,6 @@ import { Grid, CharacterPortrait } from '../';
 import styles from './GroupPortraits.scss';
 
 export class GroupPortraitsContainer extends React.PureComponent {
-
     static propTypes = {
         groupId: PropTypes.string.isRequired,
         characters: PropTypes.arrayOf(PropTypes.shape()),
@@ -25,18 +24,15 @@ export class GroupPortraitsContainer extends React.PureComponent {
     render() {
         const { props } = this;
 
-        const className = classNames(
-            styles.container,
-            {
-                [styles.alignLeft]: props.align === 'left',
-                [styles.alignRight]: props.align === 'right',
-            }
-        );
+        const className = classNames(styles.container, {
+            [styles.alignLeft]: props.align === 'left',
+            [styles.alignRight]: props.align === 'right',
+        });
 
         return (
             <div className={className}>
                 <Grid smallGap noWrap>
-                    {props.characters.map((char) => (
+                    {props.characters.map(char => (
                         <CharacterPortrait
                             key={char.id}
                             character={char}
@@ -51,8 +47,6 @@ export class GroupPortraitsContainer extends React.PureComponent {
     }
 }
 
-export default connect(
-    (state, props) => ({
-        characters: getGroupCharacters(state, props.groupId),
-    })
-)(GroupPortraitsContainer);
+export default connect((state, props) => ({
+    characters: getGroupCharacters(state, props.groupId),
+}))(GroupPortraitsContainer);

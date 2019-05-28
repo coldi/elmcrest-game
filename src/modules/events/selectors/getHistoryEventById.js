@@ -6,10 +6,7 @@ import getHistoryEvents from './getHistoryEvents';
  * @param {string} eventId An event id
  * @returns {Object} The events state
  */
-const getHistoryEventById = (state, eventId) => (
-    getHistoryEvents(state).find(
-        event => event.id === eventId
-    )
-);
+const getHistoryEventById = (state, eventId) =>
+    getHistoryEvents(state).find(event => event.id === eventId);
 
 export default getHistoryEventById;

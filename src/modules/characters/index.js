@@ -7,12 +7,18 @@ export { default as getBaseDamage } from './selectors/getBaseDamage';
 export { default as getCharacterById } from './selectors/getCharacterById';
 export { default as getCharacterByStackId } from './selectors/getCharacterByStackId';
 export { default as getCharacterEffectsById } from './selectors/getCharacterEffectsById';
-export { default as getCharacterEffectsFromEquip } from './selectors/getCharacterEffectsFromEquip';
+export {
+    default as getCharacterEffectsFromEquip,
+} from './selectors/getCharacterEffectsFromEquip';
 export { default as getCharacterSkillsById } from './selectors/getCharacterSkillsById';
 export { default as getCharactersList } from './selectors/getCharactersList';
 export { default as getCharactersSettings } from './selectors/getCharactersSettings';
-export { default as getComputedCharacterById } from './selectors/getComputedCharacterById';
-export { default as getEquippedItemsOfCharacter } from './selectors/getEquippedItemsOfCharacter';
+export {
+    default as getComputedCharacterById,
+} from './selectors/getComputedCharacterById';
+export {
+    default as getEquippedItemsOfCharacter,
+} from './selectors/getEquippedItemsOfCharacter';
 export { default as getExpByLevel } from './selectors/getExpByLevel';
 export { default as getExpGain } from './selectors/getExpGain';
 export { default as getExpGainForGroup } from './selectors/getExpGainForGroup';
@@ -35,8 +41,4 @@ export { default as spendResources } from './actions/spendResources';
 export { default as resetAPAction } from './actions/resetAPAction';
 export { default as updateCharacterAction } from './actions/updateCharacterAction';
 
-export {
-    MALE_GENDER,
-    FEMALE_GENDER,
-    NO_GENDER,
-} from './constants';
+export { MALE_GENDER, FEMALE_GENDER, NO_GENDER } from './constants';

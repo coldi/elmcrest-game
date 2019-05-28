@@ -7,13 +7,13 @@ export const effectDefaults = {
     // TBD ...
 };
 
-
 /**
  * The active status effect default properties.
  * Active effects are usually applied to a character.
  * @type {Object}
  */
-export const activeEffectDefaults = { // eslint-disable-line
+export const activeEffectDefaults = {
+    // eslint-disable-line
     name: null,
     value: 0,
     begin: null, // will be set to current turn

@@ -1,14 +1,11 @@
-import 'pixi.js';
 import { getCell } from '../../../modules/hex';
 import { makePropReceiver, tween } from '../utils';
 import CompositeFilter from './CompositeFilter';
 import weatherShader from './shaders/weather.glsl';
 
-const translateDayTime = (dayTime) => {
+const translateDayTime = dayTime => {
     // let night level alternate between 0..1..0
-    const nightLevel = dayTime >= 0.5
-        ? ((1 - dayTime) * 2)
-        : (dayTime * 2);
+    const nightLevel = dayTime >= 0.5 ? (1 - dayTime) * 2 : dayTime * 2;
 
     // tweak result so that day time is longer than night time
     if (nightLevel < 0.5) return 0;
@@ -18,7 +15,6 @@ const translateDayTime = (dayTime) => {
 };
 
 export default class WeatherSystem {
-
     filter = null;
     layout = null;
     props = {};
@@ -35,7 +31,13 @@ export default class WeatherSystem {
             uNightLevel: 0,
         };
 
-        this.filter = new CompositeFilter(weatherShader, initialUniforms, container, layout, props);
+        this.filter = new CompositeFilter(
+            weatherShader,
+            initialUniforms,
+            container,
+            layout,
+            props
+        );
         this.layout = layout;
     }
 
@@ -80,7 +82,7 @@ export default class WeatherSystem {
 
         this.props = {
             ...this.props,
-            ...props
+            ...props,
         };
     }
 }

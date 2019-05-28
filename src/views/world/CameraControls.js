@@ -8,7 +8,6 @@ import {
     CAMERA_MAX_ZOOM,
 } from './constants';
 
-
 const DIRECTION_ANGLE = Math.PI / 2;
 
 const DIRECTIONS = [
@@ -75,8 +74,8 @@ export default class CameraControls {
 
     animationFrame;
 
-    constructor (props) {
-        Object.keys(props).forEach((key) => {
+    constructor(props) {
+        Object.keys(props).forEach(key => {
             if (key in this) {
                 this[key] = props[key];
             }
@@ -95,7 +94,7 @@ export default class CameraControls {
         this.bindEvents();
     }
 
-    update (props = {}) {
+    update(props = {}) {
         let changed = false;
 
         if (props.position && !this.position.equals(props.position)) {
@@ -116,7 +115,7 @@ export default class CameraControls {
         }
     }
 
-    bindEvents () {
+    bindEvents() {
         document.addEventListener('keydown', this.handleKeyDown);
         document.addEventListener('keyup', this.handleKeyUp);
         this.element.addEventListener('mousedown', this.handleMouseDown);
@@ -126,7 +125,7 @@ export default class CameraControls {
         this.process();
     }
 
-    unbindEvents () {
+    unbindEvents() {
         document.removeEventListener('keydown', this.handleKeyDown);
         document.removeEventListener('keyup', this.handleKeyUp);
         this.element.removeEventListener('mousedown', this.handleMouseDown);
@@ -136,7 +135,7 @@ export default class CameraControls {
         cancelAnimationFrame(this.animationFrame);
     }
 
-    receiveInput () {
+    receiveInput() {
         const key = values(this.input.key).indexOf(true) !== -1;
         const pointer = values(this.input.pointer).indexOf(true) !== -1;
         const wheel = values(this.input.wheel).indexOf(true) !== -1;
@@ -149,7 +148,7 @@ export default class CameraControls {
         };
     }
 
-    pan (angle, distance) {
+    pan(angle, distance) {
         const position = this.position.clone();
         const baseAngle = -DIRECTION_ANGLE;
 
@@ -159,7 +158,7 @@ export default class CameraControls {
         this.update({ position });
     }
 
-    zoom (distance) {
+    zoom(distance) {
         const { minZoom, maxZoom } = this;
         const offset = this.offset.clone();
 
@@ -170,18 +169,18 @@ export default class CameraControls {
         }
     }
 
-    calcDirectionalInput () {
+    calcDirectionalInput() {
         const { input } = this;
 
         const dx = Number(input.key.right) - Number(input.key.left);
         const dy = Number(input.key.up) - Number(input.key.down);
 
-        const directionIndex = ((3 * dy) + dx) + 4;
+        const directionIndex = 3 * dy + dx + 4;
 
         return DIRECTIONS[directionIndex];
     }
 
-    updateDragInfo () {
+    updateDragInfo() {
         const { pointer } = this;
 
         if (pointer.drag.end) {
@@ -193,10 +192,7 @@ export default class CameraControls {
                 pointer.screen.y - pointer.drag.end.y,
             ]);
 
-            pointer.drag.angle = Math.atan2(
-                pointer.drag.vector.x,
-                pointer.drag.vector.y
-            );
+            pointer.drag.angle = Math.atan2(pointer.drag.vector.x, pointer.drag.vector.y);
 
             pointer.drag.active = totalDistance > 10;
         } else {
@@ -207,7 +203,7 @@ export default class CameraControls {
         pointer.drag.end = pointer.screen.clone();
     }
 
-    process () {
+    process() {
         const { input, pointer } = this;
 
         const receivedInput = this.receiveInput();
@@ -247,7 +243,7 @@ export default class CameraControls {
         this.animationFrame = requestAnimationFrame(this.process);
     }
 
-    handleClick () {
+    handleClick() {
         if (this.receiveInput().pointer) {
             if (!this.pointer.drag.active) {
                 this.onClick({
@@ -258,7 +254,7 @@ export default class CameraControls {
         }
     }
 
-    handleInputStop () {
+    handleInputStop() {
         if (!this.receiveInput().any) {
             this.onCameraStop({
                 position: this.position.toArray(),
@@ -267,7 +263,7 @@ export default class CameraControls {
         }
     }
 
-    handleKeyDown (e) {
+    handleKeyDown(e) {
         const { input } = this;
 
         const key = e.keyCode;
@@ -279,7 +275,7 @@ export default class CameraControls {
         if (key === KEY.E) input.key.e = true;
     }
 
-    handleKeyUp (e) {
+    handleKeyUp(e) {
         const { input } = this;
 
         const key = e.keyCode;
@@ -293,26 +289,26 @@ export default class CameraControls {
         this.handleInputStop();
     }
 
-    handleMouseDown (e) {
+    handleMouseDown(e) {
         const { input } = this;
 
-        input.pointer.left = (e.button === 0);
-        input.pointer.middle = (e.button === 1);
-        input.pointer.right = (e.button === 2);
+        input.pointer.left = e.button === 0;
+        input.pointer.middle = e.button === 1;
+        input.pointer.right = e.button === 2;
 
         this.onPointerDown({ ...this.pointer });
     }
 
-    handleMouseMove (e) {
+    handleMouseMove(e) {
         const { offset, pointer } = this;
         const scale = offset.y;
 
-        const x = (!e.touches) ? e.clientX : e.touches[0].pageX;
-        const y = (!e.touches) ? e.clientY : e.touches[0].pageY;
+        const x = !e.touches ? e.clientX : e.touches[0].pageX;
+        const y = !e.touches ? e.clientY : e.touches[0].pageY;
 
         pointer.screen.init(x / scale, y / scale);
 
-        const nx = ((x / window.innerWidth) * 2) - 1;
+        const nx = (x / window.innerWidth) * 2 - 1;
         const ny = -((y / window.innerHeight) * 2) + 1;
 
         pointer.normalized.init(nx, ny);
@@ -322,16 +318,14 @@ export default class CameraControls {
         }
     }
 
-    handleMouseUp () {
+    handleMouseUp() {
         const { input, pointer } = this;
 
         this.handleClick();
 
         this.onPointerUp({ ...this.pointer });
 
-        input.pointer.left =
-            input.pointer.middle =
-                input.pointer.right = false;
+        input.pointer.left = input.pointer.middle = input.pointer.right = false;
 
         pointer.drag.active = false;
         pointer.drag.start = null;
@@ -342,16 +336,15 @@ export default class CameraControls {
         this.handleInputStop();
     }
 
-    handleWheel (e) {
+    handleWheel(e) {
         const { input } = this;
 
-        input.wheel.up = (e.deltaY < 0);
-        input.wheel.down = (e.deltaY > 0);
+        input.wheel.up = e.deltaY < 0;
+        input.wheel.down = e.deltaY > 0;
 
         requestAnimationFrame(() => {
             // reset wheel input in next frame
-            input.wheel.up =
-                input.wheel.down = false;
+            input.wheel.up = input.wheel.down = false;
 
             // this.handleInputStop()
         });

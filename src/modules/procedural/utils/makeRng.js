@@ -5,19 +5,19 @@ import seedrandom from 'seedrandom';
  * @param {string|number} seed A seed value
  * @returns {Object}
  */
-const makeRng = (seed) => {
+const makeRng = seed => {
     const instance = seedrandom(seed);
 
     return {
         instance,
-        random (num = 1) {
+        random(num = 1) {
             return instance.quick() * num;
         },
-        pick (list) {
+        pick(list) {
             const index = Math.floor(instance.quick() * list.length);
             return list[index];
         },
-        shuffle (list) {
+        shuffle(list) {
             const arr = list.slice(0);
 
             for (let i = 0; i < arr.length; i += 1) {

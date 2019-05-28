@@ -13,12 +13,8 @@ import {
  * @param {Object} action The dispatched action
  * @returns {Object} The next state
  */
-export default function inventories (
-    state = {},
-    action = {}
-) {
+export default function inventories(state = {}, action = {}) {
     switch (action.type) {
-
         case `${createInventoryAction}`: {
             const { inventory } = action.payload;
             return Immutable.setIn(state, [inventory.id], inventory);
@@ -31,7 +27,7 @@ export default function inventories (
 
         case `${updateStackAction}`: {
             const { id, stackId, props } = action.payload;
-            return Immutable.updateIn(state, [id, 'stacks', stackId], (stack) => ({
+            return Immutable.updateIn(state, [id, 'stacks', stackId], stack => ({
                 ...stack,
                 ...props,
             }));
@@ -56,6 +52,5 @@ export default function inventories (
         default: {
             return state;
         }
-
     }
 }

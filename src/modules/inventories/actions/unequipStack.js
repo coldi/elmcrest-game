@@ -12,28 +12,31 @@ import updateStackAction from './updateStackAction';
  * @param {string} charId A character id
  * @returns {Function} A redux thunk
  */
-const unequipStack = (
-    invId,
-    stackId,
-    charId,
-) => (dispatch, getState) => {
+const unequipStack = (invId, stackId, charId) => (dispatch, getState) => {
     const state = getState();
     const stack = getStackById(state, invId, stackId);
     const itemType = getItemTypeById(state, stack.item.itemTypeId);
     const { equip } = getCharacterById(state, charId);
 
-    invariant(equip[itemType.slot] !== undefined, `The slot for item type '${itemType.id}' does not exist: ${itemType.slot}`);
+    invariant(
+        equip[itemType.slot] !== undefined,
+        `The slot for item type '${itemType.id}' does not exist: ${itemType.slot}`
+    );
 
     if (equip[itemType.slot] !== null) {
-        dispatch(updateCharacterAction(charId, {
-            equip: {
-                ...equip,
-                [itemType.slot]: null,
-            },
-        }));
-        dispatch(updateStackAction(invId, stackId, {
-            equipped: false,
-        }));
+        dispatch(
+            updateCharacterAction(charId, {
+                equip: {
+                    ...equip,
+                    [itemType.slot]: null,
+                },
+            })
+        );
+        dispatch(
+            updateStackAction(invId, stackId, {
+                equipped: false,
+            })
+        );
     }
 };
 

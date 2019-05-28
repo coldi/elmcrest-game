@@ -16,23 +16,22 @@ const initialState = {
  * @param {Object} action The dispatched action
  * @returns {Object} The next state
  */
-export default function windows (
-    state = initialState,
-    action = {}
-) {
+export default function windows(state = initialState, action = {}) {
     switch (action.type) {
-
         case `${setWindowActiveAction}`: {
             const { id, active } = action.payload;
 
             // enables window with given id, disables others
-            return Object.keys(state).reduce((nextState, key) => ({
-                ...nextState,
-                [key]: {
-                    ...state[key],
-                    active: (key === id) ? active : false,
-                },
-            }), {});
+            return Object.keys(state).reduce(
+                (nextState, key) => ({
+                    ...nextState,
+                    [key]: {
+                        ...state[key],
+                        active: key === id ? active : false,
+                    },
+                }),
+                {}
+            );
         }
 
         case `${updateWindowStateAction}`: {
@@ -49,6 +48,5 @@ export default function windows (
         default: {
             return state;
         }
-
     }
 }

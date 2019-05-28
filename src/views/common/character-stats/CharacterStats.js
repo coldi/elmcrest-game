@@ -9,18 +9,11 @@ import {
     updateCharacterAction,
 } from '../../../modules/characters';
 import T from '../../i18n';
-import {
-    Attribute,
-    Grid,
-    Block,
-    Button,
-    StepperButton,
-} from '../';
+import { Attribute, Grid, Block, Button, StepperButton } from '../';
 import styles from './CharacterStats.scss';
 
 /* eslint-disable  class-methods-use-this */
 export class CharacterStatsContainer extends React.PureComponent {
-
     static propTypes = {
         characterId: PropTypes.string.isRequired,
         baseCharacter: PropTypes.shape(),
@@ -39,7 +32,7 @@ export class CharacterStatsContainer extends React.PureComponent {
         points: 0,
     };
 
-    constructor (props) {
+    constructor(props) {
         super(props);
 
         this.state.base = props.baseCharacter.base;
@@ -49,8 +42,8 @@ export class CharacterStatsContainer extends React.PureComponent {
         this.handleDoneEditing = this.handleDoneEditing.bind(this);
     }
 
-    handleAttrDecrease (attr) {
-        this.setState((state) => ({
+    handleAttrDecrease(attr) {
+        this.setState(state => ({
             base: {
                 ...state.base,
                 [attr]: state.base[attr] - 1,
@@ -59,8 +52,8 @@ export class CharacterStatsContainer extends React.PureComponent {
         }));
     }
 
-    handleAttrIncrease (attr) {
-        this.setState((state) => ({
+    handleAttrIncrease(attr) {
+        this.setState(state => ({
             base: {
                 ...state.base,
                 [attr]: state.base[attr] + 1,
@@ -69,14 +62,14 @@ export class CharacterStatsContainer extends React.PureComponent {
         }));
     }
 
-    handleResetEditing () {
+    handleResetEditing() {
         this.setState({
             base: this.props.baseCharacter.base,
             points: this.props.baseCharacter.progress.basePoints,
         });
     }
 
-    handleDoneEditing () {
+    handleDoneEditing() {
         this.props.updateCharacter({
             base: this.state.base,
             progress: {
@@ -85,7 +78,7 @@ export class CharacterStatsContainer extends React.PureComponent {
         });
     }
 
-    renderAttribute (attr, base, modified) {
+    renderAttribute(attr, base, modified) {
         switch (attr) {
             case 'HP':
             case 'AP':
@@ -105,28 +98,24 @@ export class CharacterStatsContainer extends React.PureComponent {
         }
     }
 
-    renderBaseStats () {
+    renderBaseStats() {
         const base = this.props.baseCharacter.base;
         const modified = this.props.character.base;
         const attributes = Object.keys(base);
 
-        return attributes.map((attr) => (
-            this.renderAttribute(
-                attr,
-                base[attr],
-                modified[attr]
-            )
-        ));
+        return attributes.map(attr =>
+            this.renderAttribute(attr, base[attr], modified[attr])
+        );
     }
 
-    renderEditableBaseStats () {
+    renderEditableBaseStats() {
         const base = this.props.baseCharacter.base;
         const modified = this.props.character.base;
         const attributes = Object.keys(this.state.base);
 
         return (
             <Block>
-                {attributes.map((attr) => (
+                {attributes.map(attr => (
                     <Grid key={attr} noWrap noGap>
                         <Grid.Item growWidth>
                             {this.renderAttribute(
@@ -173,17 +162,17 @@ export class CharacterStatsContainer extends React.PureComponent {
         );
     }
 
-    renderComputedStats () {
+    renderComputedStats() {
         const base = this.props.computedCharacter.computed;
         const modified = this.props.character.computed;
         const attributes = Object.keys(base);
 
-        return attributes.map((attr) => (
+        return attributes.map(attr =>
             this.renderAttribute(attr, base[attr], modified[attr])
-        ));
+        );
     }
 
-    render () {
+    render() {
         const progress = this.props.baseCharacter.progress;
         const editable = this.props.editable && progress.basePoints > 0;
 
@@ -195,9 +184,7 @@ export class CharacterStatsContainer extends React.PureComponent {
                             ? this.renderEditableBaseStats()
                             : this.renderBaseStats()}
                     </Grid.Item>
-                    <Grid.Item>
-                        {this.renderComputedStats()}
-                    </Grid.Item>
+                    <Grid.Item>{this.renderComputedStats()}</Grid.Item>
                 </Grid>
             </div>
         );
@@ -211,8 +198,7 @@ export default connect(
         character: getCharacterById(state, props.characterId),
     }),
     (dispatch, props) => ({
-        updateCharacter: (charProps) => (
-            dispatch(updateCharacterAction(props.characterId, charProps))
-        ),
+        updateCharacter: charProps =>
+            dispatch(updateCharacterAction(props.characterId, charProps)),
     })
 )(CharacterStatsContainer);

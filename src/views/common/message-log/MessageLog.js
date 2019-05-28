@@ -6,37 +6,32 @@ import { ScrollContainer, Markdown } from '../';
 import styles from './MessageLog.scss';
 
 export default class MessageLog extends React.Component {
-
     static propTypes = {
         messages: PropTypes.arrayOf(PropTypes.shape()),
     };
 
     static defaultProps = {};
 
-    shouldComponentUpdate (nextProps) {
+    shouldComponentUpdate(nextProps) {
         const newestMessage = this.props.messages.slice(-1)[0];
         const nextNewestMessage = nextProps.messages.slice(-1)[0];
 
         return !!(
-            newestMessage && nextNewestMessage &&
+            newestMessage &&
+            nextNewestMessage &&
             newestMessage.id !== nextNewestMessage.id
         );
     }
 
-    renderMessages (lang) {
-        return this.props.messages.map((message) => (
-            <li
-                key={message.id}
-                className={styles.message}
-            >
-                <Markdown>
-                    {T.text(lang, message.text, message.params)}
-                </Markdown>
+    renderMessages(lang) {
+        return this.props.messages.map(message => (
+            <li key={message.id} className={styles.message}>
+                <Markdown>{T.text(lang, message.text, message.params)}</Markdown>
             </li>
         ));
     }
 
-    render () {
+    render() {
         return (
             <ScrollContainer autoScroll>
                 <ul className={styles.container}>

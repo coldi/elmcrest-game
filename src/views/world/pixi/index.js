@@ -1,5 +1,5 @@
 /* eslint-disable  no-param-reassign */
-import 'pixi.js';
+import * as PIXI from 'pixi.js';
 import { makePropReceiver } from '../utils';
 import FieldContainer from './FieldContainer';
 import GroupContainer from './GroupContainer';
@@ -12,9 +12,7 @@ const { Application, Container, Graphics } = PIXI;
 PIXI.utils.skipHello();
 /* eslint-enable  no-undef */
 
-
 export default class Scene {
-
     element;
     layout;
 
@@ -22,7 +20,7 @@ export default class Scene {
     props = {};
 
     background = null;
-    backgroundColor = 0xEEEEEE;
+    backgroundColor = 0xeeeeee;
     zoomContainer = null;
     sceneContainer = null;
     fieldContainer = null;
@@ -31,7 +29,7 @@ export default class Scene {
     eventContainer = null;
     weatherSystem = null;
 
-    constructor (element, layout, props) {
+    constructor(element, layout, props) {
         this.element = element;
         this.layout = layout;
 
@@ -55,7 +53,7 @@ export default class Scene {
         }
     }
 
-    update (props) {
+    update(props) {
         const receivedProp = makePropReceiver(this, props);
 
         if (receivedProp('scale')) {

@@ -9,17 +9,15 @@ import addLocalePathAction from './addLocalePathAction';
  * @param {string} path
  * @returns {Function} A redux thunk
  */
-const extendLocales = (path) => async (dispatch, getState) => {
+const extendLocales = path => async (dispatch, getState) => {
     const { lang } = getI18nState(getState());
 
     dispatch(addLocalePathAction(path));
 
     setCurrentStrings(
-        Immutable.merge(
-            getCurrentStrings(),
-            await loadLocales(path, lang),
-            { deep: true }
-        )
+        Immutable.merge(getCurrentStrings(), await loadLocales(path, lang), {
+            deep: true,
+        })
     );
 };
 

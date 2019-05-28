@@ -9,10 +9,7 @@ import updateEventAtCoordAction from '../actions/updateEventAtCoordAction';
  * @param {Object} action The dispatched action
  * @returns {Object} The next state
  */
-export default function events (
-    state = {},
-    action = {}
-) {
+export default function events(state = {}, action = {}) {
     switch (action.type) {
         case `${createEventAtCoordAction}`: {
             const { event } = action.payload;
@@ -23,7 +20,7 @@ export default function events (
         case `${updateEventAtCoordAction}`: {
             const { event } = action.payload;
 
-            return Immutable.update(state, getKeyFromCoord(event.coord), (prevEvent) => ({
+            return Immutable.update(state, getKeyFromCoord(event.coord), prevEvent => ({
                 ...prevEvent,
                 ...event,
             }));

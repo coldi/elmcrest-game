@@ -5,6 +5,6 @@ import getWorldState from './getWorldState';
  * @param {Object} state The global state
  * @returns {Object} The weather state
  */
-const getWeatherState = (state) => getWorldState(state).weather;
+const getWeatherState = state => getWorldState(state).weather;
 
 export default getWeatherState;

@@ -7,7 +7,6 @@ import T from '../../i18n';
 import { ContextMenu } from '../';
 
 export class StackContextMenuList extends React.PureComponent {
-
     static propTypes = {
         inventoryId: PropTypes.string.isRequired,
         stackId: PropTypes.string.isRequired,
@@ -30,12 +29,16 @@ export class StackContextMenuList extends React.PureComponent {
 
         return (
             <ContextMenu.List>
-                {slot && <ContextMenu.Item onClick={props.onUse}>
-                    <T>ui.equipItem</T>
-                </ContextMenu.Item>}
-                {consumable && <ContextMenu.Item onClick={props.onUse}>
-                    <T>ui.consumeItem</T>
-                </ContextMenu.Item>}
+                {slot && (
+                    <ContextMenu.Item onClick={props.onUse}>
+                        <T>ui.equipItem</T>
+                    </ContextMenu.Item>
+                )}
+                {consumable && (
+                    <ContextMenu.Item onClick={props.onUse}>
+                        <T>ui.consumeItem</T>
+                    </ContextMenu.Item>
+                )}
                 <ContextMenu.Item onClick={props.onDrop}>
                     <T params={{ amount: props.stack.amount }}>ui.dropItem</T>
                 </ContextMenu.Item>
@@ -44,11 +47,9 @@ export class StackContextMenuList extends React.PureComponent {
     }
 }
 
-export default connect(
-    (state, props) => {
-        const stack = getStackById(state, props.inventoryId, props.stackId);
-        const itemType = getItemTypeById(state, stack.item.itemTypeId);
+export default connect((state, props) => {
+    const stack = getStackById(state, props.inventoryId, props.stackId);
+    const itemType = getItemTypeById(state, stack.item.itemTypeId);
 
-        return { stack, itemType };
-    }
-)(StackContextMenuList);
+    return { stack, itemType };
+})(StackContextMenuList);

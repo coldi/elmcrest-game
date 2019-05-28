@@ -6,10 +6,9 @@ import getWindowById from './getWindowById';
  * @param {Object} state The global state
  * @returns {string} A window id
  */
-const getActiveWindowId = (state) => (
+const getActiveWindowId = state =>
     Object.keys(getWindowsState(state)).find(
-        (id) => getWindowById(state, id).active === true
-    )
-);
+        id => getWindowById(state, id).active === true
+    );
 
 export default getActiveWindowId;

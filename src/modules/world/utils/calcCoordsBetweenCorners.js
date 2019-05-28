@@ -10,11 +10,11 @@ import invariant from '../../utils/invariant';
  * @param {number} offset An optional offset to the rectangle shape
  * @returns {Array[]} A list of coords
  */
-const calcCoordsBetweenCorners = (
-    corners = [],
-    offset = 0,
-) => {
-    invariant(corners.length === 4, `Expected a list of 4 corners, but received ${corners.length}.`);
+const calcCoordsBetweenCorners = (corners = [], offset = 0) => {
+    invariant(
+        corners.length === 4,
+        `Expected a list of 4 corners, but received ${corners.length}.`
+    );
 
     const xAxis = corners.map(([x]) => x);
     const yAxis = corners.map(([, y]) => y);
@@ -27,8 +27,8 @@ const calcCoordsBetweenCorners = (
 
     const coords = [];
 
-    const incX = (startX < endX) ? 1 : -1;
-    const incY = (startY < endY) ? 1 : -1;
+    const incX = startX < endX ? 1 : -1;
+    const incY = startY < endY ? 1 : -1;
 
     // iterate through coords in rectangle form
     let y = startY;

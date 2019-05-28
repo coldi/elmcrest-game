@@ -3,9 +3,7 @@
  * @param {boolean} visible
  * @returns {Object} A redux action
  */
-const setUIVisibleAction = (
-    visible
-) => ({
+const setUIVisibleAction = visible => ({
     type: `${setUIVisibleAction}`,
     payload: { visible },
 });

@@ -8,20 +8,21 @@ export default function CharacterPortrait(props) {
     const { character, onClick, progressBar, ...otherProps } = props;
     const { HP, HPMax, level } = character.computed;
     const { basePoints } = character.progress;
-    const resourceThreshold = 0.30;
+    const resourceThreshold = 0.3;
 
     return (
         <div className={styles.container} onClick={onClick}>
             <div className={styles.inlineContainer}>
                 <Panel slim>
-                    <div className={styles.wrap} >
-                        <div className={styles.innerWrap} >
+                    <div className={styles.wrap}>
+                        <div className={styles.innerWrap}>
                             <div className={styles.portrait}>
-                                <Portrait resourceId={character.resourceId} {...otherProps} />
+                                <Portrait
+                                    resourceId={character.resourceId}
+                                    {...otherProps}
+                                />
                                 <span className={styles.level}>{level}</span>
-                                {basePoints ? (
-                                    <span className={styles.levelUp} />
-                                ) : null}
+                                {basePoints ? <span className={styles.levelUp} /> : null}
                             </div>
                             {progressBar ? (
                                 <ProgressBar
@@ -35,11 +36,11 @@ export default function CharacterPortrait(props) {
                         </div>
                         {props.resources && (
                             <div className={styles.resources}>
-                                {['water', 'food', 'energy'].map(key => (
+                                {['water', 'food', 'energy'].map(key =>
                                     character.condition[key] < resourceThreshold ? (
                                         <span key={key} className={styles[key]} />
                                     ) : null
-                                ))}
+                                )}
                             </div>
                         )}
                     </div>

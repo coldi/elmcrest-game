@@ -11,7 +11,7 @@ const getFieldByCoord = (state, coord = []) => {
     const key = getKeyFromCoord(coord);
     const field = getMapState(state)[key];
 
-    return (field !== undefined) ? field : null;
+    return field !== undefined ? field : null;
 };
 
 export default getFieldByCoord;

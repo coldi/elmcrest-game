@@ -14,20 +14,14 @@ import {
     updateView,
     interactWithCoord,
 } from '../../modules/world';
-import {
-    getPlayerGroup,
-    getGroupsInView,
-    getGroupAP,
-} from '../../modules/groups';
+import { getPlayerGroup, getGroupsInView, getGroupAP } from '../../modules/groups';
 import { getEventsInView } from '../../modules/events';
 import CameraControls from './CameraControls';
 import { TILE_SIZE } from './constants';
 import Scene from './pixi';
 import styles from './styles.scss';
 
-
 export class WorldContainer extends React.PureComponent {
-
     static propTypes = {
         fields: PropTypes.arrayOf(PropTypes.shape()).isRequired,
         groups: PropTypes.arrayOf(PropTypes.shape()).isRequired,
@@ -55,7 +49,7 @@ export class WorldContainer extends React.PureComponent {
     animationFrame;
     debouncedWindowResize;
 
-    constructor (props) {
+    constructor(props) {
         super(props);
 
         this.animate = this.animate.bind(this);
@@ -69,7 +63,7 @@ export class WorldContainer extends React.PureComponent {
         this.debouncedWindowResize = debounce(this.handleWindowResize, 100);
     }
 
-    componentDidMount () {
+    componentDidMount() {
         const { props } = this;
 
         this.camera = new CameraControls({
@@ -84,22 +78,18 @@ export class WorldContainer extends React.PureComponent {
             element: this.element,
         });
 
-        this.scene = new Scene(
-            this.element,
-            this.layout,
-            {
-                ...this.calcViewTransformation(), // x, y, scale
-                width: props.scene.viewWidth,
-                height: props.scene.viewHeight,
-                fields: props.fields,
-                groups: props.groups,
-                group: props.player,
-                events: props.events,
-                availableAP: props.availableAP,
-                dayTime: props.dayTime,
-                weather: props.weather,
-            }
-        );
+        this.scene = new Scene(this.element, this.layout, {
+            ...this.calcViewTransformation(), // x, y, scale
+            width: props.scene.viewWidth,
+            height: props.scene.viewHeight,
+            fields: props.fields,
+            groups: props.groups,
+            group: props.player,
+            events: props.events,
+            availableAP: props.availableAP,
+            dayTime: props.dayTime,
+            weather: props.weather,
+        });
 
         if (!props.fields.length) {
             this.handleCameraMove();
@@ -110,7 +100,7 @@ export class WorldContainer extends React.PureComponent {
         window.addEventListener('resize', this.debouncedWindowResize);
     }
 
-    componentDidUpdate (prevProps) {
+    componentDidUpdate(prevProps) {
         const { props, camera } = this;
 
         // update camera from props
@@ -177,14 +167,14 @@ export class WorldContainer extends React.PureComponent {
         }
     }
 
-    componentWillUnmount () {
+    componentWillUnmount() {
         cancelAnimationFrame(this.animationFrame);
         window.removeEventListener('resize', this.debouncedWindowResize);
 
         this.camera.unbindEvents();
     }
 
-    getScale () {
+    getScale() {
         if (!this.camera) {
             return 1;
         }
@@ -192,7 +182,7 @@ export class WorldContainer extends React.PureComponent {
         return this.camera.offset.y;
     }
 
-    getScaledViewDimensions (divider = 1) {
+    getScaledViewDimensions(divider = 1) {
         const { viewWidth, viewHeight } = this.props.scene;
         const scale = this.getScale();
 
@@ -202,32 +192,35 @@ export class WorldContainer extends React.PureComponent {
         };
     }
 
-    calcViewTransformation () {
+    calcViewTransformation() {
         // calc scale
         const { width, height } = this.getScaledViewDimensions();
         const scale = this.getScale();
         // calc translation
         const { position } = this.camera;
-        const x = -position.x + (width / 2);
-        const y = -position.y + (height / 2);
+        const x = -position.x + width / 2;
+        const y = -position.y + height / 2;
 
         return { x, y, scale };
     }
 
-    castScreenToCoord (screenPoint) {
-        return this.layout.pixelToCell(screenPoint).round().toArray2D();
+    castScreenToCoord(screenPoint) {
+        return this.layout
+            .pixelToCell(screenPoint)
+            .round()
+            .toArray2D();
     }
 
-    getCoordFromPointer ({ screen }) {
+    getCoordFromPointer({ screen }) {
         const { width, height } = this.getScaledViewDimensions(2);
-        const screenPosition = screen.add(this.camera.position).sub(
-            getPoint([width, height])
-        );
+        const screenPosition = screen
+            .add(this.camera.position)
+            .sub(getPoint([width, height]));
 
         return this.castScreenToCoord(screenPosition);
     }
 
-    getBoundingCoords (position) {
+    getBoundingCoords(position) {
         const { width, height } = this.getScaledViewDimensions(2);
 
         const left = position.x - width;
@@ -244,20 +237,20 @@ export class WorldContainer extends React.PureComponent {
         return [topLeft, topRight, bottomRight, bottomLeft];
     }
 
-    handleClick (pointer) {
+    handleClick(pointer) {
         const coord = this.getCoordFromPointer(pointer);
         this.props.clickCoord(coord);
     }
 
-    handlePointerDown () {
+    handlePointerDown() {
         this.props.setUIActive(false);
     }
 
-    handlePointerUp () {
+    handlePointerUp() {
         this.props.setUIActive(true);
     }
 
-    handlePointerMove (pointer) {
+    handlePointerMove(pointer) {
         const coord = this.getCoordFromPointer(pointer);
         const { selectedCoord } = this.props.scene;
 
@@ -266,21 +259,21 @@ export class WorldContainer extends React.PureComponent {
         }
     }
 
-    handleCameraMove () {
+    handleCameraMove() {
         const { props, camera } = this;
 
         const coords = this.getBoundingCoords(camera.position);
         props.updateView(coords);
     }
 
-    handleWindowResize () {
+    handleWindowResize() {
         if (this.element) {
             const { clientWidth, clientHeight } = this.element;
             this.props.resizeWindow(clientWidth, clientHeight);
         }
     }
 
-    animate () {
+    animate() {
         const transform = this.calcViewTransformation();
 
         // update scene viewport
@@ -294,17 +287,17 @@ export class WorldContainer extends React.PureComponent {
         this.animationFrame = requestAnimationFrame(this.animate);
     }
 
-    setElementRef (ref) { this.element = ref; }
+    setElementRef(ref) {
+        this.element = ref;
+    }
 
-    render () {
-        return (
-            <div ref={this.setElementRef} className={styles.container} />
-        );
+    render() {
+        return <div ref={this.setElementRef} className={styles.container} />;
     }
 }
 
 export default connect(
-    (state) => {
+    state => {
         const player = getPlayerGroup(state);
 
         return {
@@ -318,27 +311,19 @@ export default connect(
             scene: getSceneState(state),
         };
     },
-    (dispatch) => ({
-        setUIActive: (active) => (
-            dispatch(setUIActiveAction(active))
-        ),
-        resizeWindow: (viewWidth, viewHeight) => (
-            dispatch(updateSceneAction({ viewWidth, viewHeight }))
-        ),
-        setCamera: ({ position, offset }) => (
-            dispatch(updateSceneAction({
-                cameraPosition: position,
-                cameraOffset: offset,
-            }))
-        ),
-        updateView: (coords) => (
-            dispatch(updateView(coords))
-        ),
-        setSelectedCoord: (selectedCoord) => (
-            dispatch(updateSceneAction({ selectedCoord }))
-        ),
-        clickCoord: (coord) => (
-            dispatch(interactWithCoord(coord))
-        ),
+    dispatch => ({
+        setUIActive: active => dispatch(setUIActiveAction(active)),
+        resizeWindow: (viewWidth, viewHeight) =>
+            dispatch(updateSceneAction({ viewWidth, viewHeight })),
+        setCamera: ({ position, offset }) =>
+            dispatch(
+                updateSceneAction({
+                    cameraPosition: position,
+                    cameraOffset: offset,
+                })
+            ),
+        updateView: coords => dispatch(updateView(coords)),
+        setSelectedCoord: selectedCoord => dispatch(updateSceneAction({ selectedCoord })),
+        clickCoord: coord => dispatch(interactWithCoord(coord)),
     })
 )(WorldContainer);

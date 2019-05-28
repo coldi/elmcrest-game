@@ -3,9 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './ScrollContainer.scss';
 
-
 export default class ScrollContainer extends React.Component {
-
     static propTypes = {
         children: PropTypes.node,
         autoScroll: PropTypes.bool,
@@ -22,7 +20,7 @@ export default class ScrollContainer extends React.Component {
     content;
     observer;
 
-    constructor (props) {
+    constructor(props) {
         super(props);
 
         this.handleScroll = this.handleScroll.bind(this);
@@ -30,12 +28,12 @@ export default class ScrollContainer extends React.Component {
         this.setContentRef = this.setContentRef.bind(this);
     }
 
-    componentDidMount () {
+    componentDidMount() {
         if (this.props.autoScroll) {
             this.scrollToBottom();
         }
 
-        this.observer = new MutationObserver((mutations) => {
+        this.observer = new MutationObserver(mutations => {
             mutations.forEach(() => {
                 if (this.props.autoScroll) {
                     this.scrollToBottom();
@@ -48,59 +46,61 @@ export default class ScrollContainer extends React.Component {
         this.observer.observe(this.content, { childList: true, subtree: true });
     }
 
-    componentWillUnmount () {
+    componentWillUnmount() {
         this.observer.disconnect();
     }
 
-    isReady () { return !!(this.container && this.content); }
+    isReady() {
+        return !!(this.container && this.content);
+    }
 
-    getScrollHeight () {
+    getScrollHeight() {
         const containerHeight = this.container.clientHeight;
         const contentHeight = this.content.clientHeight;
 
         return Math.max(0, contentHeight - containerHeight);
     }
 
-    getScrollProgress () {
+    getScrollProgress() {
         return this.state.scrollPos / this.getScrollHeight();
     }
 
-    getScrollLength () {
+    getScrollLength() {
         const containerHeight = this.container.clientHeight || 1;
         const contentHeight = this.content.clientHeight || 1;
 
         return Math.min(1, containerHeight / contentHeight);
     }
 
-    scrollTo (nextScrollPos = this.state.scrollPos) {
+    scrollTo(nextScrollPos = this.state.scrollPos) {
         const scrollPos = clamp(nextScrollPos, 0, this.getScrollHeight());
 
         this.setState(() => ({ scrollPos }));
     }
 
-    scrollToTop () {
+    scrollToTop() {
         this.scrollTo(0);
     }
 
-    scrollToBottom () {
+    scrollToBottom() {
         this.scrollTo(this.getScrollHeight());
     }
 
-    handleScroll (e) {
+    handleScroll(e) {
         const scrollDelta = e.deltaY * 0.5;
 
         this.scrollTo(this.state.scrollPos + scrollDelta);
     }
 
-    setContainerRef (ref) {
+    setContainerRef(ref) {
         this.container = ref;
     }
 
-    setContentRef (ref) {
+    setContentRef(ref) {
         this.content = ref;
     }
 
-    renderScrollbar () {
+    renderScrollbar() {
         if (!this.isReady()) {
             return null;
         }
@@ -127,7 +127,7 @@ export default class ScrollContainer extends React.Component {
         );
     }
 
-    render () {
+    render() {
         const { children } = this.props;
         const { scrollPos } = this.state;
         const contentStyle = {

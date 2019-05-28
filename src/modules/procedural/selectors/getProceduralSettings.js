@@ -5,6 +5,6 @@ import getProceduralState from './getProceduralState';
  * @param {Object} state The global state
  * @returns {Object}
  */
-const getProceduralSettings = (state) => getProceduralState(state).settings;
+const getProceduralSettings = state => getProceduralState(state).settings;
 
 export default getProceduralSettings;

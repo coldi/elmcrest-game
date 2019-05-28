@@ -21,7 +21,7 @@ const timeoutsById = {};
  * @param {string} groupId A group id
  * @returns {Function} A redux thunk
  */
-const proceedWithActionQueue = (groupId) => (dispatch, getState) => {
+const proceedWithActionQueue = groupId => (dispatch, getState) => {
     const state = getState();
     const group = getGroupById(state, groupId);
     const { actionQueue } = group;
@@ -34,8 +34,10 @@ const proceedWithActionQueue = (groupId) => (dispatch, getState) => {
             if (hasGroupEnoughAP(state, groupId, cost)) {
                 if (!isGroupOverloaded(state, groupId)) {
                     // avoid moving to coords that could be blocked meanwhile
-                    if (nextAction.type === `${moveGroupAction}` &&
-                        !isCoordWalkable(state, nextAction.payload.coord)) {
+                    if (
+                        nextAction.type === `${moveGroupAction}` &&
+                        !isCoordWalkable(state, nextAction.payload.coord)
+                    ) {
                         const { coord } = nextAction.payload;
 
                         if (isPlayerGroup(state, group.id)) {
@@ -59,7 +61,9 @@ const proceedWithActionQueue = (groupId) => (dispatch, getState) => {
                     }
 
                     const visibleGroups = getGroupsInView(state);
-                    const delay = visibleGroups.some(({ id }) => id === groupId) ? 300 : 50;
+                    const delay = visibleGroups.some(({ id }) => id === groupId)
+                        ? 300
+                        : 50;
 
                     clearTimeout(timeoutsById[groupId]);
                     timeoutsById[groupId] = setTimeout(

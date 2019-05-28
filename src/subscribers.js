@@ -11,18 +11,14 @@ const subscriptions = [];
  * @param {Function} subscriberFn
  */
 const handleModuleSubscribers = (stream$, subscriberFn) => {
-    subscriptions.push(
-        stream$.subscribe(subscriberFn)
-    );
+    subscriptions.push(stream$.subscribe(subscriberFn));
 };
 
 /**
  * Unsubscribes from all stored subscriptions.
  */
 export const unsubscribe = () => {
-    subscriptions
-        .splice(0)
-        .forEach(subscription => subscription.unsubscribe());
+    subscriptions.splice(0).forEach(subscription => subscription.unsubscribe());
 };
 
 /**
@@ -31,7 +27,7 @@ export const unsubscribe = () => {
  * @param {Function[]} modules Array of module subscriptions
  * @returns {Function} A reference to unsubscribe
  */
-export default function subscribeToModules (modules) {
+export default function subscribeToModules(modules) {
     // unsubscribe from previous subscriptions
     if (subscriptions.length) {
         unsubscribe();

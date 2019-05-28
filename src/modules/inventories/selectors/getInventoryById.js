@@ -6,8 +6,6 @@ import getInventoriesState from './getInventoriesState';
  * @param {string} id An inventory id
  * @returns {Object} An inventory object
  */
-const getInventoryById = (state, id) => (
-    getInventoriesState(state).byId[id]
-);
+const getInventoryById = (state, id) => getInventoriesState(state).byId[id];
 
 export default getInventoryById;

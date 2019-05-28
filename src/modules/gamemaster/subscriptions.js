@@ -6,7 +6,7 @@ import spawnGroups from './actions/spawnGroups';
  * Subscription wrapper.
  * @param {Function} subscribe
  */
-export default function (subscribe) {
+export default function(subscribe) {
     /**
      * Perform actions on each turn.
      */

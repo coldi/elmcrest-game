@@ -23,14 +23,16 @@ const getComputedQualityKey = (state, itemsByQuality, bonus) => {
     const environmentFactor = bonus || 0;
     for (const key of availableQualities) {
         const quality = qualities[key];
-        const chance = (quality.rating - ((iLvl - qLvl) / quality.divisor)) * chanceConstant;
+        const chance =
+            (quality.rating - (iLvl - qLvl) / quality.divisor) * chanceConstant;
         const effectiveChance = (chance * 100) / (100 + magicFind);
         if (effectiveChance < quality.min) {
             return key;
         }
 
         // eslint-disable-next-line  max-len
-        const finalChance = effectiveChance - ((effectiveChance * environmentFactor) / environmentDivisor);
+        const finalChance =
+            effectiveChance - (effectiveChance * environmentFactor) / environmentDivisor;
         if (Math.random() * finalChance < chanceConstant) {
             return key;
         }

@@ -14,10 +14,7 @@ import removeEffectAction from './removeEffectAction';
  * @param {Object|Array} effects One or more effects
  * @returns {Function} A redux thunk
  */
-const addEffects = (
-    charId,
-    effects,
-) => (dispatch, getState) => {
+const addEffects = (charId, effects) => (dispatch, getState) => {
     if (!Array.isArray(effects)) {
         // eslint-disable-next-line  no-param-reassign
         effects = [effects];
@@ -28,9 +25,9 @@ const addEffects = (
 
     const processedEffects = effects.reduce((list, props) => {
         const { name, rel } = props;
-        const hasSimilarEffect = !!char.effects.find(effect => (
-            effect.name === name && effect.rel == rel // eslint-disable-line  eqeqeq
-        ));
+        const hasSimilarEffect = !!char.effects.find(
+            effect => effect.name === name && effect.rel == rel // eslint-disable-line  eqeqeq
+        );
 
         if (hasSimilarEffect) {
             dispatch(removeEffectAction(charId, { name, rel }));

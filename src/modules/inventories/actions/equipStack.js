@@ -13,32 +13,38 @@ import unequipStack from './unequipStack';
  * @param {string} charId A character id
  * @returns {Function} A redux thunk
  */
-const equipStack = (
-    invId,
-    stackId,
-    charId,
-) => (dispatch, getState) => {
+const equipStack = (invId, stackId, charId) => (dispatch, getState) => {
     const state = getState();
     const stack = getStackById(state, invId, stackId);
     const itemType = getItemTypeById(state, stack.item.itemTypeId);
     const { equip } = getCharacterById(state, charId);
 
-    invariant(itemType.slot, `Cannot equip item '${itemType.id}' that has no slot defined.`);
-    invariant(equip[itemType.slot] !== undefined, `The slot for item '${itemType.id}' does not exist: ${itemType.slot}`);
+    invariant(
+        itemType.slot,
+        `Cannot equip item '${itemType.id}' that has no slot defined.`
+    );
+    invariant(
+        equip[itemType.slot] !== undefined,
+        `The slot for item '${itemType.id}' does not exist: ${itemType.slot}`
+    );
 
     if (equip[itemType.slot] !== null) {
         dispatch(unequipStack(invId, equip[itemType.slot].stackId, charId));
     }
 
-    dispatch(updateCharacterAction(charId, {
-        equip: {
-            ...equip,
-            [itemType.slot]: { stackId },
-        },
-    }));
-    dispatch(updateStackAction(invId, stackId, {
-        equipped: true,
-    }));
+    dispatch(
+        updateCharacterAction(charId, {
+            equip: {
+                ...equip,
+                [itemType.slot]: { stackId },
+            },
+        })
+    );
+    dispatch(
+        updateStackAction(invId, stackId, {
+            equipped: true,
+        })
+    );
 
     return getStackById(getState(), invId, stackId);
 };

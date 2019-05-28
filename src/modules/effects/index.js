@@ -18,7 +18,4 @@ export { default as isMultiplyModifier } from './utils/isMultiplyModifier';
 export { default as isMutator } from './utils/isMutator';
 export { default as makeAttributeModifier } from './utils/makeAttributeModifier';
 
-export {
-    WORLD_CONTEXT,
-    COMBAT_CONTEXT,
-} from './constants';
+export { WORLD_CONTEXT, COMBAT_CONTEXT } from './constants';

@@ -19,12 +19,14 @@ const applyRollout = () => async (dispatch, getState) => {
 
         if (!isCharacterAlive(getState(), targetId)) {
             // character died
-            dispatch(addRolloutAction({
-                stateId: 'dead',
-                delay: 500,
-                targetId,
-                originId,
-            }));
+            dispatch(
+                addRolloutAction({
+                    stateId: 'dead',
+                    delay: 500,
+                    targetId,
+                    originId,
+                })
+            );
         }
     }
 

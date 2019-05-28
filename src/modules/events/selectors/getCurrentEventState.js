@@ -5,8 +5,6 @@ import getCurrentEvent from './getCurrentEvent';
  * @param {Object} state The global state
  * @returns {Object} The events state
  */
-const getCurrentEventState = (state) => (
-    getCurrentEvent(state).state
-);
+const getCurrentEventState = state => getCurrentEvent(state).state;
 
 export default getCurrentEventState;

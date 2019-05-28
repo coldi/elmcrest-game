@@ -6,10 +6,7 @@ import createFieldTypesAction from '../actions/createFieldTypesAction';
  * @param {Object} action The dispatched action
  * @returns {Object} The next state
  */
-export default function resources (
-    state = {},
-    action
-) {
+export default function resources(state = {}, action) {
     switch (action.type) {
         case `${createFieldTypesAction}`: {
             const { list } = action.payload;

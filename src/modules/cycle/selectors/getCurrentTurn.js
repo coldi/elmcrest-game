@@ -5,8 +5,6 @@ import getCycleState from './getCycleState';
  * @param {Object} state The global state
  * @returns {number} The current turn
  */
-const getCurrentTurn = (state) => (
-    getCycleState(state).cycle.turn
-);
+const getCurrentTurn = state => getCycleState(state).cycle.turn;
 
 export default getCurrentTurn;

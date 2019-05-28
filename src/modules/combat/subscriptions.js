@@ -6,7 +6,7 @@ import { startBattle } from './';
  * Subscription wrapper.
  * @param {Function} subscribe
  */
-export default function (subscribe) {
+export default function(subscribe) {
     /**
      * Starts a battle when player performed an attack action.
      */

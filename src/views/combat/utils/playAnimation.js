@@ -1,7 +1,7 @@
 import TimelineMax from 'gsap/TimelineMax';
 
-const playAnimation = (animation, params) => (
-    new Promise((resolve) => {
+const playAnimation = (animation, params) =>
+    new Promise(resolve => {
         const timeline = new TimelineMax({ onComplete: resolve });
 
         try {
@@ -9,7 +9,6 @@ const playAnimation = (animation, params) => (
         } catch (err) {
             resolve();
         }
-    })
-);
+    });
 
 export default playAnimation;

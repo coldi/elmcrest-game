@@ -5,9 +5,7 @@ import { SAVED_STATE_KEY } from '../constants';
  * @param {string} [key] A localStorage item key
  * @returns {Function} A redux thunk
  */
-const removeSavedState = (
-    key = SAVED_STATE_KEY
-) => () => {
+const removeSavedState = (key = SAVED_STATE_KEY) => () => {
     localStorage.removeItem(key);
 };
 

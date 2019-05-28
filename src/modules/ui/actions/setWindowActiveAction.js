@@ -4,10 +4,7 @@
  * @param {boolean} active The window active state
  * @returns {Object} A redux action
  */
-const setWindowActiveAction = (
-    id,
-    active
-) => ({
+const setWindowActiveAction = (id, active) => ({
     type: `${setWindowActiveAction}`,
     payload: { id, active },
 });

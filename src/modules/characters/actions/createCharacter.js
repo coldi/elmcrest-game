@@ -8,9 +8,7 @@ import createCharacterAction from './createCharacterAction';
  * @param {Object} props Specific character props
  * @returns {Function} A redux thunk
  */
-const createCharacter = (
-    props = {},
-) => (dispatch) => {
+const createCharacter = (props = {}) => dispatch => {
     const character = Immutable.merge(
         characterDefaults,
         {

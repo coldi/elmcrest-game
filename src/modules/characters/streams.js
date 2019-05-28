@@ -10,7 +10,7 @@ import isCharacterAlive from './selectors/isCharacterAlive';
  */
 export const receivedExp$ = store$
     .filter(({ action }) => action.type === `${addExpAction}`)
-    .map((input) => ({
+    .map(input => ({
         ...input,
         characterId: input.action.payload.id,
     }));
@@ -25,7 +25,7 @@ export const levelUp$ = receivedExp$
 
         return char.computed.level > prevChar.computed.level;
     })
-    .map((input) => ({
+    .map(input => ({
         ...input,
         prevLevel: getCharacterById(input.prevState, input.characterId).computed.level,
         level: getCharacterById(input.getState(), input.characterId).computed.level,
@@ -43,7 +43,7 @@ export const playerLevelUp$ = levelUp$.filter(
  */
 export const characterDidUpdate$ = store$
     .filter(({ action }) => action.type === `${updateCharacterAction}`)
-    .map((input) => ({
+    .map(input => ({
         ...input,
         prevCharacter: getCharacterById(input.prevState, input.action.payload.id),
         character: getCharacterById(input.getState(), input.action.payload.id),

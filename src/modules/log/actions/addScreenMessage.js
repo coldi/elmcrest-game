@@ -9,17 +9,16 @@ import addMessageAction from './addMessageAction';
  * @param {Object} params The message params
  * @returns {Function} A redux thunk
  */
-const addScreenMessage = (
-    text,
-    params,
-) => (dispatch) => {
-    dispatch(addMessageAction({
-        ...messageDefaults,
-        id: uid('log'),
-        type: SCREEN_MESSAGE_TYPE,
-        text,
-        params,
-    }));
+const addScreenMessage = (text, params) => dispatch => {
+    dispatch(
+        addMessageAction({
+            ...messageDefaults,
+            id: uid('log'),
+            type: SCREEN_MESSAGE_TYPE,
+            text,
+            params,
+        })
+    );
 };
 
 export default addScreenMessage;

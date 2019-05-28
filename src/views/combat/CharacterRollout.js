@@ -22,23 +22,20 @@ import spriteStyles from './sprites.scss';
  * Maybe future me will find a cleaner solution.
  */
 
-function determineAnimation (type, isOrigin) {
+function determineAnimation(type, isOrigin) {
     switch (type) {
-        case 'attack': return isOrigin
-            ? attackAnimation
-            : hitAnimation;
-        case 'support': return isOrigin
-            ? supportAnimation
-            : null;
-        case 'dead': return isOrigin
-            ? null
-            : deadAnimation;
-        default: return null;
+        case 'attack':
+            return isOrigin ? attackAnimation : hitAnimation;
+        case 'support':
+            return isOrigin ? supportAnimation : null;
+        case 'dead':
+            return isOrigin ? null : deadAnimation;
+        default:
+            return null;
     }
 }
 
 class CharacterRollout extends React.Component {
-
     static propTypes = {
         character: PropTypes.shape().isRequired,
         rollout: PropTypes.shape(),
@@ -60,21 +57,21 @@ class CharacterRollout extends React.Component {
         sprite: null,
     };
 
-    constructor (props) {
+    constructor(props) {
         super(props);
 
         this.setElementRef = this.setElementRef.bind(this);
     }
 
-    componentDidMount () {
+    componentDidMount() {
         this.processRollout(this.props, true);
     }
 
-    componentDidUpdate (prevProps) {
+    componentDidUpdate(prevProps) {
         this.processRollout(prevProps);
     }
 
-    async processRollout (prevProps = {}, forceRollout = false) {
+    async processRollout(prevProps = {}, forceRollout = false) {
         const nextRollout = this.props.rollout;
 
         // skip if there is no rollout to apply
@@ -87,7 +84,7 @@ class CharacterRollout extends React.Component {
         if (!isOrigin && !isTarget) return;
 
         if (nextRollout.skillId || nextRollout.stateId) {
-            const animationType = (this.props.skill)
+            const animationType = this.props.skill
                 ? this.props.skill.animationType
                 : nextRollout.stateId;
             const animation = determineAnimation(animationType, isOrigin);
@@ -100,7 +97,9 @@ class CharacterRollout extends React.Component {
             if (animationType === 'attack' && isTarget) {
                 // assign a sprite css class
                 this.setState({ sprite: spriteStyles.blood });
-                this.setState({ output: Math.round(nextRollout.result[0].effects[0].value) });
+                this.setState({
+                    output: Math.round(nextRollout.result[0].effects[0].value),
+                });
             }
             if (animationType === 'support' && isTarget) {
                 // assign a sprite css class
@@ -128,20 +127,21 @@ class CharacterRollout extends React.Component {
         this.props.onRemove();
     }
 
-    setElementRef (ref) {
+    setElementRef(ref) {
         this.element = ref;
     }
 
-    render () {
-        const className = classNames(
-            styles.container,
-            { [styles.active]: this.props.active }
-        );
+    render() {
+        const className = classNames(styles.container, {
+            [styles.active]: this.props.active,
+        });
 
         return (
             <div className={className}>
                 {this.state.sprite && <div className={this.state.sprite} />}
-                {this.state.output && <div className={styles.output}>{this.state.output}</div>}
+                {this.state.output && (
+                    <div className={styles.output}>{this.state.output}</div>
+                )}
                 <div ref={this.setElementRef} className={styles.wrap}>
                     {this.props.children}
                 </div>
@@ -150,8 +150,6 @@ class CharacterRollout extends React.Component {
     }
 }
 
-export default connect(
-    (state, props) => ({
-        skill: props.rollout && getSkillById(state, props.rollout.skillId)
-    })
-)(CharacterRollout);
+export default connect((state, props) => ({
+    skill: props.rollout && getSkillById(state, props.rollout.skillId),
+}))(CharacterRollout);

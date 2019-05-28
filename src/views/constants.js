@@ -1,7 +1,8 @@
 /**
  *  ACSII key code numbers.
  */
-export const KEY = { // eslint-disable-line
+export const KEY = {
+    // eslint-disable-line
     SPACE: 32,
     ESC: 27,
 

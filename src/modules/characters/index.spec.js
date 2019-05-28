@@ -17,7 +17,6 @@ import {
     getExpByLevel,
 } from './';
 
-
 describe('modules/characters', () => {
     let dispatch;
     let getState;
@@ -34,14 +33,13 @@ describe('modules/characters', () => {
         dispatch(incrementTurnAction());
         character = getCharacterById(getState(), charId);
     };
-    const containAtLeast = (obj, least) => (
-        Object.keys(least).every((key) => {
+    const containAtLeast = (obj, least) =>
+        Object.keys(least).every(key => {
             if (typeof least[key] === 'object') {
                 return containAtLeast(obj[key], least[key]);
             }
             return obj[key] === least[key];
-        })
-    );
+        });
 
     beforeEach(() => {
         subscribeToModules([characterSubscriptions]);
@@ -88,13 +86,13 @@ describe('modules/characters', () => {
             it('should have the correct effect props', () => {
                 const effect = character.effects[0];
 
-                Object.keys(effectProps).forEach((prop) => {
+                Object.keys(effectProps).forEach(prop => {
                     expect(effect[prop]).toEqual(effectProps[prop]);
                 });
             });
 
             it('should NOT have modified character stats', () => {
-                Object.keys(charProps).forEach((prop) => {
+                Object.keys(charProps).forEach(prop => {
                     if (prop !== 'effects') {
                         expect(character[prop]).toEqual(prevCharacter[prop]);
                     }
@@ -150,18 +148,22 @@ describe('modules/characters', () => {
             const consumableItemId = 'test-consumable';
 
             beforeEach(() => {
-                dispatch(createItemTypesAction([
-                    {
-                        ...itemTypeDefaults,
-                        id: consumableItemId,
-                        consumable: true,
-                        effects: [{
-                            name: 'restoreAP',
-                            value: 1,
-                            duration: 0,
-                        }],
-                    }
-                ]));
+                dispatch(
+                    createItemTypesAction([
+                        {
+                            ...itemTypeDefaults,
+                            id: consumableItemId,
+                            consumable: true,
+                            effects: [
+                                {
+                                    name: 'restoreAP',
+                                    value: 1,
+                                    duration: 0,
+                                },
+                            ],
+                        },
+                    ])
+                );
 
                 dispatch(consumeItem(charId, { itemTypeId: consumableItemId }));
 
@@ -189,19 +191,23 @@ describe('modules/characters', () => {
                 let stack;
 
                 beforeEach(() => {
-                    dispatch(createItemTypesAction([
-                        {
-                            ...itemTypeDefaults,
-                            id: wearableItemId,
-                            slot: 'head',
-                            size: 1,
-                            effects: [{
-                                name: '+computed.APMax',
-                                value: 1,
-                                duration: null,
-                            }],
-                        }
-                    ]));
+                    dispatch(
+                        createItemTypesAction([
+                            {
+                                ...itemTypeDefaults,
+                                id: wearableItemId,
+                                slot: 'head',
+                                size: 1,
+                                effects: [
+                                    {
+                                        name: '+computed.APMax',
+                                        value: 1,
+                                        duration: null,
+                                    },
+                                ],
+                            },
+                        ])
+                    );
 
                     item = getItemTypeById(getState(), wearableItemId);
 

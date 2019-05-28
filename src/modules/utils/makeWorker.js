@@ -1,6 +1,5 @@
 import UniversalWorker from './UniversalWorker';
 
-
 /**
  * Used to keep track of all created workers.
  * @type {Map}
@@ -11,7 +10,7 @@ const threadMap = new Map();
  * Calls the first function from a given list of functions.
  * @param {Function[]} queue
  */
-const runNext = (queue) => {
+const runNext = queue => {
     const [next] = queue;
     if (typeof next === 'function') {
         next();
@@ -28,7 +27,7 @@ const runNext = (queue) => {
  * @param {string} script A script or function context for the worker
  * @returns {Function} A function that passes it's arguments to the worker
  */
-const makeWorker = (script) => {
+const makeWorker = script => {
     // hash worker threads by script
     if (!threadMap.has(script)) {
         threadMap.set(script, {
@@ -39,13 +38,14 @@ const makeWorker = (script) => {
 
     const { worker, queue } = threadMap.get(script);
 
-    return (...args) => (
+    return (...args) =>
         new Promise((resolve, reject) => {
             // enqueue worker tasks and perform them sequentially
             queue.push(() => {
                 try {
                     worker.postMessage(args);
-                    worker.onmessage = (e) => { // eslint-disable-line
+                    worker.onmessage = e => {
+                        // eslint-disable-line
                         resolve(e.data);
                         // remove current task
                         queue.shift();
@@ -61,8 +61,7 @@ const makeWorker = (script) => {
             if (queue.length === 1) {
                 runNext(queue);
             }
-        })
-    );
+        });
 };
 
 makeWorker.supported = UniversalWorker.nativeSupport;

@@ -3,22 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getGroupById } from '../../../modules/groups';
 import { getCharacterById } from '../../../modules/characters';
-import {
-    SKILLS_WINDOW,
-    getGeneralUIState,
-    toggleWindow,
-} from '../../../modules/ui';
-import {
-    CharacterSelection,
-    Panel,
-    SkillTree,
-    Window,
-} from '../../common';
+import { SKILLS_WINDOW, getGeneralUIState, toggleWindow } from '../../../modules/ui';
+import { CharacterSelection, Panel, SkillTree, Window } from '../../common';
 import T from '../../i18n';
 
-
 export class SkillsContainer extends React.Component {
-
     static propTypes = {
         groupId: PropTypes.string.isRequired,
         group: PropTypes.shape(),
@@ -62,9 +51,7 @@ export default connect(
             character,
         };
     },
-    (dispatch) => ({
-        closeWindow: () => (
-            dispatch(toggleWindow(SKILLS_WINDOW, false))
-        ),
+    dispatch => ({
+        closeWindow: () => dispatch(toggleWindow(SKILLS_WINDOW, false)),
     })
 )(SkillsContainer);

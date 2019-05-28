@@ -3,9 +3,7 @@
  * @param {Object} id An inventory id
  * @returns {Object} A redux action
  */
-const removeInventoryAction = (
-    id,
-) => ({
+const removeInventoryAction = id => ({
     type: `${removeInventoryAction}`,
     payload: { id },
 });

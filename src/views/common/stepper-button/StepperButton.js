@@ -2,15 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './StepperButton.scss';
 
-export default function StepperButton (props) {
+export default function StepperButton(props) {
     return (
         <span className={styles.container}>
             <button
+                type="button"
                 className={styles.btn}
                 disabled={props.value <= props.min}
                 onClick={props.onDecrease}
             />
             <button
+                type="button"
                 className={styles.btn}
                 disabled={props.value >= props.max}
                 onClick={props.onIncrease}

@@ -8,12 +8,8 @@ import getItemStacksList from './getItemStacksList';
  * @param {string} id An inventory id
  * @returns {Array} A list of stacks
  */
-const getUnequippedStacksList = memoize(
-    getStacks,
-    (state, id) => (
-        getItemStacksList(state, id)
-            .filter(stack => !stack.equipped)
-    )
+const getUnequippedStacksList = memoize(getStacks, (state, id) =>
+    getItemStacksList(state, id).filter(stack => !stack.equipped)
 );
 
 export default getUnequippedStacksList;

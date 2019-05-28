@@ -19,7 +19,7 @@ export const battleDidStart$ = store$.filter(
  */
 export const battleDidEnd$ = store$
     .filter(({ action }) => action.type === `${endBattleAction}`)
-    .map((input) => ({
+    .map(input => ({
         ...input,
         ...input.action.payload,
     }));
@@ -28,10 +28,9 @@ export const battleDidEnd$ = store$
  * Emits on every next turn of the battle.
  */
 export const battleTurn$ = store$.filter(
-    ({ action, getState, prevState }) => (
+    ({ action, getState, prevState }) =>
         action.type === `${setCurrentBattleAction}` &&
         getBattleTurn(getState()) > getBattleTurn(prevState)
-    )
 );
 
 /**
@@ -39,7 +38,7 @@ export const battleTurn$ = store$.filter(
  */
 export const rolloutApplied$ = store$
     .filter(({ action }) => action.type === `${applyRolloutAction}`)
-    .map((input) => ({
+    .map(input => ({
         ...input,
         rollout: input.action.payload.rollout,
     }));

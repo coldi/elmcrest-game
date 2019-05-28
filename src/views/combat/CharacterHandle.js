@@ -7,7 +7,6 @@ import SkillBar from './SkillBar';
 import styles from './CharacterHandle.scss';
 
 class CharacterHandle extends React.Component {
-
     static propTypes = {
         characterId: PropTypes.string,
         activeCharacterId: PropTypes.string,
@@ -27,7 +26,7 @@ class CharacterHandle extends React.Component {
         active: false,
     };
 
-    constructor (props) {
+    constructor(props) {
         super(props);
 
         this.handleClickOutside = this.handleClickOutside.bind(this);
@@ -36,15 +35,15 @@ class CharacterHandle extends React.Component {
         this.handleSkillSelect = this.handleSkillSelect.bind(this);
     }
 
-    componentDidMount () {
+    componentDidMount() {
         document.addEventListener('mouseup', this.handleClickOutside);
     }
 
-    componentWillUnmount () {
+    componentWillUnmount() {
         document.removeEventListener('mouseup', this.handleClickOutside);
     }
 
-    handleClickOutside (e) {
+    handleClickOutside(e) {
         if (e.target.closest(`.${styles.container}`)) return;
 
         if (this.props.activeCharacterId === this.props.characterId) {
@@ -52,23 +51,23 @@ class CharacterHandle extends React.Component {
         }
     }
 
-    handleActivation () {
+    handleActivation() {
         if (!this.props.canSelect) return;
 
         this.props.onCharacter(this.props.characterId);
         this.setState({ active: true });
     }
 
-    handleDeactivation () {
+    handleDeactivation() {
         this.setState({ active: false });
     }
 
-    handleSkillSelect (skillId) {
+    handleSkillSelect(skillId) {
         this.props.onSkill(skillId);
         this.handleDeactivation();
     }
 
-    render () {
+    render() {
         const active = this.props.canSelect && this.state.active;
         const className = classNames(styles.container, {
             [styles.active]: this.state.active,
@@ -88,16 +87,12 @@ class CharacterHandle extends React.Component {
                         />
                     </div>
                 ) : null}
-                <div className={styles.character}>
-                    {this.props.children}
-                </div>
+                <div className={styles.character}>{this.props.children}</div>
             </div>
         );
     }
 }
 
-export default connect(
-    (state, props) => ({
-        skills: getCharacterSkillsById(state, props.activeCharacterId),
-    })
-)(CharacterHandle);
+export default connect((state, props) => ({
+    skills: getCharacterSkillsById(state, props.activeCharacterId),
+}))(CharacterHandle);

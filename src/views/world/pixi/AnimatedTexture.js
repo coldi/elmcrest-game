@@ -1,4 +1,4 @@
-import 'pixi.js';
+import * as PIXI from 'pixi.js';
 import { TILE_SIZE } from '../constants';
 /* eslint-disable  no-undef */
 const {
@@ -10,7 +10,6 @@ const {
 /* eslint-enable  no-undef */
 
 export default class AnimatedTexture extends Texture {
-
     currentFrame = 0;
     numFrames = 1;
     animationFrame = null;
@@ -29,7 +28,7 @@ export default class AnimatedTexture extends Texture {
         return texture;
     }
 
-    constructor (...args) {
+    constructor(...args) {
         super(...args);
 
         this.animate = this.animate.bind(this);
@@ -43,7 +42,7 @@ export default class AnimatedTexture extends Texture {
         }
     }
 
-    handleLoad () {
+    handleLoad() {
         const { realWidth } = this.baseTexture;
 
         this.numFrames = Math.ceil(realWidth / TILE_SIZE);
@@ -52,7 +51,7 @@ export default class AnimatedTexture extends Texture {
         this.animate();
     }
 
-    setCurrentFrame (currentFrame = this.currentFrame) {
+    setCurrentFrame(currentFrame = this.currentFrame) {
         const { realHeight } = this.baseTexture;
         const x = TILE_SIZE * currentFrame;
 
@@ -60,7 +59,7 @@ export default class AnimatedTexture extends Texture {
         this.currentFrame = currentFrame;
     }
 
-    animate () {
+    animate() {
         if (this.numFrames > 1) {
             this.animationFrameCounter += 1;
 
@@ -74,7 +73,7 @@ export default class AnimatedTexture extends Texture {
         this.animationFrame = requestAnimationFrame(this.animate);
     }
 
-    destroy () {
+    destroy() {
         cancelAnimationFrame(this.animationFrame);
         super.destroy();
     }

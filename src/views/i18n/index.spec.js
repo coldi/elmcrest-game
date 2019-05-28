@@ -20,7 +20,7 @@ describe('views/i18n', () => {
         },
     };
 
-    const renderComponent = (element) => {
+    const renderComponent = element => {
         renderedElement = mount(element).find(T);
     };
 
@@ -95,7 +95,11 @@ describe('views/i18n', () => {
 
     describe('Given <T> uses an element as child', () => {
         beforeEach(() => {
-            renderComponent(<T><div>Element</div></T>);
+            renderComponent(
+                <T>
+                    <div>Element</div>
+                </T>
+            );
         });
 
         it('should show element content w/o translation', () => {

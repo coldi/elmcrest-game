@@ -4,8 +4,6 @@
  * @param {Cell} cell
  * @returns {boolean}
  */
-const includes = (list, cell) => (
-    list.some((item) => cell.equals(item))
-);
+const includes = (list, cell) => list.some(item => cell.equals(item));
 
 export default includes;

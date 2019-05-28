@@ -10,7 +10,7 @@ import showResultAction from './showResultAction';
  * @param {boolean} dismissResult A flag whether the result screen should be dismissed/skipped
  * @returns {Function} A redux thunk
  */
-const endBattle = (dismissResult) => (dispatch, getState) => {
+const endBattle = dismissResult => (dispatch, getState) => {
     const result = getCurrentBattleResult(getState());
 
     if (result.victory !== null) dispatch(addBattleToHistoryAction(result));

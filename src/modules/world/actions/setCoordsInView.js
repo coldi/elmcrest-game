@@ -16,9 +16,9 @@ const setCoordsInView = () => (dispatch, getState) => {
     // compute all coords that are in the rect described by boundingCoords
     const coordsInView = calcCoordsBetweenCorners(boundingCoords, visibleCoordsOffset)
         // filter coords that are visible and discovered
-        .filter((coord) => {
+        .filter(coord => {
             const { visible, discovered } = getCachedFieldByCoord(state, coord);
-            return (visible || discovered);
+            return visible || discovered;
         });
 
     // dispatch all coords that are relevant to the view

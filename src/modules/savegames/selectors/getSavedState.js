@@ -5,10 +5,7 @@ import { SAVED_STATE_KEY } from '../constants';
  * @param {string} [key] A localStorage item key
  * @returns {Object} The saved state.
  */
-const getSavedState = (key = SAVED_STATE_KEY) => (
-    localStorage.getItem(key)
-        ? JSON.parse(localStorage.getItem(key))
-        : undefined
-);
+const getSavedState = (key = SAVED_STATE_KEY) =>
+    localStorage.getItem(key) ? JSON.parse(localStorage.getItem(key)) : undefined;
 
 export default getSavedState;

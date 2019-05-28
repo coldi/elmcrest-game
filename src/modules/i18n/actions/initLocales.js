@@ -10,13 +10,12 @@ import loadLocales from '../utils/loadLocales';
 const initLocales = () => async (dispatch, getState) => {
     const { localePaths, lang } = getI18nState(getState());
 
-    const results = await Promise.all(
-        localePaths.map(path => loadLocales(path, lang))
-    );
+    const results = await Promise.all(localePaths.map(path => loadLocales(path, lang)));
 
-    const localeStrings = results.reduce((locales, result) => (
-        Immutable.merge(locales, result, { deep: true })
-    ), {});
+    const localeStrings = results.reduce(
+        (locales, result) => Immutable.merge(locales, result, { deep: true }),
+        {}
+    );
 
     setCurrentStrings(localeStrings);
 };

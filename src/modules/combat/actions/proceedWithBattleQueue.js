@@ -21,10 +21,11 @@ const proceedWithBattleQueue = () => (dispatch, getState) => {
 
     // otherwise make selections for next NPC
     // by finding a proper target
-    const target = queue.find((entry) => (
-        entry.groupId !== next.groupId &&
-        isCharacterAlive(getState(), entry.characterId)
-    ));
+    const target = queue.find(
+        entry =>
+            entry.groupId !== next.groupId &&
+            isCharacterAlive(getState(), entry.characterId)
+    );
 
     if (!target) return;
 

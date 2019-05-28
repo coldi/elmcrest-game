@@ -7,20 +7,17 @@ import mergeMapFieldsAction from './mergeMapFieldsAction';
  * @param {Array[]} vanishingCoords A list of coords that did disappear
  * @returns {Function} A redux thunk
  */
-const mergeMapFields = (
-    appearingCoords,
-    vanishingCoords
-) => (dispatch, getState) => {
+const mergeMapFields = (appearingCoords, vanishingCoords) => (dispatch, getState) => {
     const state = getState();
 
     // prepare update for appearing fields, setting them to visible
-    const appearingFields = appearingCoords.map((coord) => {
+    const appearingFields = appearingCoords.map(coord => {
         const field = getCachedFieldByCoord(state, coord);
         return { ...field, visible: true, discovered: true };
     });
 
     // prepare update for vanishing fields, setting them to invisible
-    const vanishingFields = vanishingCoords.map((coord) => {
+    const vanishingFields = vanishingCoords.map(coord => {
         const field = getCachedFieldByCoord(state, coord);
         return { ...field, visible: false, discovered: true };
     });

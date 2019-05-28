@@ -7,14 +7,9 @@ import setWindowActiveAction from './setWindowActiveAction';
  * @param {boolean} [active] The optional active state.
  * @returns {Function} A redux thunk
  */
-const toggleWindow = (
-    id,
-    active = null
-) => (dispatch, getState) => {
+const toggleWindow = (id, active = null) => (dispatch, getState) => {
     const window = getWindowById(getState(), id);
-    const activeState = (active === null)
-        ? (window && !window.active)
-        : active;
+    const activeState = active === null ? window && !window.active : active;
 
     dispatch(setWindowActiveAction(id, activeState));
 };

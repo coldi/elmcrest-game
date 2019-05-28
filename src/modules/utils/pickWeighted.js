@@ -5,10 +5,11 @@
  * @param {Function|string} resolveWeight
  * @returns {Object}
  */
-export default function pickWeighted (list, resolveWeight) {
-    const weights = typeof resolveWeight === 'function'
-        ? list.map(resolveWeight)
-        : list.map(entry => entry[resolveWeight]);
+export default function pickWeighted(list, resolveWeight) {
+    const weights =
+        typeof resolveWeight === 'function'
+            ? list.map(resolveWeight)
+            : list.map(entry => entry[resolveWeight]);
 
     const totalWeight = weights.reduce((acc, cur) => acc + cur, 0);
 

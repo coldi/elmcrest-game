@@ -1,5 +1,3 @@
-const pause = (time) => (
-    new Promise(resolve => setTimeout(resolve, time))
-);
+const pause = time => new Promise(resolve => setTimeout(resolve, time));
 
 export default pause;

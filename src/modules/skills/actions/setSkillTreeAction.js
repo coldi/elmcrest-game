@@ -3,9 +3,9 @@
  * @param {Object} tree The skill tree props
  * @returns {Object} A redux action
  */
-const setSkillTreeAction = (tree) => ({
+const setSkillTreeAction = tree => ({
     type: `${setSkillTreeAction}`,
-    payload: { tree }
+    payload: { tree },
 });
 
 setSkillTreeAction.toString = () => 'skills/set skill tree';

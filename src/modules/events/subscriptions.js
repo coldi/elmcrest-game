@@ -9,7 +9,7 @@ import startEvent from './actions/startEvent';
  * Subscription wrapper.
  * @param {Function} subscribe
  */
-export default function (subscribe) {
+export default function(subscribe) {
     /**
      * When the map updates, add events accordingly.
      */

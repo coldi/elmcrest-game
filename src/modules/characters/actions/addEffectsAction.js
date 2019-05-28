@@ -6,7 +6,7 @@
  */
 const addEffectsAction = (id, effects) => ({
     type: `${addEffectsAction}`,
-    payload: { id, effects }
+    payload: { id, effects },
 });
 
 addEffectsAction.toString = () => 'characters/add effects';

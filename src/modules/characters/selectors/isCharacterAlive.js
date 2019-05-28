@@ -7,9 +7,8 @@ import getCharacterById from './getCharacterById';
  * @param {Object} id A character id
  * @returns {boolean}
  */
-const isCharacterAlive = (state, id) => (
+const isCharacterAlive = (state, id) =>
     getBaseCharacterById(state, id) !== undefined &&
-    getCharacterById(state, id).computed.HP > 0
-);
+    getCharacterById(state, id).computed.HP > 0;
 
 export default isCharacterAlive;

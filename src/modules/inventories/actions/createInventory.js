@@ -9,9 +9,7 @@ import createInventoryAction from './createInventoryAction';
  * @param {Object} [props] Specific inventory props
  * @returns {Function} A redux thunk
  */
-const createInventory = (
-    props = {}
-) => (dispatch) => {
+const createInventory = (props = {}) => dispatch => {
     const inventory = {
         ...inventoryDefaults,
         ...props,

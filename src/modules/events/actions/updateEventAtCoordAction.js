@@ -3,7 +3,7 @@
  * @param {Object} event An event object with a coord prop
  * @returns {Object} A redux action
  */
-const updateEventAtCoordAction = (event) => ({
+const updateEventAtCoordAction = event => ({
     type: `${updateEventAtCoordAction}`,
     payload: { event },
 });

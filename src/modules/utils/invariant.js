@@ -6,7 +6,7 @@ const { NODE_ENV } = process.env;
  * @param {*} condition
  * @param {string} message
  */
-export default function (condition, message) {
+export default function(condition, message) {
     if (NODE_ENV !== 'production') {
         if (message === undefined) {
             throw new Error('invariant requires an error message argument');
@@ -18,7 +18,7 @@ export default function (condition, message) {
         if (message === undefined) {
             error = new Error(
                 'Minified exception occurred; use the non-minified dev environment ' +
-                'for the full error message and additional helpful warnings.'
+                    'for the full error message and additional helpful warnings.'
             );
         } else {
             error = new Error(message);

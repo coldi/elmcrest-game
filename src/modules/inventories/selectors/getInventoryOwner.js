@@ -16,7 +16,8 @@ const getInventoryOwner = (state, id) => {
         if (type === STATIC_INVENTORY) {
             const coord = ownerId.split('_');
             return getCachedFieldByCoord(state, coord);
-        } else if (type === DYNAMIC_INVENTORY) {
+        }
+        if (type === DYNAMIC_INVENTORY) {
             return getGroupById(state, ownerId);
         }
     }

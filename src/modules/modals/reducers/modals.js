@@ -6,18 +6,11 @@ import { createModalAction, removeModalAction } from '../';
  * @param {Object} action The dispatched action
  * @returns {Object} The next state
  */
-export default function modals (
-    state = [],
-    action = {}
-) {
+export default function modals(state = [], action = {}) {
     switch (action.type) {
-
         case `${createModalAction}`: {
             const { modal } = action.payload;
-            return [
-                ...state,
-                modal,
-            ];
+            return [...state, modal];
         }
 
         case `${removeModalAction}`: {
@@ -28,6 +21,5 @@ export default function modals (
         default: {
             return state;
         }
-
     }
 }

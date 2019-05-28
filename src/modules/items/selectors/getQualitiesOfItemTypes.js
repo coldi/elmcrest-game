@@ -11,10 +11,12 @@ const getQualitiesOfItemTypes = (state, itemTypes) => {
 
     return Object.keys(qualities).reduce((acc, qualityId) => {
         const itemsWithQuality = itemTypes.filter(item => item[qualityId]);
-        return itemsWithQuality.length ? {
-            ...acc,
-            [qualityId]: itemsWithQuality,
-        } : acc;
+        return itemsWithQuality.length
+            ? {
+                  ...acc,
+                  [qualityId]: itemsWithQuality,
+              }
+            : acc;
     }, {});
 };
 

@@ -9,11 +9,7 @@ import updateStackAction from './updateStackAction';
  * @param {number} amount The amount to increase
  * @returns {Function} A redux thunk
  */
-const addToStack = (
-    invId,
-    stackId,
-    amount = 0,
-) => (dispatch, getState) => {
+const addToStack = (invId, stackId, amount = 0) => (dispatch, getState) => {
     const stack = getStackById(getState(), invId, stackId);
 
     invariant(stack, `Inventory stack with id '${stackId}' does not exist.`);

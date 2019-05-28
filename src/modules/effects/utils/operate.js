@@ -5,12 +5,17 @@
  * @param {number} value
  * @returns {number}
  */
-export default function operate (prop, operator, value) {
+export default function operate(prop, operator, value) {
     switch (operator.charAt(0)) {
-        case '+': return prop + value;
-        case '-': return prop - value;
-        case '*': return prop * value;
-        case '/': return prop / value;
-        default: return prop;
+        case '+':
+            return prop + value;
+        case '-':
+            return prop - value;
+        case '*':
+            return prop * value;
+        case '/':
+            return prop / value;
+        default:
+            return prop;
     }
 }

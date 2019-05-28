@@ -4,11 +4,7 @@ import { connect } from 'react-redux';
 import { getSceneState } from '../../../modules/world';
 import { getPlayerGroup } from '../../../modules/groups';
 import { addItem } from '../../../modules/inventories';
-import {
-    DEVTOOL_WINDOW,
-    toggleWindow,
-    getGeneralUIState,
-} from '../../../modules/ui';
+import { DEVTOOL_WINDOW, toggleWindow, getGeneralUIState } from '../../../modules/ui';
 import { saveState, removeSavedState } from '../../../modules/savegames';
 import { showModal } from '../../../modules/modals';
 import { startEvent } from '../../../modules/events';
@@ -26,9 +22,7 @@ import {
     Window,
 } from '../../common';
 
-
 export class DevToolContainer extends React.PureComponent {
-
     static propTypes = {
         activeUI: PropTypes.bool,
         player: PropTypes.object,
@@ -43,13 +37,7 @@ export class DevToolContainer extends React.PureComponent {
     state = {};
 
     render() {
-        const {
-            activeUI,
-            player,
-            selectedCoord,
-            numCoordsInView,
-            dispatch,
-        } = this.props;
+        const { activeUI, player, selectedCoord, numCoordsInView, dispatch } = this.props;
 
         const confirmRemoveSavedState = async () => {
             if (await dispatch(showModal('ui.removeSaveGameConfirmation'))) {
@@ -57,7 +45,7 @@ export class DevToolContainer extends React.PureComponent {
             }
         };
 
-        const addPlayerItem = (itemTypeId) => {
+        const addPlayerItem = itemTypeId => {
             dispatch(addItem(player.inventoryId, itemTypeId));
         };
 
@@ -80,7 +68,11 @@ export class DevToolContainer extends React.PureComponent {
                             <Block>
                                 <Tooltip>
                                     <Tooltip.Content>
-                                        <Compass origin={player.coord} destination={[0, 0]} small />
+                                        <Compass
+                                            origin={player.coord}
+                                            destination={[0, 0]}
+                                            small
+                                        />
                                     </Tooltip.Content>
                                     <u>Direction to 0,0</u>
                                 </Tooltip>
@@ -91,7 +83,10 @@ export class DevToolContainer extends React.PureComponent {
                             <Block>
                                 <Grid smallGap>
                                     <Grid.Item>
-                                        <Button onClick={() => dispatch(saveState())} small>
+                                        <Button
+                                            onClick={() => dispatch(saveState())}
+                                            small
+                                        >
                                             Save game
                                         </Button>
                                     </Grid.Item>
@@ -117,9 +112,10 @@ export class DevToolContainer extends React.PureComponent {
                                         </Button>
                                     </Grid.Item>
                                     <Grid.Item>
-
                                         <Button
-                                            onClick={() => addPlayerItem('test-consumable')}
+                                            onClick={() =>
+                                                addPlayerItem('test-consumable')
+                                            }
                                             small
                                         >
                                             Consumable item
@@ -150,16 +146,14 @@ export class DevToolContainer extends React.PureComponent {
 }
 
 export default connect(
-    (state) => ({
+    state => ({
         activeUI: getGeneralUIState(state).active,
         player: getPlayerGroup(state),
         selectedCoord: getSceneState(state).selectedCoord,
         numCoordsInView: getSceneState(state).coordsInView.length,
     }),
-    (dispatch) => ({
-        closeWindow: () => (
-            dispatch(toggleWindow(DEVTOOL_WINDOW, false))
-        ),
+    dispatch => ({
+        closeWindow: () => dispatch(toggleWindow(DEVTOOL_WINDOW, false)),
         dispatch,
     })
 )(DevToolContainer);

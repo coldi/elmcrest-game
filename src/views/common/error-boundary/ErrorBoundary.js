@@ -9,7 +9,7 @@ export default class ErrorBoundary extends React.Component {
         onCatch: PropTypes.func,
     };
 
-    componentDidCatch (error, info) {
+    componentDidCatch(error, info) {
         const errorState = { error, info };
 
         if (this.props.onCatch) {
@@ -22,7 +22,7 @@ export default class ErrorBoundary extends React.Component {
         }
     }
 
-    render () {
+    render() {
         return this.props.children;
     }
 }

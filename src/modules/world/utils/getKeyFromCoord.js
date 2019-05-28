@@ -3,7 +3,7 @@
  * @param {number[]} coord A coord
  * @returns {string}
  */
-const getKeyFromCoord = (coord) => {
+const getKeyFromCoord = coord => {
     const [x, y] = coord;
     return `${x}_${y}`;
 };

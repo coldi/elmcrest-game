@@ -7,9 +7,8 @@ import getQueuedEntries from './getQueuedEntries';
  * @param {string} charId A character id
  * @returns {boolean}
  */
-const isCharacterInBattle = (state, charId) => (
+const isCharacterInBattle = (state, charId) =>
     isBattleActive(state) &&
-    getQueuedEntries(state).some(entry => entry.characterId === charId)
-);
+    getQueuedEntries(state).some(entry => entry.characterId === charId);
 
 export default isCharacterInBattle;

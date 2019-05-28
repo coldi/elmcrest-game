@@ -5,6 +5,6 @@ import getUIState from './getUIState';
  * @param {Object} state The global state
  * @returns {Object} The general state
  */
-const getGeneralUIState = (state) => getUIState(state).general;
+const getGeneralUIState = state => getUIState(state).general;
 
 export default getGeneralUIState;

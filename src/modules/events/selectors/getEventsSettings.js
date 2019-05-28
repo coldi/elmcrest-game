@@ -5,6 +5,6 @@ import getEventsState from './getEventsState';
  * @param {Object} state The global state
  * @returns {Object}
  */
-const getEventsSettings = (state) => getEventsState(state).settings;
+const getEventsSettings = state => getEventsState(state).settings;
 
 export default getEventsSettings;

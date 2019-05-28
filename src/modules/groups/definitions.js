@@ -2,7 +2,8 @@
  * The group default properties.
  * @type {Object}
  */
-export const groupDefaults = { // eslint-disable-line
+export const groupDefaults = {
+    // eslint-disable-line
     characterIds: [],
     inventoryId: null,
     color: '#F90',

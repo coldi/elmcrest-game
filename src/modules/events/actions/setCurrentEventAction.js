@@ -3,9 +3,7 @@
  * @param {Object} event An event object
  * @returns {Object} A redux action
  */
-const setCurrentEventAction = (
-    event
-) => ({
+const setCurrentEventAction = event => ({
     type: `${setCurrentEventAction}`,
     payload: { event },
 });

@@ -3,9 +3,7 @@
  * @param {string} lang A language code
  * @returns {Object} A redux action
  */
-const setLangAction = (
-    lang
-) => ({
+const setLangAction = lang => ({
     type: `${setLangAction}`,
     payload: { lang },
 });

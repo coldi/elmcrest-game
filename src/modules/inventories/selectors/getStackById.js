@@ -7,8 +7,6 @@ import getStacks from './getStacks';
  * @param {string} stackId A stack id
  * @returns {Object} An item stack
  */
-const getStackById = (state, id, stackId) => (
-    getStacks(state, id)[stackId]
-);
+const getStackById = (state, id, stackId) => getStacks(state, id)[stackId];
 
 export default getStackById;

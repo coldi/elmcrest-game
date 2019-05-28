@@ -9,13 +9,13 @@ import setCurrentBattleAction from './setCurrentBattleAction';
  * @param {string} charId A character id
  * @returns {Function} A redux thunk
  */
-const removeCharacter = (charId) => (dispatch, getState) => {
+const removeCharacter = charId => (dispatch, getState) => {
     const char = getCharacterById(getState(), charId);
     const battleState = getCurrentBattle(getState());
 
     // remove character from battle
     const nextBattleState = {
-        characters: battleState.characters.filter(entry => entry.characterId !== char.id)
+        characters: battleState.characters.filter(entry => entry.characterId !== char.id),
     };
 
     // update battle state

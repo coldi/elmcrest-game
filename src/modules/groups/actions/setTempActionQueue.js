@@ -18,16 +18,11 @@ import getFieldType from '../../world/selectors/getFieldType';
  * @param {number[]} [coord] The coord the group wants to interact with
  * @returns {Function} A redux thunk
  */
-const setTempActionQueue = (
-    id,
-    coord,
-) => async (dispatch, getState) => {
+const setTempActionQueue = (id, coord) => async (dispatch, getState) => {
     const state = getState();
     const group = getGroupById(state, id);
 
-    const destination = (coord === undefined)
-        ? getSceneState(state).selectedCoord
-        : coord;
+    const destination = coord === undefined ? getSceneState(state).selectedCoord : coord;
 
     if (!destination) {
         // if no proper destination was found resolve with no actions
@@ -65,7 +60,7 @@ const setTempActionQueue = (
         .slice(1)
         // map each step to action
         .map((step, index) => {
-            const isLastIndex = (index + 1 === path.length - 1);
+            const isLastIndex = index + 1 === path.length - 1;
             // test if the last step is still occupied
             if (isOccupied && isLastIndex) {
                 // replace last movement action with group interaction (attack)

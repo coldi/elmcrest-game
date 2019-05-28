@@ -5,8 +5,6 @@ import getSkillsState from './getSkillsState';
  * @param {Object} state The global state
  * @returns {Array} A list of skills
  */
-const getSkillsList = (state) => (
-    Object.values(getSkillsState(state).byId)
-);
+const getSkillsList = state => Object.values(getSkillsState(state).byId);
 
 export default getSkillsList;

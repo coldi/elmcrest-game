@@ -18,11 +18,7 @@ const calcMultipliedValues = (baseValues, multipliers = {}, path = []) => {
             return calcMultipliedValues(baseValues, multipliers, currentPath);
         }
 
-        return Immutable.updateIn(
-            props,
-            currentPath,
-            (value) => value * (1 + multiplier)
-        );
+        return Immutable.updateIn(props, currentPath, value => value * (1 + multiplier));
     }, baseValues);
 };
 

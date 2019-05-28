@@ -7,7 +7,6 @@ import { Stack, ContextMenu } from '../';
 import styles from './InventoryList.scss';
 
 export class InventoryListContainer extends React.PureComponent {
-
     static propTypes = {
         inventoryId: PropTypes.string.isRequired,
         stacks: PropTypes.arrayOf(PropTypes.shape()),
@@ -28,70 +27,60 @@ export class InventoryListContainer extends React.PureComponent {
 
     element = null;
 
-    constructor (props) {
+    constructor(props) {
         super(props);
 
         this.handleDeselect = this.handleDeselect.bind(this);
         this.renderStack = this.renderStack.bind(this);
     }
 
-    handleDeselect () {
+    handleDeselect() {
         this.props.onSelect(null);
     }
 
-    renderStack (stack) {
-        const {
-            selectedStackId,
-            onSelect,
-            onUse,
-            contextMenuList,
-        } = this.props;
+    renderStack(stack) {
+        const { selectedStackId, onSelect, onUse, contextMenuList } = this.props;
 
-        const className = classNames(
-            styles.stackItem,
-            { [styles.stackItemActive]: selectedStackId === stack.id }
-        );
+        const className = classNames(styles.stackItem, {
+            [styles.stackItemActive]: selectedStackId === stack.id,
+        });
 
         const stackElement = <Stack stack={stack} onClick={onSelect} onContext={onUse} />;
 
         return (
-            <li
-                key={stack.id}
-                className={className}
-                onClick={e => e.stopPropagation()}
-            >
+            <li key={stack.id} className={className} onClick={e => e.stopPropagation()}>
                 {contextMenuList ? (
                     <ContextMenu render={() => contextMenuList(stack.id)}>
                         {stackElement}
                     </ContextMenu>
-                ) : stackElement}
+                ) : (
+                    stackElement
+                )}
             </li>
         );
     }
 
-    render () {
+    render() {
         const { stacks } = this.props;
 
         return (
             <div
                 className={styles.container}
-                ref={(ref) => { this.element = ref; }}
+                ref={ref => {
+                    this.element = ref;
+                }}
                 onClick={this.handleDeselect}
             >
                 <div className={styles.wrap}>
-                    <ul className={styles.stackList}>
-                        {stacks.map(this.renderStack)}
-                    </ul>
+                    <ul className={styles.stackList}>{stacks.map(this.renderStack)}</ul>
                 </div>
             </div>
         );
     }
 }
 
-export default connect(
-    (state, props) => ({
-        stacks: props.showEquip
-            ? getItemStacksList(state, props.inventoryId)
-            : getUnequippedStacksList(state, props.inventoryId),
-    })
-)(InventoryListContainer);
+export default connect((state, props) => ({
+    stacks: props.showEquip
+        ? getItemStacksList(state, props.inventoryId)
+        : getUnequippedStacksList(state, props.inventoryId),
+}))(InventoryListContainer);

@@ -24,11 +24,11 @@ const applyEffects = (charId, newEffects) => async (dispatch, getState) => {
     }
 
     const state = getState();
-    const effects = (newEffects)
-        // only apply new effects immediately that don't last over time
-        ? newEffects.filter(effect => !effect.duration)
-        // if no new effects were passed, apply active character effects
-        : getCharacterEffectsById(state, charId);
+    const effects = newEffects
+        ? // only apply new effects immediately that don't last over time
+          newEffects.filter(effect => !effect.duration)
+        : // if no new effects were passed, apply active character effects
+          getCharacterEffectsById(state, charId);
 
     const context = getContextByCharacterId(state, charId);
     const isCurrentContext = effect => effect.context === context;

@@ -3,9 +3,7 @@
  * @param {string} sceneId A scene id
  * @returns {Object} A redux action
  */
-const setCurrentEventSceneAction = (
-    sceneId
-) => ({
+const setCurrentEventSceneAction = sceneId => ({
     type: `${setCurrentEventSceneAction}`,
     payload: { sceneId },
 });

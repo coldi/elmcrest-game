@@ -4,10 +4,7 @@
  * @param {string} stackId A stack id
  * @returns {Object} A redux action
  */
-const removeStackAction = (
-    id,
-    stackId,
-) => ({
+const removeStackAction = (id, stackId) => ({
     type: `${removeStackAction}`,
     payload: { id, stackId },
 });

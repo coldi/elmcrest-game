@@ -5,8 +5,6 @@ import getI18nState from './getI18nState';
  * @param {Object} state The global state
  * @returns {Object} A group object
  */
-const getLang = (state) => (
-    getI18nState(state).lang
-);
+const getLang = state => getI18nState(state).lang;
 
 export default getLang;

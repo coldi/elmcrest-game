@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { Grid, Skill } from '../common';
 import styles from './SkillBar.scss';
 
-export default function SkillBar (props) {
+export default function SkillBar(props) {
     return (
         <div className={styles.container}>
             <Grid noWrap>
-                {props.skills.map((skill) => (
+                {props.skills.map(skill => (
                     <div
                         key={skill.id}
                         className={styles.skill}

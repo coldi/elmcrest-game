@@ -18,12 +18,8 @@ import {
  * @param {Object} action The dispatched action
  * @returns {Object} The next state
  */
-export default function groups (
-    state = {},
-    action = {}
-) {
+export default function groups(state = {}, action = {}) {
     switch (action.type) {
-
         case `${createGroupAction}`: {
             const { group } = action.payload;
 
@@ -33,20 +29,16 @@ export default function groups (
         case `${addCharacterAction}`: {
             const { groupId, characterId } = action.payload;
 
-            return Immutable.updateIn(
-                state,
-                [groupId, 'characterIds'],
-                (list) => list.concat([characterId])
+            return Immutable.updateIn(state, [groupId, 'characterIds'], list =>
+                list.concat([characterId])
             );
         }
 
         case `${removeCharacterAction}`: {
             const { groupId, characterId } = action.payload;
 
-            return Immutable.updateIn(
-                state,
-                [groupId, 'characterIds'],
-                (list) => list.filter((id) => id !== characterId)
+            return Immutable.updateIn(state, [groupId, 'characterIds'], list =>
+                list.filter(id => id !== characterId)
             );
         }
 
@@ -71,11 +63,7 @@ export default function groups (
         case `${setActionQueueAction}`: {
             const { id, actions } = action.payload;
 
-            return Immutable.setIn(
-                state,
-                [id, 'actionQueue'],
-                actions
-            );
+            return Immutable.setIn(state, [id, 'actionQueue'], actions);
         }
 
         case `${removeFromActionQueueAction}`: {
@@ -87,21 +75,15 @@ export default function groups (
             }
 
             // remove index
-            return Immutable.updateIn(
-                state,
-                [id, 'actionQueue'],
-                (queue) => queue.filter((item, i) => i !== index)
+            return Immutable.updateIn(state, [id, 'actionQueue'], queue =>
+                queue.filter((item, i) => i !== index)
             );
         }
 
         case `${setTempActionQueueAction}`: {
             const { id, actions } = action.payload;
 
-            return Immutable.setIn(
-                state,
-                [id, 'tempActionQueue'],
-                actions
-            );
+            return Immutable.setIn(state, [id, 'tempActionQueue'], actions);
         }
 
         default:

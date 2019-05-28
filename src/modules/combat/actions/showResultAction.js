@@ -3,9 +3,7 @@
  * @param {boolean} active
  * @returns {Object} A redux action
  */
-const showResultAction = (
-    active = true
-) => ({
+const showResultAction = (active = true) => ({
     type: `${showResultAction}`,
     payload: { active },
 });

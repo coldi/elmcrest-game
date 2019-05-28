@@ -1,11 +1,9 @@
 /* eslint-disable no-undef */
 import calcPath from './utils/calcPath';
 
-onmessage = (e) => {
+onmessage = e => {
     // cast object to array
-    const params = typeof e.data === 'object'
-        ? Object.values(e.data)
-        : e.data;
+    const params = typeof e.data === 'object' ? Object.values(e.data) : e.data;
 
     const [state, options] = params;
 

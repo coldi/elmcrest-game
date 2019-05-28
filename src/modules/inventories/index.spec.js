@@ -3,10 +3,7 @@ import { getItemTypeById, getItemTypesList, createItemTypesAction } from '../ite
 import { getCharacterById, createCharacter } from '../characters';
 import { createGroup, addCharacter } from '../groups';
 import { itemTypeDefaults } from '../items/definitions';
-import {
-    STATIC_INVENTORY,
-    DYNAMIC_INVENTORY,
-} from './constants';
+import { STATIC_INVENTORY, DYNAMIC_INVENTORY } from './constants';
 import {
     getInventoriesSettings,
     getInventoryById,
@@ -25,7 +22,6 @@ import {
     removeItem,
     transferAllStacks,
 } from './';
-
 
 describe('modules/inventories', () => {
     let getState;
@@ -66,18 +62,24 @@ describe('modules/inventories', () => {
             let stackList;
 
             beforeEach(() => {
-                dispatch(createItemTypesAction([
-                    {
-                        ...itemTypeDefaults,
-                        id: itemTypeId,
-                        consumable: true,
-                        size: 1,
-                    }
-                ]));
+                dispatch(
+                    createItemTypesAction([
+                        {
+                            ...itemTypeDefaults,
+                            id: itemTypeId,
+                            consumable: true,
+                            size: 1,
+                        },
+                    ])
+                );
 
-                stackableItemType = getItemTypesList(getState()).filter(type => !type.slot).shift();
+                stackableItemType = getItemTypesList(getState())
+                    .filter(type => !type.slot)
+                    .shift();
                 dispatch(addItem(invId, stackableItemType.id));
-                stack = getStackOfItem(getState(), invId, { itemTypeId: stackableItemType.id });
+                stack = getStackOfItem(getState(), invId, {
+                    itemTypeId: stackableItemType.id,
+                });
                 stackList = getStacksList(getState(), invId);
             });
 
@@ -101,7 +103,9 @@ describe('modules/inventories', () => {
 
                 beforeEach(() => {
                     dispatch(addItem(invId, stackableItemType.id, amount));
-                    stack = getStackOfItem(getState(), invId, { itemTypeId: stackableItemType.id });
+                    stack = getStackOfItem(getState(), invId, {
+                        itemTypeId: stackableItemType.id,
+                    });
                     stackList = getStacksList(getState(), invId);
                 });
 
@@ -114,7 +118,9 @@ describe('modules/inventories', () => {
             describe('Given the previously added item gets removed', () => {
                 beforeEach(() => {
                     dispatch(removeItem(invId, { itemTypeId: stackableItemType.id }));
-                    stack = getStackOfItem(getState(), invId, { itemTypeId: stackableItemType.id });
+                    stack = getStackOfItem(getState(), invId, {
+                        itemTypeId: stackableItemType.id,
+                    });
                     stackList = getStacksList(getState(), invId);
                 });
 
@@ -203,14 +209,16 @@ describe('modules/inventories', () => {
             let character;
 
             beforeEach(() => {
-                dispatch(createItemTypesAction([
-                    {
-                        ...itemTypeDefaults,
-                        id: wearableItemTypeId,
-                        slot: 'head',
-                        size: 1,
-                    }
-                ]));
+                dispatch(
+                    createItemTypesAction([
+                        {
+                            ...itemTypeDefaults,
+                            id: wearableItemTypeId,
+                            slot: 'head',
+                            size: 1,
+                        },
+                    ])
+                );
 
                 itemType = getItemTypeById(getState(), wearableItemTypeId);
                 wearableStack = dispatch(addItem(inventory.id, wearableItemTypeId));
@@ -224,7 +232,7 @@ describe('modules/inventories', () => {
                 const { equip } = character;
 
                 expect(equip[itemType.slot]).toMatchObject({
-                    stackId: wearableStack.id
+                    stackId: wearableStack.id,
                 });
             });
 
@@ -237,7 +245,11 @@ describe('modules/inventories', () => {
                     dispatch(unequipStack(inventory.id, wearableStack.id, charId));
 
                     character = getCharacterById(getState(), charId);
-                    wearableStack = getStackById(getState(), inventory.id, wearableStack.id);
+                    wearableStack = getStackById(
+                        getState(),
+                        inventory.id,
+                        wearableStack.id
+                    );
                 });
 
                 it('should have character with NO equipped stack item', () => {

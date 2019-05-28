@@ -6,8 +6,7 @@ import getCurrentPhaseMembers from './getCurrentPhaseMembers';
  * @param {string} groupId A group id
  * @returns {boolean}
  */
-const isMemberInCurrentPhase = (state, groupId) => (
-    getCurrentPhaseMembers(state).some((member) => member.groupId === groupId)
-);
+const isMemberInCurrentPhase = (state, groupId) =>
+    getCurrentPhaseMembers(state).some(member => member.groupId === groupId);
 
 export default isMemberInCurrentPhase;

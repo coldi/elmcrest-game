@@ -5,8 +5,6 @@ import loadScript from '../../utils/loadScript';
  * @param {string} id The id of the event
  * @returns {Promise<Function>}
  */
-const getEventScriptById = (id) => (
-    loadScript(`events/${id}/index.js`)
-);
+const getEventScriptById = id => loadScript(`events/${id}/index.js`);
 
 export default getEventScriptById;

@@ -5,8 +5,6 @@ import isModifier from './isModifier';
  * @param {Object} effect
  * @returns {boolean}
  */
-const isMultiplyModifier = (effect) => (
-    isModifier(effect) && effect.name.charAt(0) === '*'
-);
+const isMultiplyModifier = effect => isModifier(effect) && effect.name.charAt(0) === '*';
 
 export default isMultiplyModifier;

@@ -7,10 +7,7 @@ import registerEffectAction from '../actions/registerEffectAction';
  * @param {Object} action The dispatched action
  * @returns {Object} The next state
  */
-export default function effects (
-    state = {},
-    action = {}
-) {
+export default function effects(state = {}, action = {}) {
     switch (action.type) {
         case `${registerEffectAction}`: {
             const { effect } = action.payload;

@@ -10,9 +10,7 @@ import getGroupById from './getGroupById';
 const isGroupOverloaded = (state, id) => {
     const { inventoryId } = getGroupById(state, id);
 
-    return inventoryId
-        ? getFreeCapacity(state, inventoryId) < 0
-        : false;
+    return inventoryId ? getFreeCapacity(state, inventoryId) < 0 : false;
 };
 
 export default isGroupOverloaded;

@@ -6,8 +6,6 @@ import getInventoryById from './getInventoryById';
  * @param {string} id An inventory id
  * @returns {Object} The stacks hash
  */
-const getStacks = (state, id) => (
-    getInventoryById(state, id).stacks
-);
+const getStacks = (state, id) => getInventoryById(state, id).stacks;
 
 export default getStacks;

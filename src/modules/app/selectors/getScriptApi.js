@@ -12,7 +12,7 @@ import * as world from '../../world';
  * @param {Object} state The global state
  * @return {Object} A redux thunk
  */
-const getScriptApi = (state) => ({
+const getScriptApi = state => ({
     state,
     modules: {
         characters,

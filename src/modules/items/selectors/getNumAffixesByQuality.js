@@ -11,15 +11,20 @@ import getItemsState from './getItemsState';
 const getNumAffixesByQuality = (state, qualityId) => {
     const { qualities } = getItemsState(state);
     const { numAffixes, affixWeights } = qualities[qualityId];
-    const possibleSlots = Object.entries(affixWeights).map(([tag, weight]) => ({ tag, weight }));
+    const possibleSlots = Object.entries(affixWeights).map(([tag, weight]) => ({
+        tag,
+        weight,
+    }));
     const picked = pickWeighted(possibleSlots, 'weight');
     const result = {
-        prefix: picked && picked.tag.includes('prefix')
-            ? Math.ceil(Math.random() * (numAffixes / 2))
-            : 0,
-        suffix: picked && picked.tag.includes('suffix')
-            ? Math.ceil(Math.random() * (numAffixes / 2))
-            : 0,
+        prefix:
+            picked && picked.tag.includes('prefix')
+                ? Math.ceil(Math.random() * (numAffixes / 2))
+                : 0,
+        suffix:
+            picked && picked.tag.includes('suffix')
+                ? Math.ceil(Math.random() * (numAffixes / 2))
+                : 0,
     };
 
     return result;

@@ -6,7 +6,7 @@ import getCycleSettings from './getCycleSettings';
  * @param {Object} state The global state
  * @returns {number}
  */
-const getDayTime = (state) => {
+const getDayTime = state => {
     const turn = getCurrentTurn(state);
     const { dayNightCycle } = getCycleSettings(state);
     return (turn % dayNightCycle) / dayNightCycle;

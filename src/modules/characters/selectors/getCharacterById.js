@@ -10,18 +10,15 @@ import getComputedCharacterById from './getComputedCharacterById';
  * @param {string} id A character id
  * @returns {Object} A modified character object
  */
-const getCharacterById = memoize(
-    getBaseCharacterById,
-    (state, id) => {
-        const computedCharacter = getComputedCharacterById(state, id);
-        const effects = getCharacterEffectsById(state, id);
+const getCharacterById = memoize(getBaseCharacterById, (state, id) => {
+    const computedCharacter = getComputedCharacterById(state, id);
+    const effects = getCharacterEffectsById(state, id);
 
-        if (effects.length !== 0) {
-            return applyModifiers(effects, computedCharacter);
-        }
+    if (effects.length !== 0) {
+        return applyModifiers(effects, computedCharacter);
+    }
 
-        return computedCharacter;
-    },
-);
+    return computedCharacter;
+});
 
 export default getCharacterById;

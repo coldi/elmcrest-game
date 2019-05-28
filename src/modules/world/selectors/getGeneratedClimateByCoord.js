@@ -8,13 +8,13 @@ import getWorldSettings from './getWorldSettings';
  * @param {number[]} coord
  * @return {number}
  */
-function getGeneratedClimateByCoord (state, coord) {
+function getGeneratedClimateByCoord(state, coord) {
     const settings = getWorldSettings(state);
     const generator = makeNoiseGen(state, 'field.climate', {
         max: settings.numClimateZones - 1,
         frequency: settings.climateGenFrequency,
     });
-
+    // eslint-disable-next-line no-console
     let biome = generator.scaled(coord);
     if (biome < 0.75) {
         biome = 0;

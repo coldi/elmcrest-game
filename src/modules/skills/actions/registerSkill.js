@@ -8,15 +8,10 @@ import registerSkillAction from './registerSkillAction';
  * @param {Object} props Specific skill props
  * @returns {Function} A redux thunk
  */
-const registerSkill = (
-    props = {},
-) => (dispatch) => {
+const registerSkill = (props = {}) => dispatch => {
     invariant(props.id, 'An id is required to register a skill.');
 
-    const skill = Immutable.merge(
-        skillDefaults,
-        props
-    );
+    const skill = Immutable.merge(skillDefaults, props);
 
     dispatch(registerSkillAction(skill));
 

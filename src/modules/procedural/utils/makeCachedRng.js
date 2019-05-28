@@ -6,9 +6,6 @@ import makeRng from './makeRng';
  * @param {string|number} seed A seed value
  * @returns {Object}
  */
-const makeCachedRng = memoizeHash(
-    seed => seed,
-    seed => makeRng(seed)
-);
+const makeCachedRng = memoizeHash(seed => seed, seed => makeRng(seed));
 
 export default makeCachedRng;

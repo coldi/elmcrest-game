@@ -3,9 +3,9 @@
  * @param {string} id A group id
  * @returns {Object} A redux action
  */
-const removeGroupAction = (id) => ({
+const removeGroupAction = id => ({
     type: `${removeGroupAction}`,
-    payload: { id }
+    payload: { id },
 });
 
 removeGroupAction.toString = () => 'groups/remove group';

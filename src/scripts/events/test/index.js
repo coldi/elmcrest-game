@@ -36,9 +36,8 @@ export default ({
     const getSelectionParams = () => ({
         name: getEventState().selectedChar.name,
         gender: getEventState().selectedChar.gender,
-        otherName: characters.find(
-            char => char.id !== getEventState().selectedChar.id
-        ).name,
+        otherName: characters.find(char => char.id !== getEventState().selectedChar.id)
+            .name,
     });
 
     return {
@@ -69,24 +68,28 @@ export default ({
                  * You find a very small entrance.
                  * Who of your group should enter?
                  */
-                actions: characters.map((char) => ({
-                    id: 'ENTER_RUINS',
-                    params: { name: char.name },
-                    resolve: () => {
-                        setEventState({
-                            selectedChar: char,
-                        });
+                actions: characters
+                    .map(char => ({
+                        id: 'ENTER_RUINS',
+                        params: { name: char.name },
+                        resolve: () => {
+                            setEventState({
+                                selectedChar: char,
+                            });
 
-                        if (char.base.dex > 10) {
-                            gotoScene('INSIDE_RUINS');
-                        } else {
-                            gotoScene('COLLAPSE');
-                        }
-                    }
-                })).concat([{
-                    id: 'DISMISS_RUINS',
-                    resolve: endEvent,
-                }]),
+                            if (char.base.dex > 10) {
+                                gotoScene('INSIDE_RUINS');
+                            } else {
+                                gotoScene('COLLAPSE');
+                            }
+                        },
+                    }))
+                    .concat([
+                        {
+                            id: 'DISMISS_RUINS',
+                            resolve: endEvent,
+                        },
+                    ]),
             }),
             INSIDE_RUINS: () => ({
                 /**
@@ -97,9 +100,11 @@ export default ({
                 // show character portrait by specifying resourceId
                 resourceId: getEventState().selectedChar.resourceId,
                 // show item stacks
-                stacks: [{
-                    item: { itemTypeId: itemReward.id },
-                }],
+                stacks: [
+                    {
+                        item: { itemTypeId: itemReward.id },
+                    },
+                ],
                 // translation params for scene text
                 params: getSelectionParams(),
                 actions: [

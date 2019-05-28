@@ -2,7 +2,7 @@ import invariant from './invariant';
 
 const { NODE_ENV } = process.env;
 
-const makeLog = (method) => (...args) => {
+const makeLog = method => (...args) => {
     if (NODE_ENV === 'production') {
         return;
     }
