@@ -51,6 +51,9 @@ module.exports = {
             module: {
                 rules: rules => [...rules, { test: /\.(glsl)$/, use: 'raw-loader' }],
             },
+            output: {
+                globalObject: 'this'
+            }
         },
     }),
 };

@@ -22,7 +22,7 @@ const getGeneratedEventIdByCoord = (state, coord) => {
         frequency: settings.noiseGenFrequency,
     });
 
-    const n = generator.scaled2D(coord[0], coord[1]);
+    const n = generator.scaled(coord);
 
     // no event above certain chance
     if (n > settings.globalChance) return null;

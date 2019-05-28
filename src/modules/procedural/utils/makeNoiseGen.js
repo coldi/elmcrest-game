@@ -1,4 +1,4 @@
-import FastSimplexNoise from 'faster-simplex-noise';
+import FastSimplexNoise from 'fast-simplex-noise';
 import { memoizeHash } from '../../utils/memoize';
 import makeRng from './makeRng';
 import getSeed from '../selectors/getSeed';

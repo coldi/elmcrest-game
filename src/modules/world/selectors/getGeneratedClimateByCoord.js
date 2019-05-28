@@ -15,7 +15,7 @@ function getGeneratedClimateByCoord(state, coord) {
         frequency: settings.climateGenFrequency,
     });
     // eslint-disable-next-line no-console
-    let biome = generator.scaled2D(coord[0], coord[1]);
+    let biome = generator.scaled(coord);
     if (biome < 0.75) {
         biome = 0;
     }
